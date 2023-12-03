@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  nginx:
+    extends:
+      file: ./docker/services-common.yml
+      service: nginx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${NGINX_SERVER_NAME}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=web"
+    depends_on:
+      - php
+  mysql:
+    extends:
+      file: ./docker/services-common.yml
+      service: mysql
+    labels:
+      - "traefik.enable=false"
+  php:
+    extends:
+      file: ./docker/services-common.yml
+      service: php
+    labels:
+      - "traefik.enable=false"
+    depends_on:
+      - mysql
+  watch:
+    restart: unless-stopped
+    extends:
+      file: ./docker/services-common.yml
+      service: node
+    ports:
+      - "${NODE_WATCH_PORT:-3000}:3000"
+    environment:
+      DEV_URL: http://${NGINX_SERVER_NAME}
+    labels:
+      - "traefik.enable=false"
+    depends_on:
+      - nginx
+  redis:
+    extends:
+      file: ./docker/services-common.yml
+      service: redis
+    labels:
+      - "traefik.enable=false"
+
+volumes:
+  mysql:
+
+networks:
+  default:
+    name: traefik-network
+    external: true

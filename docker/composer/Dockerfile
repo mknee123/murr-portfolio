@@ -1,0 +1,24 @@
+ARG PHP_VERSION=8.1
+
+FROM php:${PHP_VERSION:-8.1}-cli-alpine
+
+ARG GH_COMPOSER_USERNAME
+ARG GH_COMPOSER_PASSWORD
+ARG GH_BITBUCKET_KEY
+ARG GH_BITBUCKET_SECRET
+
+ENV GH_COMPOSER_USERNAME=${GH_COMPOSER_USERNAME}
+ENV GH_COMPOSER_PASSWORD=${GH_COMPOSER_PASSWORD}
+ENV GH_BITBUCKET_KEY=${GH_BITBUCKET_KEY}
+ENV GH_BITBUCKET_SECRET=${GH_BITBUCKET_SECRET}
+ENV COMPOSER_HOME=/tmp
+
+WORKDIR /app
+
+COPY ./auth.json /tmp
+COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin
+
+RUN apk add --update gettext git && \
+    envsubst < /tmp/auth.json | tee /tmp/auth.json
+
+ENTRYPOINT ["/usr/local/bin/composer"]

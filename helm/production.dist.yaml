@@ -1,0 +1,59 @@
+environment: production
+hostName: &commonName mirandaknee.com
+replicaCount: 2
+
+varnish:
+  enabled: true
+  service:
+    type: ClusterIP
+  purgeWhitelist:
+    - "127.0.0.1"
+    - "localhost"
+    - "192.168.0.0/16"
+
+redis:
+  enabled: true
+
+mariadb:
+  enabled: false
+  # host: gh-shared-cluster.ccy5divwl57m.us-east-1.rds.amazonaws.com
+  auth:
+    database: murr_com_production
+    username: murr
+    # password: <secret>
+
+uploadsPVC:
+  enabled: true
+  annotations:
+    helm.sh/resource-policy: keep
+  accessModes:
+    - ReadWriteMany
+  storageClass: fs-0cdf42b8-efs-sc
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 32m
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  hosts:
+    - host: *commonName
+      http: &top-level-domain
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: "{{ .Release.Name }}-http"
+                port:
+                  name: varnish
+    - host: www.murr.com
+      http:
+        <<: *top-level-domain
+  tls:
+    - secretName: "{{ .Release.Name }}-tls"
+      hosts:
+        - *commonName
+        - www.murr.com

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  composer:
+    build:
+      context: ./docker/composer
+      args:
+        PHP_VERSION: ${PHP_VERSION:-8.1}
+        GH_COMPOSER_USERNAME: ${GH_COMPOSER_USERNAME}
+        GH_COMPOSER_PASSWORD: ${GH_COMPOSER_PASSWORD}
+        GH_BITBUCKET_KEY: ${GH_BITBUCKET_KEY}
+        GH_BITBUCKET_SECRET: ${GH_BITBUCKET_SECRET}
+    volumes:
+      - ./code:/app
+    networks:
+      - default
+      - traefik
+  wp:
+    extends:
+      file: ./docker/services-common.yml
+      service: wp
+    networks:
+      - default
+      - traefik
+  node:
+    extends:
+      file: ./docker/services-common.yml
+      service: node
+    networks:
+      - default
+      - traefik
+
+networks:
+  traefik:
+    name: traefik-network
+    external: true
+
