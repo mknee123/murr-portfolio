@@ -11,8 +11,8 @@ NC='\033[0m' # No Color
 
 echo -e "Installing Dependencies\n"
 ./bin/cli.sh composer install
-./bin/cli.sh node yarn install
-./bin/cli.sh node yarn run build
+./bin/cli.sh node npm install
+./bin/cli.sh node npm run build
 
 echo -e "Spinning up the project over Traefik\n"
 ./bin/up.sh

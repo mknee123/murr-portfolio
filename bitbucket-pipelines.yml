@@ -1,57 +1,68 @@
-image: php:8.1-cli-alpine
+image: php:8.2-cli-alpine
 
 definitions:
   steps:
-    - step: &docker-build-and-deploy
-        name: Docker Build
-        image: amazon/aws-cli:2.2.1
-        services:
-          - docker
-        caches:
-          - docker
+    # Digital Ocean Droplet Environment - Step 1
+    - step: &composer
+        name: Composer
         script:
-          - TAG=${BITBUCKET_BRANCH:-$BITBUCKET_TAG}
-          - CLEANTAG=${TAG#*/}
-          - IMAGENAME=${AWS_ECR_URI}/${AWS_ECR_IMAGE}:${AWS_ECR_TAG:-$CLEANTAG}
-          - echo "export IMAGENAME=$IMAGENAME" >> set_env.sh
-          - aws configure set aws_access_key_id "${AWS_KEY}"
-          - aws configure set aws_secret_access_key "${AWS_SECRET}"
-          - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${AWS_ECR_URI}
-          - docker build -t ${IMAGENAME} ./code
-          - docker push ${IMAGENAME}
+          - php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer --version=2.5.8
+          - composer install --no-dev -d $BITBUCKET_CLONE_DIR/code
+        artifacts:
+          - code/vendor/**
+          - code/web/wp/**
+          - code/web/app/plugins/**
+          - code/web/app/mu-plugins/**
+        caches:
+          - composer
+
+    # Lightsail Environment - Step 2
+    - step: &webpack
+        name: Webpack
+        image: node:18-slim
+        script:
+          - apt-get update
+          - apt-get install -y git libnotify-bin
+          - cd code/web/app/themes/murr
+          - npm install
+          - npm run build
+        artifacts:
+          - code/vendor/**
+          - code/web/wp/**
+          - code/web/app/plugins/**
+          - code/web/app/mu-plugins/**
+          - code/web/app/themes/murr/public/**
+        caches:
+          - node
+
+    # Droplet Environment - Step 3
+    - step: &droplet-deploy
+        image: atlassian/default-image:2
+        script:
+          - find code -type d -exec chmod 755 {} \;
+          - find code -type f -exec chmod 644 {} \;
+          - pipe: atlassian/rsync-deploy:0.4.4
+            variables:
+              USER: $USER
+              SERVER: $SERVER
+              REMOTE_PATH: $DEPLOY_ROOT
+              LOCAL_PATH: 'code/*'
+              EXTRA_ARGS: '--exclude=web/app/uploads'
 
 pipelines:
   branches:
     master:
+      - step: *composer
+      - step: *webpack
       - step:
-          <<: *docker-build-and-deploy
-          name: Docker Build Latest
+          name: Deploy to Staging
           deployment: staging
-          after-script:
-            - pipe: atlassian/aws-eks-kubectl-run:1.4.1
-              variables: &kube-connect
-                AWS_ACCESS_KEY_ID: ${AWS_KEY}
-                AWS_SECRET_ACCESS_KEY: ${AWS_SECRET}
-                AWS_DEFAULT_REGION: "us-east-1"
-                CLUSTER_NAME: "${AWS_EKS_CLUSTER}"
-                KUBECTL_COMMAND: >-
-                  rollout restart
-                  deploy/${AWS_EKS_DEPLOYMENT_NAME:-$AWS_ECR_IMAGE}-bedrock-project
-                  -n ${AWS_EKS_NAMESPACE:-$BITBUCKET_DEPLOYMENT_ENVIRONMENT}
-                DEBUG: "true"
+          <<: *droplet-deploy
   tags:
     release/*:
+      - step: *composer
+      - step: *webpack
       - step:
-          <<: *docker-build-and-deploy
-          name: Docker Build Release
+          name: Deploy to Production
           deployment: production
-          after-script:
-            - source set_env.sh
-            - pipe: atlassian/aws-eks-kubectl-run:1.4.1
-              variables:
-                <<: *kube-connect
-                KUBECTL_COMMAND: >-
-                  set image deploy/${AWS_EKS_DEPLOYMENT_NAME:-$AWS_ECR_IMAGE}-bedrock-project
-                  bedrock-project-wordpress=${IMAGENAME}
-                  init-application=${IMAGENAME}
-                  -n ${AWS_EKS_NAMESPACE:-$BITBUCKET_DEPLOYMENT_ENVIRONMENT}
+          <<: *droplet-deploy
