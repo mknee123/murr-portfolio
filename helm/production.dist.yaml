@@ -49,11 +49,11 @@ ingress:
                 name: "{{ .Release.Name }}-http"
                 port:
                   name: varnish
-    - host: www.murr.com
+    - host: www.mirandaknee.com
       http:
         <<: *top-level-domain
   tls:
     - secretName: "{{ .Release.Name }}-tls"
       hosts:
         - *commonName
-        - www.murr.com
+        - www.mirandaknee.com

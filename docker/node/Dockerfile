@@ -7,4 +7,4 @@ WORKDIR /theme
 RUN apt-get update && \
     apt-get install -y git libnotify-bin
 
-CMD ["yarn", "run", "watch"]
+CMD ["npm", "run", "watch"]
