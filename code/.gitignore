@@ -25,3 +25,11 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# Wordmove
+movefile.yml
+
+# Public directory
+web/app/themes/*/public
+# Public directory
+web/app/themes/*/node_modules
