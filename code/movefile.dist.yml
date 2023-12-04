@@ -70,7 +70,7 @@ staging:
     - 'wp-config.php'
 
   ssh:
-    host: '54.210.155.23'
+    host: '161.35.248.12'
     user: murr
 
 production:
@@ -123,5 +123,5 @@ production:
     - 'wp-config.php'
 
   ssh:
-    host: '54.210.155.23'
-    user: ghadv
+    host: '161.35.248.12'
+    user: murr
