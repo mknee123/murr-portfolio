@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fdc133541035f1cf678148f5e26e087",
+    "content-hash": "9678daf1b445669420b34be2a181a916",
     "packages": [
         {
             "name": "composer/installers",
@@ -1178,6 +1178,42 @@
                 }
             ],
             "time": "2023-11-12T22:43:29+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/autodescription",
+            "version": "5.0.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/autodescription/",
+                "reference": "tags/5.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/autodescription.5.0.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/autodescription/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-mail-smtp",
+            "version": "3.10.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-mail-smtp/",
+                "reference": "tags/3.10.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.3.10.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-mail-smtp/"
         },
         {
             "name": "wpackagist-theme/twentytwentyfour",
