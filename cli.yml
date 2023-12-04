@@ -8,6 +8,8 @@ services:
         PHP_VERSION: ${PHP_VERSION:-8.1}
         GH_COMPOSER_USERNAME: ${GH_COMPOSER_USERNAME}
         GH_COMPOSER_PASSWORD: ${GH_COMPOSER_PASSWORD}
+        GH_BITBUCKET_KEY: ${GH_BITBUCKET_KEY}
+        GH_BITBUCKET_SECRET: ${GH_BITBUCKET_SECRET}
     volumes:
       - ./code:/app
     networks:

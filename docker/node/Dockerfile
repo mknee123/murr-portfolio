@@ -2,9 +2,14 @@ ARG NODE_VERSION=${NODE_VERSION:-16}
 
 FROM node:${NODE_VERSION:-16}-slim AS theme
 
+ARG FONTAWESOME_NPM_AUTH_TOKEN
+ENV FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN}
+
 WORKDIR /theme
 
 RUN apt-get update && \
-    apt-get install -y git libnotify-bin
+    apt-get install -y git libnotify-bin && \
+    npm config set '@fortawesome:registry' 'https://npm.fontawesome.com/' && \
+    npm config set '//npm.fontawesome.com/:_authToken' "${FONTAWESOME_NPM_AUTH_TOKEN}"
 
 CMD ["npm", "run", "watch"]

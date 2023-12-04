@@ -28,6 +28,10 @@
       "type": "composer",
       "url": "https://wpackagist.org",
       "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    },
+    {
+      "type": "composer",
+      "url": "https://composer.garrisonhughes.site"
     }
   ],
   "require": {
@@ -40,7 +44,8 @@
     "roots/wordpress": "6.4.1",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-theme/twentytwentyfour": "^1.0"
+    "wpackagist-theme/twentytwentyfour": "^1.0",
+    "ghint/wp-assets-helper": "dev-master"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",

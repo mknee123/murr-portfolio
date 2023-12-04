@@ -79,6 +79,7 @@ services:
       context: ./node
       args:
         NODE_VERSION: ${NODE_VERSION:-16}
+        FONTAWESOME_NPM_AUTH_TOKEN: ${FONTAWESOME_NPM_AUTH_TOKEN}
     ports:
       - "${NODE_WATCH_PORT:-3000}:3000"
     environment:
