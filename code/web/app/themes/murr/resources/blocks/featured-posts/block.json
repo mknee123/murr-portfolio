@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ghint/featured-posts",
+    "title": "Featured Posts",
+    "category": "gh-blocks",
+    "description": "Display of 3 recent posts.",
+    "keywords": ["featured posts", "posts"],
+    "version": "1.0.0",
+    "textdomain": "ghint",
+    "supports": {
+        "align": ["wide"]
+    },
+    "example": {
+        "innerBlocks": [
+            {
+                "name": "core/heading",
+                "attributes": {
+                    "content": "Latest News.",
+                    "level": 2
+                }
+            },
+            {
+                "name": "ghint/content-card",
+                "innerBlocks": [
+                    {
+                        "name": "core/paragraph",
+                        "attributes": {
+                            "content": "CATEGORY",
+                            "fontSize": "mini"
+                        }
+                    },
+                    {
+                        "name": "core/heading",
+                        "attributes": {
+                            "content": "Post headline will display here.",
+                            "level": 3
+                        }
+                    },
+                    {
+                        "name": "core/button",
+                        "attributes": {
+                            "text": "Read More"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "viewScript": "file:./front.js",
+    "editorScript": "file:./editor.js",
+    "style": "file:./front.css",
+    "render": "file:./index.php"
+}

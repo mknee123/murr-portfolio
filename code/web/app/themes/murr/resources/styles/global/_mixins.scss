@@ -1,0 +1,154 @@
+@use "sass:math";
+@use "sass:list";
+
+@mixin aspect($width: 16, $height: 9) {
+    $ar: list.slash($width, $height);
+    aspect-ratio: $ar;
+
+    @supports not (aspect-ratio: $ar) {
+        &::before {
+            content: "";
+            float: left;
+            padding-top: calc(#{(math.div($height, $width))} * 100%);
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+}
+
+//------ Base button styles ---------------
+%button-styles {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    height: auto;
+    border: 2px solid transparent;
+    font-size: var(--wp--custom--font-size--button-default);
+    text-transform: uppercase;
+    border-radius: 0;
+    position: relative;
+    transition: color .25s ease-out, background-color .25s ease-out;
+
+    &::before,
+    &::after {
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
+    }
+
+    &:disabled {
+        background-color: var(--foreground);
+        cursor: not-allowed;
+
+        &::before {
+            background-color: var(--background);
+            content: "";
+            opacity: 0.7;
+            outline: 2px solid var(--background);
+        }
+    }
+
+    //Prevents hover styles on disabled
+    &:hover:not([disabled]),
+    &.has-primary-btn-background-color:hover:not([disabled]) {
+        background-color: var(--primary-btn-500);
+    }
+
+    &:focus,
+    &:target {
+        background-color: var(--primary-btn);
+        border: 2px solid var(--primary-btn);
+    }
+
+    &:active {
+        mix-blend-mode: darken;
+
+        &::after {
+            background-color: var(--foreground);
+            content: "";
+            opacity: 0.25;
+            outline: 2px solid var(--foreground);
+            z-index: -1;
+        }
+    }
+}
+
+//------ Base label styles ----------------
+//------ Used on input labels & GF labels -
+%label-styles {
+    color: var(--foreground);
+    display: inline-block;
+    font-size: var(--wp--preset--font-size--mini);
+    letter-spacing: 1px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+// ----- Headings --------------------------
+@mixin headings {
+    @for $i from 1 through 6 {
+        @include heading($i) {
+            @content;
+        }
+    }
+}
+
+@mixin heading($level: 1) {
+
+    h#{$level},
+    .h#{$level} {
+        @content;
+    }
+
+    h#{$level} {
+        margin-bottom: 1.5rem;
+    }
+
+    .h#{$level} {
+        font-family: var(--font-family-headline);
+        font-weight: 700;
+    }
+}
+
+//------ Layer styles ----------------------
+@mixin layer($name: "base", $modifier: 0, $position: relative) {
+    position: $position;
+    z-index: map-get($layers, $name) + $modifier;
+}
+
+//------- Media - Breakpoints --------------
+@mixin media($name) {
+
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $name) {
+
+        // Prints a media query based on the value
+        @media #{inspect( map-get( $breakpoints, $name ) )} {
+            @content;
+        }
+    }
+}
+
+//------ Pseudo - Add Fontawesome icons ----
+@mixin pseudo($element, $content: "", $display: block) {
+    &::#{$element} {
+        content: $content;
+        display: $display;
+        @content;
+    }
+}
+
+@mixin pseudo-icon($name, $family: "regular", $element: before, $display: inline-block) {
+    @include pseudo($element, fa-content(get-from-map($fa-icons, $name)), $display) {
+        $family: get-icon-family($family);
+        font-family: nth($family, 1), sans-serif;
+        font-weight: nth($family, 2);
+        @content;
+    }
+}

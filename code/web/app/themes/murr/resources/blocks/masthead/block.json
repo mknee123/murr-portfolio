@@ -1,0 +1,150 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ghint/masthead",
+    "title": "Masthead",
+    "category": "gh-blocks",
+    "description": "Full width background image or video",
+    "keywords": ["image", "video", "masthead", "hero"],
+    "version": "1.0.0",
+    "textdomain": "ghint",
+    "attributes": {
+        "backgrounds": {
+            "type": "array"
+        },
+        "format": {
+            "type": "string",
+            "default": "image"
+        },
+        "includeOverlay": {
+            "type": "boolean",
+            "default": true
+        },
+        "overlayOpacity": {
+            "type": "integer",
+            "default": 40
+        },
+        "objectSize": {
+            "type": "string",
+            "default": "cover"
+        },
+        "objectPosition": {
+            "type": "array",
+            "default": ["center", "center"]
+        },
+        "embed": {
+            "type": "boolean",
+            "default": false
+        },
+        "embedCode": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "example": {
+        "attributes": {
+            "backgrounds": [
+                {
+                    "id": 0,
+                    "alt": "GH Advertising",
+                    "sizes": {
+                        "full": {
+                            "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
+                        }
+                    }
+                }
+            ],
+            "format": "image",
+            "includeOverlay": true,
+            "overlayOpacity": 60
+        },
+        "innerBlocks": [
+            {
+                "name": "core/heading",
+                "attributes": {
+                    "content": "Get Closer to Your Interactive",
+                    "fontSize": "xx-large",
+                    "textColor": "secondary",
+                    "level": 1
+                }
+            },
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "The GH Advertising WordPress Base Theme includes multiple custom blocks that are ready to be used throughout the site to allow you to get closer to your goals."
+                }
+            }
+        ]
+    },
+    "variations": [
+        {
+            "name": "ghint/masthead-video",
+            "title": "Masthead Video",
+            "attributes": {
+                "format": "video"
+            },
+            "example": {
+                "attributes": {
+                    "backgrounds": [
+                        {
+                            "id": 0,
+                            "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/gh_smiles_We_Are_GH_advertising.mp4",
+                            "mime": "video/mp4"
+                        }
+                    ]
+                },
+                "innerBlocks": [
+                    {
+                        "name": "core/heading",
+                        "attributes": {
+                            "content": "Get Closer to Your Interactive",
+                            "fontSize": "xx-large",
+                            "textColor": "secondary",
+                            "level": 1
+                        }
+                    },
+                    {
+                        "name": "core/paragraph",
+                        "attributes": {
+                            "content": "The GH Advertising WordPress Base Theme includes support for videos."
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ghint/masthead-embed",
+            "title": "Masthead Embed",
+            "attributes": {
+                "embed": true
+            },
+            "example": {
+                "attributes": {
+                    "embedCode": "<iframe src='https://player.vimeo.com/video/890278826?background=1' width='640' height='360' frameborder='0' allow='autoplay; fullscreen'></iframe>"
+                },
+                "innerBlocks": [
+                    {
+                        "name": "core/heading",
+                        "attributes": {
+                            "content": "Get Closer to Your Interactive",
+                            "fontSize": "xx-large",
+                            "textColor": "secondary",
+                            "level": 1
+                        }
+                    },
+                    {
+                        "name": "core/paragraph",
+                        "attributes": {
+                            "content": "The GH Advertising WordPress Base Theme includes support for embedded videos."
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+
+    "viewScript": "file:./front.js",
+    "editorScript": "file:./editor.js",
+    "style": "file:./front.css",
+    "render": "file:./index.php"
+}

@@ -1,0 +1,355 @@
+/**
+ * /resources/styles/blocks/blocks-core.scss
+ *
+ * Let's define our core block styles
+ *
+ * - Base Colors
+ * - Buttons
+ * - Group
+ * - Paragraph
+ *
+ */
+
+// ----- Base Colors -----------------------------
+.has-text-color {
+    > a {
+        color: inherit;
+    }
+}
+
+// ----- Buttons --------------------
+.wp-block-button {
+    &:not(.is-style-hollow, .is-style-arrow-left, .is-style-arrow-right) &__link {
+        @extend %button-styles;
+        background-color: var(--primary-btn);
+
+        @each $name, $color in $button-colors {
+            &.has-background {
+                $index: str-length($color);
+
+                &.has-#{$name}-background-color {
+                    background-color: $color !important;
+
+                    &:disabled {
+                        background-color: var(--foreground) !important;
+                    }
+
+                    //Prevents hover styles on disabled
+                    &:hover:not([disabled]) {
+                        background-color: unquote(str-insert("#{$color}", "-500", $index)) !important;
+                    }
+
+                    &:focus,
+                    &:target {
+                        background-color: $color !important;
+                        border: 2px solid $color;
+                    }
+                }
+            }
+        }
+    }
+
+    // style variations
+    &.is-style-micro &__link {
+        font-size: var(--wp--custom--font-size--button-micro);
+        text-transform: none;
+    }
+
+    &.is-style-hollow &__link {
+        @extend %button-styles;
+        background-color: transparent !important;
+        border: 2px solid var(--secondary-btn);
+        color: var(--secondary-btn);
+
+        &:disabled {
+            border-color: var(--foreground);
+            color: var(--foreground);
+            opacity: 0.4;
+        }
+
+        &:hover:not([disabled]) {
+            background-color: var(--secondary-btn) !important;
+            color: var(--background);
+        }
+
+        &:active {
+            color: var(--background);
+
+            &::after {
+                background-color: var(--foreground);
+                content: "";
+                opacity: 0.25;
+                outline: 2px solid var(--foreground);
+                z-index: -1;
+            }
+        }
+
+        &:focus,
+        &:target {
+            color: var(--foreground);
+
+            &::after {
+                content: "";
+                opacity: 0.25;
+                z-index: -1;
+            }
+        }
+
+        @each $name, $color in $button-colors {
+            &.has-background.has-#{$name}-background-color {
+                border: 2px solid $color;
+                color: $color;
+
+                &:hover:not([disabled]) {
+                    background-color: $color !important;
+                    color: var(--background) !important;
+                }
+            }
+        }
+    }
+
+    &.is-style-arrow-left &__link,
+    &.is-style-arrow-right &__link {
+        background-color: transparent !important;
+        border: 0;
+        color: var(--foreground);
+        position: relative;
+        transition: opacity 0.25s ease;
+
+        &::after {
+            bottom: auto;
+            color: var(--quaternary);
+            position: absolute;
+            top: auto;
+            transform: translateX(0);
+            transition: transform 0.25s ease;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &.is-style-arrow-left &__link {
+        padding-left: 2.5rem;
+
+        @include pseudo-icon("chevron-double-left", "regular", after) {
+            left: 0.75rem;
+            right: auto;
+        }
+
+        &:hover::after {
+            transform: translateX(-0.25rem);
+        }
+    }
+
+    &.is-style-arrow-right &__link {
+        padding-right: 2.5rem;
+
+        @include pseudo-icon("chevron-double-right", "regular", after) {
+            left: auto;
+            right: 0.75rem;
+        }
+
+        &:hover::after {
+            transform: translateX(0.25rem);
+        }
+    }
+}
+
+// ----- Columns --------------------
+.wp-block-columns {
+    &.has-background {
+        padding: var(--wp--custom--spacing--viewport-padding-mobile) var(--wp--custom--spacing--viewport-padding);
+
+        @include media("tablet+") {
+            padding: var(--wp--custom--spacing--group-padding-2);
+        }
+
+        @include media("menu+") {
+            padding: var(--wp--custom--spacing--group-padding-1);
+        }
+    }
+
+    &.is-style-no-gap {
+        gap: 0;
+    }
+
+    &.is-style-reduced-gap {
+        gap: 2.5rem;
+    }
+
+    &.is-style-borders > .wp-block-column {
+        align-self: stretch; //ensures equal heights
+        display: flex;
+        flex-direction: column;
+
+        &.is-vertically-aligned-bottom {
+            justify-content: flex-end;
+        }
+
+        &.is-vertically-aligned-center {
+            justify-content: center;
+        }
+
+        &:not(:first-of-type) {
+            border-left: 0;
+            border-top: 1px solid var(--secondary);
+            padding: 2.5rem 0 0 0;
+
+            @media (min-width: 782px) {
+                border-left: 1px solid var(--secondary);
+                border-top: 0;
+                padding-top: 0;
+            }
+
+            @include media("tablet+") {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+            }
+
+            @include media("menu+") {
+                padding-left: 4.5rem;
+                padding-right: 4.5rem;
+            }
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    .wp-block-column {
+        > *:last-child {
+            margin-bottom: 0;
+        }
+
+        // since gravity forms add a few hidden iframes it messes up the :last-child CSS, this fixes that
+        .gform_wrapper {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// ----- Group --------------------
+.wp-block-group {
+    > * {
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        // since gravity forms add a few hidden iframes it messes up the :last-child CSS, this fixes that
+        &:nth-last-child(3) {
+            &.gform_wrapper {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &:not(.alignfull) {
+        padding: var(--wp--custom--spacing--viewport-padding-mobile);
+    }
+
+    &.alignwide > * {
+        max-width: var(--wp--style--global--wide-size);
+    }
+
+    &.alignfull,
+    &.alignwide {
+        padding-left: var(--wp--custom--spacing--viewport-padding-mobile);
+        padding-right: var(--wp--custom--spacing--viewport-padding-mobile);
+
+        @include media("mobile+") {
+            padding-left: var(--wp--custom--spacing--viewport-padding);
+            padding-right: var(--wp--custom--spacing--viewport-padding);
+        }
+    }
+
+    &.has-background {
+        padding: var(--wp--custom--spacing--viewport-padding-mobile) var(--wp--custom--spacing--viewport-padding);
+
+        @include media("tablet+") {
+            padding: var(--wp--custom--spacing--group-padding-2) var(--wp--custom--spacing--viewport-padding-mobile);
+        }
+
+        @include media("wide+") {
+            padding: var(--wp--custom--spacing--group-padding-1) 0;
+        }
+
+        &.alignfull,
+        &.alignwide,
+        &.aligncenter {
+            padding-bottom: var(--wp--custom--spacing--group-padding-3);
+            padding-top: var(--wp--custom--spacing--group-padding-3);
+
+            @include media("tablet+") {
+                padding-bottom: var(--wp--custom--spacing--group-padding-2);
+                padding-top: var(--wp--custom--spacing--group-padding-2);
+            }
+
+            @include media("menu+") {
+                padding-bottom: var(--wp--custom--spacing--group-padding-1);
+                padding-top: var(--wp--custom--spacing--group-padding-1);
+            }
+        }
+    }
+
+    // No padding
+    &.is-style-no-padding {
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    // Reduce padding
+    &.is-style-reduce-padding {
+        padding-bottom: var(--wp--custom--spacing--group-padding-3) !important;
+        padding-top: var(--wp--custom--spacing--group-padding-3) !important;
+    }
+}
+
+// ----- Lists ----------------------
+main,
+.block-editor-block-list__layout .block-editor-block-list__block {
+
+    ul,
+    ol {
+        margin-bottom: var(--wp--custom--spacing--block-gap);
+        padding: 0 0 0 1.5rem;
+
+        li {
+            margin-bottom: var(--wp--custom--spacing--list-gap-bottom);
+            position: relative;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &::marker {
+                color: var(--foreground);
+            }
+        }
+
+        @include media("tablet+") {
+            &.is-style-two-column {
+                column-count: 2;
+            }
+        }
+    }
+}
+
+// ----- Paragraph ---------------------------
+p {
+    margin: 0 0 var(--wp--custom--spacing--block-gap);
+
+    &.is-style-condense {
+        text-wrap: balance;
+
+        @include media("tablet+") {
+            width: 75%;
+        }
+
+        @include media("menu+") {
+            width: 60%;
+        }
+    }
+}

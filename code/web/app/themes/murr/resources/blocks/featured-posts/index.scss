@@ -1,0 +1,19 @@
+@use "../../styles/global/bootstrap" as *;
+
+.o-featured-posts {
+
+    &__posts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        // card molecule
+        .m-card {
+            max-width: none;
+        }
+    }
+
+    &__message {
+        opacity: 0.5;
+    }
+}

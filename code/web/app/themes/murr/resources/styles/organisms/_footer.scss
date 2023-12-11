@@ -1,0 +1,160 @@
+// ----- Main Footer --------------------
+.o-footer {
+    background-color: var(--background);
+    padding: 3rem var(--wp--custom--spacing--viewport-padding-mobile);
+    position: relative;
+    width: 100%;
+
+    &__inner {
+        margin: 0 auto;
+        max-width: var(--wp--style--global--wide-size);
+    }
+
+    &__column {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    &__logo a {
+        display: inline-block;
+    }
+
+    &__contact {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 0.75rem;
+        justify-content: center;
+
+        div {
+            align-items: center;
+            display: flex;
+            font-family: var(--font-family-headline);
+            font-weight: 700;
+            justify-content: center;
+
+            a {
+                color: var(--tertiary);
+                text-decoration: none;
+            }
+
+            &::before {
+                color: var(--primary);
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    &__address {
+        flex-basis: 100%;
+
+        @include pseudo-icon("location-dot", "regular", before) {
+            align-self: flex-start
+        }
+    }
+
+    &__phone {
+        @include pseudo-icon("phone", "regular", before);
+    }
+
+    &__email {
+        @include pseudo-icon("mailbox", "regular", before);
+    }
+
+    &__social {
+        display: flex;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    &__nav {
+        flex: 1;
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        &--primary {
+            font-size: var(--wp--preset--font-size--big);
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            nav > ul > li > a {
+                color: var(--secondary);
+                font-family: var(--font-family-headline);
+                font-weight: 700;
+            }
+        }
+
+        &--legal ul {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+
+            a {
+                color: var(--tertiary);
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__copyright {
+        padding-top: 2rem;
+        text-align: center;
+
+        & > * {
+            flex: 1 1 auto;
+            font-size: var(--wp--preset--font-size--mini);
+        }
+    }
+
+    @include media("medium+") {
+        padding: 5rem var(--wp--custom--spacing--viewport-padding-mobile);
+
+        &__inner {
+            display: flex;
+            gap: 3rem;
+        }
+
+        // Column
+        &__column {
+            align-items: flex-start;
+            flex: 1 0 auto;
+            text-align: left;
+        }
+
+        &__contact {
+            justify-content: flex-start;
+            gap: 1.5rem;
+
+            div {
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+        }
+
+        &__address {
+            flex: 1;
+        }
+
+        &__nav--primary nav > ul,
+        &__copyright {
+            text-align: left;
+        }
+
+        &__nav--legal {
+            flex: 0 1 auto;
+        }
+    }
+}

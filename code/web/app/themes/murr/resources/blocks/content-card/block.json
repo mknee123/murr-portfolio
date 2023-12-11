@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ghint/content-card",
+    "title": "Content Card",
+    "category": "gh-blocks",
+    "description": "Unique layout for image and content.",
+    "keywords": ["card", "content", "content card"],
+    "version": "1.0.0",
+    "textdomain": "ghint",
+    "attributes": {
+        "image": {
+            "type": "number",
+            "default": 0
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
+        }
+    },
+    "example": {
+        "innerBlocks": [
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "Brand or category",
+                    "fontSize": "mini",
+                    "textColor": "secondary"
+                }
+            },
+            {
+                "name": "core/heading",
+                "attributes": {
+                    "content": "Add a headline.",
+                    "fontSize": "x-large",
+                    "level": 2
+                }
+            },
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "Add descriptive content here.",
+                    "fontSize": "big"
+                }
+            },
+            {
+                "name": "core/button",
+                "attributes": {
+                    "text": "See the project"
+                }
+            }
+        ]
+    },
+    "editorScript": "file:./editor.js",
+    "render": "file:./index.php"
+}

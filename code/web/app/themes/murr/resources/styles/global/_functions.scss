@@ -1,0 +1,21 @@
+@use "sass:math";
+
+@function get-icon-family($name, $target: $font-fa-families) {
+    @return get-from-map($target, $name);
+}
+
+@function get-from-map($map, $key) {
+    @if map-has-key($map, $key) {
+        @return map-get($map, $key);
+    }
+
+    @return $key;
+}
+
+@function px2rem($px, $base: $font-base) {
+    @return div($px, $base)+rem;
+}
+
+@function strip-unit($value) {
+    @return div($value, $value * 0 + 1);
+}

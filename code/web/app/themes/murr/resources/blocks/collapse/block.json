@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ghint/collapse",
+    "title": "Collapse",
+    "category": "gh-blocks",
+    "description": "A block containing copy that can be expanded or collapsed.",
+    "keywords": ["collapse"],
+    "version": "1.0.0",
+    "textdomain": "ghint",
+    "attributes": {
+        "heading": {
+            "type": "string",
+            "default": ""
+        },
+        "level": {
+            "type": "integer",
+            "default": 2
+        },
+        "open": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "example": {
+        "attributes": {
+            "heading": "Collapse Block",
+            "level": 3,
+            "open": true
+        },
+        "innerBlocks": [
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "The GH Collapse Block allows for an appealing way to display content.",
+                    "fontSize": "big"
+                }
+            }
+        ]
+    },
+    "viewScript": "file:./front.js",
+    "editorScript": "file:./editor.js",
+    "style": "file:./front.css",
+    "render": "file:./index.php"
+}

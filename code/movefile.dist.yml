@@ -53,8 +53,8 @@ staging:
     - '.quarantine/'
     - '.tmb/'
     - '.vscode/'
-    - '.pretterignore'
-    - '.pretterrc'
+    - '.prettierignore'
+    - '.prettierrc'
     - 'bin/'
     - 'conf/'
     - 'Gemfile*'
@@ -70,7 +70,7 @@ staging:
     - 'wp-config.php'
 
   ssh:
-    host: '161.35.248.12'
+    host: secret
     user: murr
 
 production:
@@ -106,8 +106,8 @@ production:
     - '.quarantine/'
     - '.tmb/'
     - '.vscode/'
-    - '.pretterignore'
-    - '.pretterrc'
+    - '.prettierignore'
+    - '.prettierrc'
     - 'bin/'
     - 'conf/'
     - 'Gemfile*'
@@ -123,5 +123,5 @@ production:
     - 'wp-config.php'
 
   ssh:
-    host: '161.35.248.12'
+    host: secret
     user: murr

@@ -1,0 +1,52 @@
+@use "../../styles/global/bootstrap" as *;
+
+.m-collapse {
+    background-color: transparent;
+    border: 1px solid var(--secondary);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+    transition: background-color 0.5s ease-out, border-color 0.5s ease-out;
+
+    &__content {
+        display: none;
+        padding: 0 1.5rem 1rem;
+    }
+
+    &--open &__content {
+        display: block;
+    }
+
+    &__heading {
+        align-items: center;
+        color: var(--primary);
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem;
+        text-align: left;
+
+        span {
+            margin: 0;
+        }
+
+        @include pseudo-icon(chevron-down, $element: after) {
+            color: var(--quaternary);
+            margin-left: 1rem;
+            transition: transform 500ms;
+        }
+    }
+
+    &--toggled {
+        background: var(--secondary-light, linear-gradient(0deg, rgba(30, 131, 138, 0.1) 0%, rgba(30, 131, 138, 0.1) 100%), #fff);
+        border-color: var(--secondary-light);
+    }
+
+    &--toggled &__heading:after {
+        color: var(--secondary);
+        transform: rotate(180deg);
+    }
+}
+
+.block-editor-block-list__block .m-collapse__content {
+    display: block;
+}

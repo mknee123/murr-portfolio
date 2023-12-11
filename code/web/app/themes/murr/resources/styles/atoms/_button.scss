@@ -1,0 +1,10 @@
+.a-button {
+    @extend %button-styles;
+    background-color: var(--primary-btn);
+    color: var(--background);
+    text-decoration: none;
+
+    &--micro {
+        font-size: var(--wp--custom--font-size--button-micro);
+    }
+}

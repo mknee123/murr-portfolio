@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ghint/testimonial",
+    "title": "Testimonial",
+    "category": "gh-blocks",
+    "description": "The Testimonial block can be used to add emphasis to text. It's versatile and serves many purposes, such as displaying audience reviews, testimonials, inspirational quotes, and more.",
+    "keywords": ["quote", "review", "testimonial"],
+    "version": "1.0.0",
+    "textdomain": "ghint",
+    "supports": {
+        "align": ["wide"],
+        "color": {
+            "text": false,
+            "background": true
+        }
+    },
+    "attributes": {
+        "image": {
+            "type": "integer",
+            "default": 0
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/logo_gh_demin.svg"
+        },
+        "imageAlt": {
+            "type": "string",
+            "default": ""
+        },
+        "citation": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "example": {
+        "attributes": {
+            "citation": "GH Advertising",
+            "title": "Get Closer"
+        },
+        "innerBlocks": [
+            {
+                "name": "core/paragraph",
+                "attributes": {
+                    "content": "A testimonial or review goes here ames vulputate adipiscing dictum ac gestas non a nunc arcu quis libero consequat tincidunt tortor.",
+                    "fontSize": "big"
+                }
+            }
+        ]
+    },
+    "viewScript": "file:./front.js",
+    "editorScript": "file:./editor.js",
+    "style": "file:./front.css",
+    "render": "file:./index.php"
+}
