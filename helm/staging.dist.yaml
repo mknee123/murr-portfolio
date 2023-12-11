@@ -4,7 +4,7 @@
 # 3. Persistent user uploads
 # 4. Ingress with TLS
 environment: staging
-hostName: &commonName murr.mirandaknee.site
+hostName: &commonName staging.mirandaknee.com
 deploymentAnnotations:
   downscaler/exclude: "true"
 
@@ -24,7 +24,7 @@ mariadb:
   enabled: false
   # host: gh-shared-cluster.ccy5divwl57m.us-east-1.rds.amazonaws.com
   auth:
-    database: murr_com_staging
+    database: murr_staging_com
     username: murr
     # password: <secret>
 

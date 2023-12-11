@@ -1,0 +1,83 @@
+.a-icon {
+    color: var(--background);
+    border-radius: 50%;
+    display: inline-block;
+    height: 2.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    width: 2.5rem;
+    @include layer("base", 1, relative);
+
+    &::after {
+        background: var(--tertiary);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    &::before {
+        font-size: 1rem;
+        left: 50%;
+        line-height: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+
+    &--lg {
+        height: 3.25rem;
+        width: 3.25rem;
+
+        &::before {
+            font-size: 1.5rem;
+        }
+    }
+
+    @each $name, $color in $colors {
+        &--c-#{$name} {
+            color: $color;
+        }
+
+        &--bg-#{$name}::after {
+            background-color: $color;
+        }
+    }
+
+    &--email {
+        @include pseudo-icon("at", "regular", before);
+    }
+
+    &--facebook {
+        @include pseudo-icon("\f39e", "brands", before);
+    }
+
+    &--linkedin {
+        @include pseudo-icon("\f0e1", "brands", before);
+    }
+
+    &--phone {
+        @include pseudo-icon("phone-volume", "regular", before);
+    }
+
+    &--spinner {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        @include pseudo-icon("\e1d4", "regular", before);
+    }
+
+    &--twitter {
+        @include pseudo-icon("\e61b", "brands", before);
+    }
+
+    &--instagram {
+        @include pseudo-icon("\f16d", "brands", before);
+    }
+
+    &--youtube {
+        @include pseudo-icon("\f167", "brands", before);
+    }
+}

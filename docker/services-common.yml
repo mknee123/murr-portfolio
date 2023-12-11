@@ -79,18 +79,19 @@ services:
       context: ./node
       args:
         NODE_VERSION: ${NODE_VERSION:-16}
+        FONTAWESOME_NPM_AUTH_TOKEN: ${FONTAWESOME_NPM_AUTH_TOKEN}
     ports:
       - "${NODE_WATCH_PORT:-3000}:3000"
     environment:
       DEV_URL: ${NGINX_SERVER_NAME}
     volumes:
       - ../code/web/app/themes/murr:/theme
-  redis:
-    image: redis:7
-    restart: unless-stopped
-    ports:
-      - "6379"
-    networks:
-      default:
-        aliases:
-          - ${COMPOSE_PROJECT_NAME}_redis
+  wordmove:
+    build:
+      context: ./wordmove
+    environment:
+      <<: [*db-env, *wp-env]
+    volumes:
+      - ../code:/html
+      - ${SSH_PATH}:/tmp/.ssh:ro
+

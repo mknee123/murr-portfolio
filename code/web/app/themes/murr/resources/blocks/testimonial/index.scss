@@ -1,0 +1,27 @@
+@use "../../styles/global/bootstrap" as *;
+
+.o-testimonial {
+    padding: 2rem;
+
+    &__content {
+        position: relative;
+
+        p {
+            @include pseudo-icon(quote-left, $element: before) {
+                color: var(--quaternary);
+                display: block;
+            }
+        }
+    }
+
+    &__citation {
+        align-items: center;
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    &__img {
+        max-width: 5rem;
+        width: 100%;
+    }
+}

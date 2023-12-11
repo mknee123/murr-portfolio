@@ -1,0 +1,8 @@
+.a-image {
+    display: block;
+
+    &--caption {
+        background-color: var(--tertiary);
+        padding: 0.75rem;
+    }
+}

@@ -1,0 +1,363 @@
+// ----- Header --------------------
+.o-header {
+    @include layer("base", 5, fixed);
+    background-color: var(--background);
+    width: 100%;
+
+    &__columns {
+        @include layer("base", 5);
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem 0;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: var(--wp--style--global--wide-size);
+        width: 100%;
+    }
+
+    &__column {
+        @include layer("base", 1);
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+
+        &--controls {
+            background-color: var(--background);
+            flex: 1 0 100%;
+            padding: 0.75rem 1.25rem 1rem 1.25rem;
+            z-index: 15;
+        }
+
+        &--nav {
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    &__nav-control {
+        border: 1px solid var(--foreground);
+        flex: 0 0 auto;
+        font-size: 1.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+
+        &:focus {
+            background-color: var(--foreground);
+        }
+
+        // ICON
+        @include pseudo-icon("bars", "regular", after) {
+            color: var(--primary);
+        }
+
+        &--open {
+            @include pseudo-icon("xmark-large", "regular", after);
+        }
+    }
+
+    &__nav-container {
+        @include layer("overlay", 0, fixed);
+        background-color: var(--secondary);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: 100vh;
+        left: 0;
+        overflow: auto;
+        padding: 6.25rem 0 4rem;
+        top: 2.5rem;
+        transform: translateX(100%);
+        transition: transform 0.25s ease-out;
+        visibility: hidden;
+        width: 100vw;
+
+        &--open {
+            transform: translateX(0);
+            visibility: visible;
+        }
+    }
+
+    &__nav-menu {
+        flex: 0 1 100%;
+
+        ul {
+            display: flex;
+            flex-flow: row wrap;
+            list-style: none;
+            width: 100%;
+        }
+
+        > ul > li {
+            flex: 0 1 100%;
+            position: relative;
+
+            &.a-button {
+                height: auto;
+                margin: 0 1rem;
+                text-align: center;
+
+                > a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+            }
+
+            &:not(.a-button) > a,
+            .o-header__dropdown-wrapper > a {
+                border: 0;
+                color: var(--background);
+                display: block;
+                flex: 1;
+                font-family: var(--font-family-headline);
+                font-size: var(--wp--preset--font-size--big);
+                padding: 1.125rem;
+                position: relative;
+                text-decoration: none;
+                transition: color 0.25s ease;
+            }
+        }
+
+        .menu-item-has-children:focus-within .sub-menu {
+            display: flex;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .menu-item-has-children:focus-within .o-header__dropdown {
+            @include pseudo-icon("angle-down", "regular", after) {
+                color: var(--quaternary);
+                display: flex;
+                transform: rotate(180deg);
+            }
+        }
+
+
+        // DROPDOWN SUBMENU SUBMENU
+        .sub-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            left: 0;
+            padding: 0 0 1rem;
+            position: relative;
+            top: 0;
+            transform: translate3d(0, -100%, 0);
+            transition: transform 0.25s ease-out;
+            width: 100%;
+
+            &--open {
+                display: flex;
+                transform: translate3d(0, 0, 0);
+            }
+
+            li a {
+                background-color: var(--tertiary-500);
+                color: var(--background);
+                display: block;
+                font-family: var(--font-family-headline);
+                font-size: var(--wp--preset--font-size--small);
+                font-weight: 700;
+                opacity: 1;
+                padding: 1.125rem;
+                text-decoration: none;
+                transition: opacity 0.25s ease;
+
+                &:hover {
+                    opacity: 0.75;
+                }
+            }
+        }
+    }
+
+    &__nav-search {
+        padding: 0 1.125rem;
+    }
+
+    // Hide Nav Search Icon
+    &__nav-search-icon {
+        color: var(--primary);
+        cursor: pointer;
+        display: none;
+        font-size: 1.5rem;
+        transition: color 0.25s ease-out;
+        visibility: hidden;
+
+        &:hover,
+        &:focus {
+            color: var(--tertiary);
+        }
+    }
+
+    &__dropdown-wrapper {
+        display: flex;
+    }
+
+    &__dropdown {
+        align-items: center;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        top: 0;
+        width: 5rem;
+
+        @include pseudo-icon("angle-down", "regular", after) {
+            @include layer("base", 1, absolute);
+            color: var(--background);
+            transform: rotate(0deg);
+            transform-origin: center;
+            transition: color 0.25s ease-out, transform 0.35s ease;
+        }
+
+        &.active {
+            @include pseudo-icon("angle-down", "regular", after) {
+                color: var(--quaternary);
+                display: flex;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__logo {
+        max-width: 15rem;
+
+        &--center {
+            margin: 0 auto;
+        }
+
+        img,
+        svg {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+    }
+
+    @include media("menu+") {
+        @include layer("base", 5, relative);
+
+        &__column {
+            &--controls {
+                flex: 1;
+            }
+
+            &--nav {
+                align-self: stretch;
+                flex: 1 0 auto;
+            }
+        }
+
+        &__nav-container {
+            @include layer("base");
+            background: none;
+            flex-direction: row;
+            gap: 0;
+            height: 100%;
+            left: auto;
+            overflow: inherit;
+            padding: 0;
+            top: auto;
+            transform: none;
+            visibility: visible;
+            width: 100%;
+        }
+
+        &__nav-search,
+        &__nav-control {
+            display: none;
+        }
+
+        // Show Nav Search Icon
+        &__nav-search-icon {
+            display: block;
+            padding: 1rem;
+            visibility: visible;
+        }
+
+        &__nav-menu {
+            > ul {
+                align-items: center;
+                flex-flow: row nowrap;
+                height: 100%;
+                justify-content: flex-end;
+            }
+
+            > ul > li {
+                flex: 0 0 auto;
+                height: 100%;
+
+                &.a-button {
+                    margin: 0;
+                }
+
+                &:not(.a-button) > a,
+                &:not(.a-button) div > a {
+                    align-items: center;
+                    color: var(--primary);
+                    display: flex;
+                    height: 100%;
+                }
+            }
+
+            .menu-item-has-children {
+
+                &:focus-within .sub-menu,
+                &:hover .sub-menu {
+                    opacity: 1;
+                    transform: translate3d(-50%, 0, 0);
+                }
+            }
+
+            // DROPDOWN SUBMENU SUBMENU
+            .sub-menu {
+                @include layer("overlay", 1, absolute);
+                background: var(--primary);
+                display: flex;
+                gap: 1.25rem;
+                left: 50%;
+                opacity: 0;
+                padding: 1.5rem 1rem;
+                text-align: center;
+                top: 100%;
+                transform: translate3d(-50%, 10%, 0);
+                transition: transform 0.25s ease-out, opacity 0.25s ease;
+                width: max-content;
+
+                li a {
+                    background-color: transparent;
+                    color: var(--white);
+                    padding: 0 1.125rem;
+                    transition: color 0.25s ease;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: var(--form-bg-color);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        &__dropdown-wrapper {
+            height: 100%;
+
+            > a {
+                @include pseudo-icon("angle-down", "regular", after) {
+                    display: none;
+                }
+            }
+        }
+
+        &__dropdown {
+            display: none;
+        }
+    }
+
+    @include media("wide+") {
+        &__column {
+            &--controls {
+                padding: 0.75rem 0;
+            }
+        }
+    }
+}

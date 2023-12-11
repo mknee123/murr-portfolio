@@ -1,0 +1,49 @@
+// Manage colors for light & dark mode
+body {
+    --background: #ebeeed;
+    --foreground: #333;
+    --primary: #40749b;
+    --primary-500: rgba(64, 116, 156, 0.5);
+    --secondary: #536794;
+    --secondary-500: rgba(83, 102, 147, 0.5);
+    --secondary-light: rgba(83, 102, 147, , 0.15);
+    --tertiary: #86aaae;
+    --tertiary-500: rgba(133, 169, 173, 0.5);
+    --quaternary: #1c2333;
+    --quaternary-500: rgba(28, 35, 51, 0.5);
+    --form-color-primary: #1e838a;
+    --form-bg-color: #e6e6e6;
+    --error: #de5078;
+    --white: #fff;
+    //Theme button palette
+    --primary-btn: var(--tertiary);
+    --primary-btn-500: var(--tertiary-500);
+    --secondary-btn: var(--primary);
+    --secondary-btn-500: var(--primary-500);
+    //Theme font-families
+    --font-family-headline: Georgia, serif;
+    --font-family-body: verdana, sans-serif;
+    //Theme logo credit
+    --gh-brand: var(--primary);
+    //TODO: Update name with client Logo color if SVG is available
+    --gh: var(--primary);
+
+    @media screen and (prefers-color-scheme: dark) {
+        --background: #141f29;
+        --foreground: #ebeeed;
+        --primary: #28adb7;
+        --primary-500: rgba(40, 173, 183, 0.5);
+        --secondary: #28adb7;
+        --secondary-500: rgba(16, 49, 82, 0.5);
+        --tertiary: #328dba;
+        --tertiary-500: rgba(50, 141, 186, 0.5);
+        --quaternary: #f37021;
+        --quaternary-500: rgba(243, 112, 33, 0.5);
+        --form-color-primary: #28adb7;
+        --form-bg-color: #4e4e4e;
+        //Theme logo credit
+        --gh-brand: var(--secondary);
+        //TODO: Update name with client Logo color if SVG is available
+        --gh: var(--white);
+    }
+}

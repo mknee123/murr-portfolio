@@ -1,0 +1,62 @@
+.o-search-overlay {
+    @include layer("overlay", 1, fixed);
+    background-color: yellow;
+    height: 100vh;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    transition: opacity 0.25s ease-out;
+    visibility: hidden;
+    width: 100%;
+
+
+    &::after {
+        @include layer("sub", 1, absolute);
+        background-color: var(--primary);
+        content: "";
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    &__trigger {
+        @include layer("base", 1, absolute);
+        cursor: pointer;
+        font-size: 2rem;
+        height: 2.5rem;
+        opacity: 0.5;
+        right: 2.25rem;
+        top: 3.25rem;
+        width: 2.5rem;
+
+        @include pseudo-icon("times", "regular", after) {
+            color: var(--background);
+        }
+    }
+
+    &__inner {
+        @include layer("base", 1, absolute);
+        left: 50%;
+        max-width: 32.0625rem;
+        opacity: 0;
+        top: 50%;
+        transform: translate3d(-50%, -30%, 0);
+        transition: transform 0.25s ease-out, opacity 0.2s ease-out;
+        visibility: hidden;
+        width: 100%;
+    }
+
+    &--open {
+        opacity: 1;
+        transition: opacity 0.25s ease-out;
+        visibility: visible;
+    }
+
+    &--open &__inner {
+        opacity: 1;
+        transform: translate3d(-50%, -50%, 0);
+        transition: transform 0.5s ease-out, opacity 0.25s ease-out 0.1s;
+        visibility: visible;
+    }
+}

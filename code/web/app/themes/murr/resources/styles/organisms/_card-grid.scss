@@ -1,0 +1,40 @@
+// ----- Card Grid --------------------
+.o-card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin: 0 auto;
+    max-width: var(--wp--style--global--content-size);
+    padding: 3rem var(--wp--custom--spacing--viewport-padding-mobile);
+
+    &--wide {
+        max-width: var(--wp--style--global--wide-size);
+    }
+
+    @include media("medium+") {
+        gap: 5rem;
+    }
+
+    @include media("wide+") {
+        padding: 5rem 0;
+    }
+
+    &__grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 2rem 0;
+
+        @include media("menu+") {
+            padding: 0;
+        }
+
+        .m-card {
+            max-width: none;
+        }
+    }
+
+    &__button {
+        text-align: center;
+    }
+}

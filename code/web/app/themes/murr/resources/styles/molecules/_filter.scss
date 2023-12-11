@@ -1,0 +1,68 @@
+.m-filter {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    &__title {
+        color: var(--primary);
+        flex: 1 0 auto;
+        margin-bottom: 0;
+    }
+
+    &__inputs {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .a-input-field__container--select ::after {
+            color: var(--tertiary);
+        }
+
+        .a-input-field {
+            margin-bottom: 0;
+            width: 100%;
+
+            &__input {
+                border: 0;
+            }
+        }
+
+        .a-input-field--search {
+            input {
+                border: 0;
+            }
+
+            button i,
+            button svg {
+                color: var(--tertiary);
+                font-size: var(--wp--preset--font-size--small);
+            }
+        }
+    }
+
+    @include media("mobile+") {
+        &__inputs {
+            flex-direction: row;
+            justify-content: flex-end;
+
+            .a-input-field {
+                max-width: 22rem;
+            }
+        }
+    }
+}
+
+@supports (-webkit-touch-callout: none) and (not (translate: none)) {
+
+    // CSS specific to iOS devices
+    // Use margin-bottom to fill in for gap
+    .m-filter {
+
+        &__title,
+        &__inputs .a-input-field:not(:last-child) {
+            margin-bottom: 1.625rem;
+        }
+    }
+}

@@ -1,0 +1,127 @@
+global:
+  sql_adapter: default
+
+local:
+  vhost: <%= ENV['WP_HOME'] %>
+  wordpress_path: /html/web
+
+  database:
+    name: <%= ENV['DB_NAME'] %>
+    user: <%= ENV['DB_USER'] %>
+    password: "<%= ENV['DB_PASSWORD'] %>"
+    host: <%= ENV['DB_HOST'] %>
+    mysqldump_options: --hex-blob
+
+  paths:
+    wp_content: wp/wp-content
+    uploads: app/uploads
+    plugins: app/plugins
+    mu_plugins: app/mu-plugins
+    themes: app/themes
+    languages: app/languages
+
+staging:
+  vhost: https://staging.mirandaknee.com
+  wordpress_path: /var/www/staging_mirandaknee/web
+
+  database:
+    name: murr_staging_com
+    user: murr
+    password: secret
+    host: '127.0.0.1'
+    mysqldump_options: --hex-blob
+
+  paths:
+    wp_content: wp/wp-content
+    uploads: app/uploads
+    plugins: app/plugins
+    mu_plugins: app/mu-plugins
+    themes: app/themes
+    languages: app/languages
+
+  exclude:
+    - '.DS_Store'
+    - '.env'
+    - '.editorconfig'
+    - '.git/'
+    - '.gitignore'
+    - '.gitmodules'
+    - '.htaccess'
+    - '.idea'
+    - '.sass-cache/'
+    - '.scss-lint.yml'
+    - '.quarantine/'
+    - '.tmb/'
+    - '.vscode/'
+    - '.prettierignore'
+    - '.prettierrc'
+    - 'bin/'
+    - 'conf/'
+    - 'Gemfile*'
+    - 'htaccess'
+    - 'Movefile'
+    - 'movefile.yml'
+    - 'movefile.dist.yml'
+    - 'nginx.conf'
+    - 'node_modules/'
+    - 'robots.txt'
+    - 'test.txt'
+    - 'tmp/*'
+    - 'wp-config.php'
+
+  ssh:
+    host: secret
+    user: murr
+
+production:
+  vhost: https://mirandaknee.com
+  wordpress_path: /var/www/prod_mirandaknee/web
+
+  database:
+    name: esop_wp_production
+    user: ghadv
+    password: secret
+    host: '127.0.0.1'
+    mysqldump_options: --hex-blob
+
+  paths:
+    wp_content: wp/wp-content
+    uploads: app/uploads
+    plugins: app/plugins
+    mu_plugins: app/mu-plugins
+    themes: app/themes
+    languages: app/languages
+
+  exclude:
+    - '.DS_Store'
+    - '.env'
+    - '.editorconfig'
+    - '.git/'
+    - '.gitignore'
+    - '.gitmodules'
+    - '.htaccess'
+    - '.idea'
+    - '.sass-cache/'
+    - '.scss-lint.yml'
+    - '.quarantine/'
+    - '.tmb/'
+    - '.vscode/'
+    - '.prettierignore'
+    - '.prettierrc'
+    - 'bin/'
+    - 'conf/'
+    - 'Gemfile*'
+    - 'htaccess'
+    - 'Movefile'
+    - 'movefile.yml'
+    - 'movefile.dist.yml'
+    - 'nginx.conf'
+    - 'node_modules/'
+    - 'robots.txt'
+    - 'test.txt'
+    - 'tmp/*'
+    - 'wp-config.php'
+
+  ssh:
+    host: secret
+    user: murr

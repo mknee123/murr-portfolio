@@ -1,0 +1,149 @@
+.a-input-field {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1.125rem;
+    position: relative;
+
+    &--wide {
+        position: relative;
+        width: 100%;
+    }
+
+    &--stacked {
+        flex-flow: column;
+    }
+
+    &__placeholder-text {
+        @extend %label-styles;
+        padding: 0.5rem 0;
+        pointer-events: none;
+    }
+
+    &__input {
+        background-color: var(--form-bg-color);
+        border: 1px solid transparent;
+        border-radius: var(--wp--custom--forms--border-radius);
+        color: var(--foreground);
+        line-height: 1.15;
+        padding: var(--wp--custom--forms--input-padding-vertical) var(--wp--custom--forms--input-padding-horizontal);
+        width: 100%;
+
+        &:focus {
+            border: var(--wp--custom--forms--border-width) solid var(--form-color-primary);
+            outline: 0;
+        }
+
+        &::placeholder {
+            color: var(--foreground);
+            opacity: 0.75;
+        }
+
+        &::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+    }
+
+    &--name {
+        @include pseudo-icon("user", "regular", before) {
+            bottom: var(--wp--custom--forms--input-padding-vertical);
+            color: var(--form-color-primary);
+            position: absolute;
+            right: var(--wp--custom--forms--input-padding-vertical);
+            z-index: 1;
+        }
+    }
+
+    &--email {
+        @include pseudo-icon("envelope", "regular", before) {
+            bottom: var(--wp--custom--forms--input-padding-vertical);
+            color: var(--form-color-primary);
+            position: absolute;
+            right: var(--wp--custom--forms--input-padding-vertical);
+            z-index: 1;
+        }
+    }
+
+    // FIELD CONTAINER
+    &__container {
+        // WITH CHECKBOX
+        // WITH RADIO BUTTON
+        // WITH SELECT FIELD
+        &--checkbox,
+        &--radio-button {
+            align-items: center;
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+
+            input[type="checkbox"],
+            input[type="radio"] {
+                accent-color: var(--form-color-primary);
+                height: 1.25rem;
+                margin: 0;
+                width: 1.25rem;
+            }
+
+            label {
+                @extend %label-styles;
+                margin: 0;
+            }
+        }
+
+        // WITH SELECT FIELD
+        &--select {
+            @include layer("base", 1);
+
+            @include pseudo-icon("chevron-down", "solid", after) {
+                @include layer("base", 1);
+                color: var(--form-color-primary);
+                font-size: 1rem;
+                height: 1rem;
+                line-height: 1;
+                pointer-events: none;
+                position: absolute;
+                right: 1rem;
+                text-align: center;
+                bottom: 1rem;
+                width: 1rem;
+            }
+        }
+    }
+
+    // SEARCH
+    &--search {
+        button {
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            bottom: 0;
+            height: auto;
+            opacity: 1;
+            padding: var(--wp--custom--forms--input-padding-vertical) var(--wp--custom--forms--input-padding-horizontal);
+            position: absolute;
+            right: 0;
+            transition: opacity 0.25s ease-out;
+            width: 3rem;
+
+            i,
+            svg {
+                color: var(--form-color-primary);
+            }
+        }
+
+        input:focus + button,
+        input:active + button {
+            opacity: 0;
+        }
+    }
+
+    // SELECT
+    select {
+        appearance: none;
+    }
+
+    &--hidden {
+        display: none;
+    }
+}

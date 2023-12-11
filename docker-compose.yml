@@ -26,10 +26,6 @@ services:
       service: node
     depends_on:
       - nginx
-  redis:
-    extends:
-      file: ./docker/services-common.yml
-      service: redis
 
 volumes:
   mysql:

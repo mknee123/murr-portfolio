@@ -1,0 +1,78 @@
+// These colors reference the variables found in
+// custom-properties.scss
+$text-colors: (
+    "background": var(--background),
+    "foreground": var(--foreground),
+    "primary": var(--primary),
+    "secondary": var(--secondary),
+    "tertiary": var(--tertiary),
+    "quaternary": var(--quaternary),
+    "error": var(--error),
+    "white": var(--white),
+);
+
+// These sizes match theme.settings.typography.fontSizes
+$text-sizes: (
+    "micro": var(--wp--preset--font-size--micro),
+    "mini": var(--wp--preset--font-size--mini),
+    "small": var(--wp--preset--font-size--small),
+    "medium": var(--wp--preset--font-size--medium),
+    "big": var(--wp--preset--font-size--big),
+    "huge": var(--wp--preset--font-size--huge),
+    "large": var(--wp--preset--font-size--large),
+    "x-large": var(--wp--preset--font-size--x-large),
+    "xx-large": var(--wp--preset--font-size--xx-large),
+);
+
+@include headings;
+
+.h1 {
+    font-size: var(--wp--preset--font-size--x-large);
+}
+
+.h2 {
+    font-size: var(--wp--preset--font-size--large);
+}
+
+.h3 {
+    font-size: var(--wp--preset--font-size--huge);
+}
+
+.h4 {
+    font-size: var(--wp--preset--font-size--big);
+}
+
+.h5 {
+    font-size: var(--wp--preset--font-size--medium);
+}
+
+.h6 {
+    font-size: var(--wp--preset--font-size--small);
+}
+
+.text {
+
+    @each $name,
+    $color in $text-colors {
+        &--c-#{$name} {
+            color: $color;
+        }
+    }
+
+    @for $i from 0 through 100 {
+        &--fade-#{$i} {
+            opacity: $i * 0.01;
+        }
+    }
+
+    @each $name,
+    $size in $text-sizes {
+        &--font-size--#{$name} {
+            font-size: $size;
+        }
+    }
+
+    &--uppercase {
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,190 @@
+// ----- Form Core Styles ----------------
+.gform_wrapper {
+    margin-bottom: var(--wp--custom--forms--spacing);
+    width: 100%;
+
+    fieldset {
+        border: 0;
+        padding: 0;
+    }
+
+    .ginput_container {
+        position: relative;
+    }
+
+    .gfield_label {
+        @extend %label-styles;
+
+        .gfield_required {
+            color: var(--error);
+            padding-left: 2px;
+        }
+
+        &.gfield_label_before_complex {
+            //required for advance name fields
+            line-height: 1.75;
+        }
+    }
+
+    .gfield_description {
+        font-size: var(--wp--preset--font-size--mini);
+        margin-top: 0.125rem;
+    }
+
+    .field_description_above .gfield_description {
+        margin-bottom: 0.125rem;
+        margin-top: 0;
+    }
+
+    .gform_required_legend {
+        display: none;
+    }
+
+    .hidden_label .gfield_label,
+    .hidden_sub_label,
+    .screen-reader-text {
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        word-wrap: normal !important;
+    }
+
+    .gform_body .gfield.gform_hidden {
+        margin: 0;
+    }
+
+    .gfield_visibility_hidden {
+        left: -9999px;
+        position: absolute;
+        visibility: hidden;
+    }
+}
+
+// ----- Form Columns --------------------
+.gform_body {
+    .gform_fields {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .gfield {
+            margin-bottom: var(--wp--custom--forms--spacing);
+            text-align: left;
+            width: 100%;
+
+            &.spacer {
+                margin-bottom: 0;
+            }
+
+            @include media("mobile+") {
+                &--width-half {
+                    width: calc(50% - calc(var(--wp--custom--forms--spacing) / 2));
+                }
+
+                &--width-third {
+                    width: calc(calc(100% / 3) - calc(calc(var(--wp--custom--forms--spacing) * 2) / 3));
+                }
+
+                &--width-two-thirds {
+                    width: calc(calc(calc(calc(100% / 3) - calc(calc(var(--wp--custom--forms--spacing) * 2) / 3)) * 2) + var(--wp--custom--forms--spacing));
+                }
+
+                &--width-three-quarter {
+                    width: calc(calc(calc(calc(100% - calc(var(--wp--custom--forms--spacing) * 3)) / 4) * 3) + calc(var(--wp--custom--forms--spacing) * 2));
+
+                    @media (max-width: 1000px) {
+                        width: calc(50% - calc(var(--wp--custom--forms--spacing) / 2));
+                    }
+                }
+
+                &--width-quarter {
+                    width: calc(calc(100% - calc(var(--wp--custom--forms--spacing) * 3)) / 4);
+
+                    @media (max-width: 1000px) {
+                        width: calc(50% - calc(var(--wp--custom--forms--spacing) / 2));
+                    }
+                }
+            }
+
+            &--type-submit[data-field-position="inline"] {
+                text-align: right;
+
+                @include media("mobile") {
+                    text-align: center;
+                }
+            }
+
+            &.a-input-field--name .ginput_container {
+                @include pseudo-icon("user", "regular", before) {
+                    color: var(--secondary);
+                    position: absolute;
+                }
+            }
+
+            &.a-input-field--email .ginput_container {
+                @include pseudo-icon("at", "regular", before) {
+                    color: var(--secondary);
+                    position: absolute;
+                }
+            }
+
+            &.a-input-field--company .ginput_container {
+                @include pseudo-icon("buildings", "regular", before) {
+                    color: var(--secondary);
+                    position: absolute;
+                }
+            }
+
+            &.a-input-field--phone .ginput_container {
+                @include pseudo-icon("phone-volume", "regular", before) {
+                    color: var(--secondary);
+                    position: absolute;
+                }
+            }
+
+            &.a-input-field--project .ginput_container {
+                @include pseudo-icon("pen", "regular", before) {
+                    color: var(--secondary);
+                    position: absolute;
+                }
+            }
+        }
+
+        .gfield.gfield--type-fileupload {
+            position: relative;
+
+            > .gfield_description {
+                background: var(--wp--custom--forms--background);
+                color: var(--foreground);
+                font-size: var(--wp--preset--font-size--mini);
+                left: 3%;
+                position: absolute;
+                top: 46%;
+                transform: translate3d(-3%, -46%, 0);
+            }
+        }
+    }
+
+    .gform-button {
+        @extend .a-button;
+
+        @include media("mobile") {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+.gform_confirmation_wrapper {
+    .gform_confirmation_message {
+        color: var(--foreground);
+    }
+}
+
+@import "form-gravity-checkboxradio";

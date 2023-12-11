@@ -1,0 +1,62 @@
+// Breakpoints
+$breakpoints: (
+    "tablet": (max-width: 768px),
+    "tablet+": (min-width: 769px),
+    "medium": (max-width: 900px),
+    "medium+": (min-width: 901px),
+    "mobile": (max-width: 600px),
+    "mobile+": (min-width: 601px),
+    "menu": (max-width: 1260px),
+    "menu+": (min-width: 1261px),
+    "wide": (max-width: 1440px),
+    "wide+": (min-width: 1441px),
+    "extrawide": (max-width: 1660px),
+    "extrawide+": (min-width: 1661px),
+    "content": (max-width: 1120px),
+    "content+": (min-width: 1121px),
+);
+
+// Ensure buttons colors match the values in theme.json
+// settings.blocks.button.color.palette
+$button-colors: (
+    "primary-btn": var(--primary-btn),
+    "primary-btn-500": var(--primary-btn-500),
+    "secondary-btn": var(--secondary-btn),
+    "secondary-btn-500": var(--secondary-btn-500),
+);
+
+// Font icons
+$font-family-icon-sharp: "Font Awesome 6 Sharp";
+$font-family-icon-brands: "Font Awesome 6 Brands";
+$font-fa-families: (
+    "regular": ($font-family-icon-sharp, 400),
+    "brands": ($font-family-icon-brands, 400),
+    "solid": ($font-family-icon-sharp, 900),
+);
+
+// Layers (z-index)
+$layers: (
+    sub: -10,
+    base: 0,
+    overlay: 10,
+    modal: 100,
+    max: 1000,
+);
+
+// Create a loop of colors for mapping
+// Ensure colors match the colors listed custom_properties.scss
+$colors: (
+    "background": var(--background),
+    "foreground": var(--foreground),
+    "primary": var(--primary),
+    "primary-500": var(--primary-500),
+    "secondary": var(--secondary),
+    "secondary-500": var(--secondary-500),
+    "tertiary": var(--tertiary),
+    "tertiary-500": var(--tertiary-500),
+    "quaternary": var(--quaternary),
+    "quaternary-500": var(--quaternary-500),
+    "form-color-primary": var(--form-color-primary),
+    "error": var(--error),
+    "white": var(--white),
+);

@@ -1,0 +1,43 @@
+// Author Dependencies
+@use "global/bootstrap" as *; // must be first
+@import "global/components";
+@import "global/fonts";
+@import "global/reboot";
+@import "global/layouts";
+
+// Atoms
+@import "atoms/button";
+@import "atoms/icon";
+@import "atoms/image";
+@import "atoms/inputs";
+@import "atoms/logo";
+
+// Molecules
+@import "molecules/card";
+@import "molecules/filter";
+@import "molecules/share-links";
+
+// Blocks
+@import "blocks/blocks-core";
+
+// Forms
+@import "forms/form-base";
+@import "forms/form-gravity";
+@import "forms/form-search";
+
+// Organisms
+@import "organisms/card-grid";
+@import "organisms/footer";
+@import "organisms/header";
+@import "organisms/masthead-post";
+
+html,
+body {
+    position: relative;
+    scroll-behavior: smooth;
+    width: 100%;
+
+    &.overflow-hidden {
+        overflow: hidden;
+    }
+}

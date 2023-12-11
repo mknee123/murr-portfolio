@@ -1,0 +1,57 @@
+.m-card {
+    align-items: flex-start;
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    @include media("tablet+") {
+        max-width: 24rem;
+    }
+
+    > *,
+    &__content > * {
+        line-height: var(--wp--custom--line-height--small);
+        margin-bottom: 0;
+    }
+
+    &--post {
+        max-width: 30rem;
+    }
+
+    &--archive {
+        max-width: none;
+    }
+
+    &__image,
+    &__content {
+        align-self: stretch;
+    }
+
+    &__image {
+        img {
+            @include aspect(16, 9);
+            @include layer("base", 1, relative);
+
+            display: block;
+            height: auto;
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-wrap: pretty;
+    }
+
+    @include media("tablet+") {
+        flex: 0 1 calc(50% - 1rem);
+    }
+
+    @include media("content+") {
+        flex: 0 1 calc(33.33% - 1.35rem);
+    }
+}

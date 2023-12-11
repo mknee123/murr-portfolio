@@ -1,0 +1,52 @@
+.m-share-links {
+    padding: 0 var(--wp--custom--spacing--viewport-padding-mobile) 1.5rem;
+
+    &__inner {
+        background-color: var(--primary-500);
+        display: inline-block;
+        padding: 0.5rem;
+    }
+
+    &__list {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li a {
+        align-items: center;
+        background-color: var(--background);
+        border-radius: 50%;
+        color: var(--primary);
+        display: flex;
+        height: 2.5rem;
+        justify-content: center;
+        text-decoration: none;
+        transition: color 0.5s ease-out;
+        width: 2.5rem;
+
+        &:hover {
+            color: var(--tertiary);
+        }
+
+        i {
+            font-size: var(--wp--preset--font-size--small);
+        }
+    }
+}
+
+@media (min-width: 900px) {
+    .m-share-links {
+        padding: 5.75rem 0;
+        position: absolute;
+        right: 1.25rem;
+        top: 0;
+
+        &__list {
+            flex-direction: column;
+        }
+    }
+}

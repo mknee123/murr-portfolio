@@ -1,0 +1,29 @@
+{
+    "name": "@ghint/gh-wp-base-theme",
+    "version": "2.0.0",
+    "description": "The official GH Advertising Interactive base theme for Wordpress. Powered by npm/yarn and Webpack",
+    "author": "GH Advertising Interactive <interactive@ghadv.com> (https://www.ghadv.com)",
+    "license": "MIT",
+    "homepage": "https://bitbucket.org/garrisonhughes/gh-wp-base-theme-2.0#readme",
+    "private": true,
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "scripts": {
+        "build": "wp-scripts build --webpack-src-dir=resources --webpack-copy-php --output-path=public",
+        "watch": "wp-scripts start --webpack-src-dir=resources --webpack-copy-php --output-path=public"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-pro": "^6.1",
+        "classnames": "^2.3.2",
+        "throttle-debounce": "^5.0.0"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^24.4.0",
+        "browser-sync": "^2.27.10",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "copy-webpack-plugin": "^11.0.0",
+        "image-minimizer-webpack-plugin": "^3.7.0",
+        "mini-css-extract-plugin": "^2.6.1"
+    }
+}
