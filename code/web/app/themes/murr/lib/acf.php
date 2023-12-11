@@ -41,7 +41,8 @@ add_filter('acf/settings/show_admin', function ($show) {
 
     // create array of approved users
     $approved_users = [
-        'interactive@ghadv.com',
+        'mknee123@gmail.com',
+        'mknee123@msn.com',
         'mknee@ghadv.com',
     ];
 
