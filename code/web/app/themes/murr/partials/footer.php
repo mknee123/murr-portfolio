@@ -2,7 +2,7 @@
 
 get_template_part('partials/organisms/footer', null, [
     'footer_statement' => 'Developer',
-    'footer_statement' => 'Westmoreleand, PA.',
+    'footer_statement' => 'Westmoreland, PA.',
     'footer_email' => 'mknee123@gmail.com',
     'copyright_text' => 'Copyright. All rights reserved.'
 
