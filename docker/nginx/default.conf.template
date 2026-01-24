@@ -29,11 +29,6 @@ server {
     set $theme_root /app/themes/murr;
 
     location = /favicon.ico {
-        log_not_found off;
-        access_log off;
-    }
-
-    location = /favicon.ico {
         try_files $uri $theme_root/favicon.ico =404;
         access_log off;
         log_not_found off;
