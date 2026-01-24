@@ -68,6 +68,38 @@ To see your live/hot refresh front end, visit: [http://murr.docker.localhost:300
 ./bin/down.sh
 ```
 
+## Local HTTPS (mkcert)
+
+This project can run locally over HTTPS without editing `/etc/hosts` by using the `*.docker.localhost` domain and mkcert.
+
+1) Install mkcert and trust the local CA:
+
+```bash
+brew install mkcert nss
+mkcert -install
+```
+
+2) Generate a cert for the local domain:
+
+```bash
+mkdir -p docker/traefik/certs
+mkcert -key-file docker/traefik/certs/murr.docker.localhost-key.pem \
+       -cert-file docker/traefik/certs/murr.docker.localhost.pem \
+       murr.docker.localhost localhost 127.0.0.1 ::1
+```
+
+3) Ensure your `.env` has:
+
+```bash
+NGINX_SERVER_NAME=murr.docker.localhost
+```
+
+4) Start the stack:
+
+```bash
+docker compose -f compose.yml up -d --build
+```
+
 ### Available commands
 
 -   `./bin/cli.sh composer install` — Install theme related plugins

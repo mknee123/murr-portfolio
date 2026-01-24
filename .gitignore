@@ -9,6 +9,7 @@ Movefile
 .movefile
 movefile.yml
 movefile.yaml
+docker/traefik/certs/*.pem
 backup/*.sql
 backup/*.xml
 !backup/.gitkeep

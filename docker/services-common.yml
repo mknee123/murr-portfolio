@@ -32,6 +32,7 @@ services:
     extends: code-base
     build:
       context: ./php
+      target: base
       args:
         <<: *build-args
   wordmove:

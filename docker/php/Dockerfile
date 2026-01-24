@@ -6,6 +6,7 @@ FROM php:${PHP_VERSION}-fpm-alpine AS base
 RUN apk add --no-cache \
         bash \
         git \
+        freetype-dev \
         icu-dev \
         libjpeg-turbo-dev \
         libpng-dev \
@@ -29,15 +30,11 @@ WORKDIR /var/www/html
 
 FROM node:${NODE_VERSION}-slim AS theme-base
 
-ARG FONTAWESOME_NPM_AUTH_TOKEN
-ENV FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN}
-
 WORKDIR /theme
 
 RUN apt-get update \
     && apt-get install -y git libnotify-bin \
     && npm config set '@fortawesome:registry' 'https://npm.fontawesome.com/' \
-    && npm config set '//npm.fontawesome.com/:_authToken' "${FONTAWESOME_NPM_AUTH_TOKEN}" \
     && rm -rf /var/lib/apt/lists/*
 
-CMD ["npm", "run", "watch"]
+CMD ["sh", "-c", "if [ -n \"${FONTAWESOME_NPM_AUTH_TOKEN}\" ]; then npm config set '//npm.fontawesome.com/:_authToken' \"${FONTAWESOME_NPM_AUTH_TOKEN}\"; fi; exec npm run watch"]
