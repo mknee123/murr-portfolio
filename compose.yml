@@ -1,0 +1,70 @@
+services:
+  nginx:
+    image: nginx:1.29-alpine
+    restart: unless-stopped
+    ports:
+      - '80'
+    environment:
+      FPM_HOST: ${COMPOSE_PROJECT_NAME}_php
+      NGINX_SERVER_NAME: ${NGINX_SERVER_NAME}
+      NGINX_ROOT: ${NGINX_ROOT}
+    volumes:
+      - ./code:/var/www/html
+      - ./logs:/var/log/nginx
+      - ./docker/nginx:/etc/nginx/templates
+    networks:
+      default:
+        aliases:
+          - ${COMPOSE_PROJECT_NAME}_nginx
+    labels:
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=websecure'
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${NGINX_SERVER_NAME}`)'
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls=true'
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}-http.entrypoints=web'
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}-http.rule=Host(`${NGINX_SERVER_NAME}`)'
+      - 'traefik.http.routers.${COMPOSE_PROJECT_NAME}-http.middlewares=${COMPOSE_PROJECT_NA-https'
+      - 'traefik.http.middlewares.${COMPOSE_PROJECT_NAME}-https.redirectscheme.scheme=https'
+    depends_on:
+      - php
+  mysql:
+    image: mariadb:10.6.20
+    ports:
+      - '3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      default:
+        aliases:
+          - ${COMPOSE_PROJECT_NAME}_${MYSQL_HOST:-mysql}
+          - ${COMPOSE_PROJECT_NAME}-cli_${MYSQL_HOST:-mysql}
+    labels:
+      - 'traefik.enable=false'
+  php:
+    extends:
+      file: ./docker/services-common.yml
+      service: wordpress
+    build:
+      target: base
+    ports:
+      - '9000'
+    networks:
+      default:
+        aliases:
+          - ${COMPOSE_PROJECT_NAME}_php
+    labels:
+      - 'traefik.enable=false'
+    depends_on:
+      - mysql
+
+volumes:
+  mysql:
+
+networks:
+  default:
+    name: traefik-network
+    external: true

@@ -1,13 +1,12 @@
 {
-  "name": "ghint/bedrock-project",
-  "description": "Boilerplate for a new project based on roots/bedrock",
-  "keywords": ["wordpress", "bedrock", "docker"],
+  "name": "mirandaknee/murr-site",
+  "description": "Personal portfolio site based on roots/bedrock",
+  "keywords": ["wordpress", "bedrock", "docker", "portfolio"],
   "license": "MIT",
   "authors": [
     {
-      "name": "Garrison Hughes Interactive",
-      "email": "interactive@garrisonhughes.com",
-      "homepage": "https://garrisonhughes.com"
+      "name": "Miranda Knee",
+      "homepage": "https://mirandaknee.com"
     }
   ],
   "scripts": {

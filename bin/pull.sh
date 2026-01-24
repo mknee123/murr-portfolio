@@ -6,4 +6,4 @@
 # Example: ./bin/pull.sh wordmove pull -e staging -u
 # Example: ./bin/pull.sh wordmove pull -e staging -du
 
-docker compose -f cli.yml run --rm $@
+docker compose -f cli.yml run --rm "$@"

@@ -22,11 +22,11 @@ local:
 
 staging:
   vhost: https://staging.mirandaknee.com
-  wordpress_path: /var/www/staging_mirandaknee/web
+  wordpress_path: #addPath
 
   database:
-    name: murr_staging_com
-    user: murr
+    name: #addDB
+    user: #addUser
     password: secret
     host: '127.0.0.1'
     mysqldump_options: --hex-blob
@@ -40,46 +40,78 @@ staging:
     languages: app/languages
 
   exclude:
-    - '.DS_Store'
-    - '.env'
-    - '.editorconfig'
+    # Root-level project files and directories
+    - '/backup'
+    - '/vendor'
+    - '/composer.json'
+    - '/composer.lock'
+    - '/bin/'
+    - '/tmp/'
+
+    # Git-related
     - '.git/'
     - '.gitignore'
     - '.gitmodules'
+
+    # Environment and config
+    - '.env'
+    - '.env.example'
+    - '.editorconfig'
+    - '.prettierignore'
+    - '.prettierrc'
+    - '.scss-lint.yml'
+    - '.DS_Store'
+    - '.vscode/'
+
     - '.htaccess'
     - '.idea'
     - '.sass-cache/'
-    - '.scss-lint.yml'
     - '.quarantine/'
     - '.tmb/'
-    - '.vscode/'
-    - '.prettierignore'
-    - '.prettierrc'
-    - 'bin/'
-    - 'conf/'
-    - 'Gemfile*'
-    - 'htaccess'
-    - 'Movefile'
-    - 'movefile.yml'
-    - 'movefile.dist.yml'
-    - 'nginx.conf'
+
+    # Node
     - 'node_modules/'
-    - 'robots.txt'
-    - 'test.txt'
-    - 'tmp/*'
-    - 'wp-config.php'
+
+    # Ruby-related (for dev environments using bundler)
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+    # Wordmove config files
+    - 'Movefile'
+    - 'movefile'
+    - 'movefile.yml'
+    - 'movefile.yaml'
+    - 'movefile.dist.yml'
+
+    # WordPress config
+    - '/wp-config.php'
+    - '/__wp-config.php'
+    - '.htaccess'
+    - '.htaccess_old'
+
+    # SQL/database dumps and archives
+    - '*.sql'
+    - '*.sql.gz'
+    - '*.tar.gz'
+    - '*.orig'
+
+    # Temporary/dev files
+    - '__*.*'
+
+    # README.md
+    - 'README.md'
 
   ssh:
     host: secret
-    user: murr
+    user: #addUser
 
 production:
   vhost: https://mirandaknee.com
-  wordpress_path: /var/www/prod_mirandaknee/web
+  wordpress_path: #addPath
 
   database:
-    name: esop_wp_production
-    user: ghadv
+    name: #addDB
+    user: #addUser
     password: secret
     host: '127.0.0.1'
     mysqldump_options: --hex-blob
@@ -93,35 +125,67 @@ production:
     languages: app/languages
 
   exclude:
-    - '.DS_Store'
-    - '.env'
-    - '.editorconfig'
+    # Root-level project files and directories
+    - '/backup'
+    - '/vendor'
+    - '/composer.json'
+    - '/composer.lock'
+    - '/bin/'
+    - '/tmp/'
+
+    # Git-related
     - '.git/'
     - '.gitignore'
     - '.gitmodules'
+
+    # Environment and config
+    - '.env'
+    - '.env.example'
+    - '.editorconfig'
+    - '.prettierignore'
+    - '.prettierrc'
+    - '.scss-lint.yml'
+    - '.DS_Store'
+    - '.vscode/'
+
     - '.htaccess'
     - '.idea'
     - '.sass-cache/'
-    - '.scss-lint.yml'
     - '.quarantine/'
     - '.tmb/'
-    - '.vscode/'
-    - '.prettierignore'
-    - '.prettierrc'
-    - 'bin/'
-    - 'conf/'
-    - 'Gemfile*'
-    - 'htaccess'
-    - 'Movefile'
-    - 'movefile.yml'
-    - 'movefile.dist.yml'
-    - 'nginx.conf'
+
+    # Node
     - 'node_modules/'
-    - 'robots.txt'
-    - 'test.txt'
-    - 'tmp/*'
-    - 'wp-config.php'
+
+    # Ruby-related (for dev environments using bundler)
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+    # Wordmove config files
+    - 'Movefile'
+    - 'movefile'
+    - 'movefile.yml'
+    - 'movefile.yaml'
+    - 'movefile.dist.yml'
+
+    # WordPress config
+    - '/wp-config.php'
+    - '/__wp-config.php'
+    - '.htaccess'
+    - '.htaccess_old'
+
+    # SQL/database dumps and archives
+    - '*.sql'
+    - '*.sql.gz'
+    - '*.tar.gz'
+    - '*.orig'
+
+    # Temporary/dev files
+    - '__*.*'
+
+    # README.md
+    - 'README.md'
 
   ssh:
     host: secret
-    user: murr
+    user: #addUser

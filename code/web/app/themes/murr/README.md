@@ -1,6 +1,6 @@
-# GH Advertising WP Base Theme 2.0
+# Miranda Portfolio Theme
 
-The official GH Advertising WordPress Base Theme 2.0. It is powered by npm/yarn and webpack. The GH WordPress Base Theme 2.0 is a cookie-cutter theme with pre-developed blocks, partials, and templates commonly used in GH websites. The theme uses a theme.json file to easily apply custom colors, fonts, and layouts that align with the client’s branding. Compatible with the GH WP Docker Stack.
+Custom WordPress theme for Miranda Knee's portfolio. Powered by npm/yarn and webpack. The theme uses a theme.json file to apply custom colors, fonts, and layouts that align with the site's branding. Compatible with the local Docker stack.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ The official GH Advertising WordPress Base Theme 2.0. It is powered by npm/yarn 
 | Prerequisite        | How to check          | How to install                                   |
 | ------------------- | --------------------- | ------------------------------------------------ |
 | PHP >= 8.1.x        | `php -v`              | [php.net](https://php.net/manual/en/install.php) |
-| Node.js >= 20.4.0   | `node -v`             | [nodejs.org](https://nodejs.org/)                |
+| Node.js >= 18.0.0   | `node -v`             | [nodejs.org](https://nodejs.org/)                |
 | Composer >= 2.5.2   | `composer --version`  | [getcomposer.org](https://getcomposer.org/)      |
 | Webpack 5           | `webpack version`     | `npm install --save-dev webpack`                 |
 | Webpack-CLI         | `webpack-cli version` | `npm install --save-dev webpack-cli`             |
@@ -26,7 +26,7 @@ The official GH Advertising WordPress Base Theme 2.0. It is powered by npm/yarn 
 
 ## Setup
 
-The first step is to make a copy of the .env.example and rename it .env. Update the variables with the appropriate values. The Pro keys can be found in 1PASS.
+The first step is to make a copy of the .env.example and rename it .env. Update the variables with the appropriate values. Private tokens are required for some dependencies.
 
 To obtain the Composer and Bitbucket keys, run the following command
 
@@ -53,7 +53,7 @@ composer install
 
 ## Theme
 
-The `theme.json` file is essential for the GH Base Theme 2.0. It works closely with the `custom-properties` stylesheet in the `resources/styles/global` directory. To avoid updating values within the `theme.json` file, update the client's branded color palette in the `custom-properties` stylesheet.
+The `theme.json` file is essential for the theme. It works closely with the `custom-properties` stylesheet in the `resources/styles/global` directory. To avoid updating values within the `theme.json` file, update the site's branded color palette in the `custom-properties` stylesheet.
 
 ## Features
 
@@ -72,9 +72,7 @@ The `theme.json` file is essential for the GH Base Theme 2.0. It works closely w
 Here is a breakdown of the theme file/directory structure and a little bit about each.
 
 ```shell
-gh-wp-base-theme/           # → Root of the theme
-├──acf-json/		        # → ACF Field data saved here, separate from the WP Database
-│
+murr/                       # → Root of the theme
 ├──config/
 │   └── entrypoints.js
 │
@@ -109,7 +107,6 @@ gh-wp-base-theme/           # → Root of the theme
 ├── .env.example         	# → Example environment variable file
 ├── composer.json         	# → The composer dependencies, WP Asset Helper.
 ├── functions.php         	# → Loads all files from `lib/theme/` here
-├── gh.png                  # → GH Logo for credits section of README
 ├── index.php             	# → Never manually edit
 ├── package.json          	# → Node.js dependencies and scripts
 ├── screenshot.png        	# → Theme screenshot for WP admin
@@ -120,9 +117,7 @@ gh-wp-base-theme/           # → Root of the theme
 
 ## Credits
 
-[<img width="200" height="auto" src="gh.png" alt="GH Advertising">](https://ghadv.com/)
-
-This theme was created by the developers at GH Advertising.
+This theme was created by Miranda Knee.
 
 ### Notes
 

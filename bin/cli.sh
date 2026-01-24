@@ -5,4 +5,4 @@
 # Example: ./bin/cli.sh node npm run watch
 # Example: ./bin/cli.sh node npm run build
 
-docker compose -f cli.yml run --rm $@
+docker compose -f cli.yml run --rm "$@"

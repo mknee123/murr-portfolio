@@ -1,10 +1,10 @@
 {
-    "name": "@ghint/gh-wp-base-theme",
+    "name": "@mirandaknee/murr-portfolio-theme",
     "version": "2.0.0",
-    "description": "The official GH Advertising Interactive base theme for Wordpress. Powered by npm/yarn and Webpack",
-    "author": "GH Advertising Interactive <interactive@ghadv.com> (https://www.ghadv.com)",
+    "description": "Custom WordPress theme for Miranda Knee's portfolio. Powered by npm/yarn and Webpack",
+    "author": "Miranda Knee (https://mirandaknee.com)",
     "license": "MIT",
-    "homepage": "https://bitbucket.org/garrisonhughes/gh-wp-base-theme-2.0#readme",
+    "homepage": "https://mirandaknee.com",
     "private": true,
     "engines": {
         "node": ">=18.0.0"

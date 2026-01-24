@@ -1,7 +1,7 @@
 
-# Murr Portfolio
+# Miranda Portfolio - mirandaknee.com
 
-Murr Portfolio WordPress website.
+Personal portfolio and resume site for Miranda Knee, built on WordPress (Bedrock) and Docker.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ Murr Portfolio WordPress website.
 | Prerequisite        | How to check          | How to install                                   |
 | ------------------- | --------------------- | ------------------------------------------------ |
 | PHP >= 8.1.x        | `php -v`              | [php.net](https://php.net/manual/en/install.php) |
-| Node.js >= 20.4.0   | `node -v`             | [nodejs.org](https://nodejs.org/)                |
+| Node.js >= 18.0.0   | `node -v`             | [nodejs.org](https://nodejs.org/)                |
 | Composer >= 2.5.2   | `composer --version`  | [getcomposer.org](https://getcomposer.org/)      |
 | Webpack 5           | `webpack version`     | `npm install --save-dev webpack`                 |
 | Webpack-CLI         | `webpack-cli version` | `npm install --save-dev webpack-cli`             |
@@ -27,7 +27,7 @@ Murr Portfolio WordPress website.
 
 ## Setup
 
-- The first step is to make a copy of the .env.example and rename it .env. Update the variables with the appropriate values. 
+- The first step is to make a copy of the .env.example and rename it .env. Update the variables with the appropriate values. Private Composer credentials are required for some dependencies.
 
 - CD into the root directory and run the following command to get started.
 
@@ -72,14 +72,14 @@ To see your live/hot refresh front end, visit: [http://murr.docker.localhost:300
 
 -   `./bin/cli.sh composer install` — Install theme related plugins
 -   `./bin/cli.sh composer update` — Update plugins
--   `./bin/cli.sh node npm run watch` — Install dependencies
+-   `./bin/cli.sh node npm install` — Install theme dependencies
 -   `./bin/cli.sh node npm run watch` — Compile and optimize the files in your assets directory as well as start watching for changes
 -   `./bin/cli.sh node npm run build` — Compile assets for production (no source maps) and without watching
 -   `./bin/cli.sh wordmove pull -e staging --all` — Pull everything from the staging site via wordmove
 
 ## Theme
 
-The `theme.json` file is essential. It works closely with the `custom-properties` stylesheet in the `resources/styles/global` directory. To avoid updating values within the `theme.json` file, update the client's branded color palette in the `custom-properties` stylesheet.
+The `theme.json` file is essential. It works closely with the `custom-properties` stylesheet in the `resources/styles/global` directory. To avoid updating values within the `theme.json` file, update the site's branded color palette in the `custom-properties` stylesheet.
 
 ## Troubleshooting
 
@@ -105,5 +105,4 @@ You may need to bridge the network.
 
 <!-- [<img width="200" height="auto" src="gh.png" alt="Miranda Knee">](http://mirandaknee.com/) -->
 
-This theme was created by the Miranda Knee with a heavy influence from her time spent at GH Advertising.
-
+This theme was created by Miranda Knee.
