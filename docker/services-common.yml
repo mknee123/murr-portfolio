@@ -1,17 +1,18 @@
 x-build: &build-args
   DEVELOPMENT_MODE: 1
-  PHP_VERSION: ${PHP_VERSION:-8.2}
-  NODE_VERSION: ${NODE_VERSION:-18}
+  PHP_VERSION: ${PHP_VERSION:-8.3}
+  NODE_VERSION: ${NODE_VERSION:-22}
+  FONTAWESOME_NPM_AUTH_TOKEN: ${FONTAWESOME_NPM_AUTH_TOKEN}
 x-db: &db-env
   DB_NAME: ${MYSQL_DATABASE}
   DB_USER: ${MYSQL_USER}
   DB_PASSWORD: ${MYSQL_PASSWORD}
   DB_PREFIX: ${MYSQL_PREFIX:-wp_}
-  DB_HOST: ${MYSQL_HOST}
+  DB_HOST: ${COMPOSE_PROJECT_NAME}_${MYSQL_HOST:-mysql}
 x-wp: &wp-env
-  WP_ENV: development
-  WP_HOME: http://${NGINX_SERVER_NAME}
-  WP_SITEURL: http://${NGINX_SERVER_NAME}/wp
+  WP_ENV: ${WP_ENV:-development}
+  WP_HOME: https://${NGINX_SERVER_NAME}
+  WP_SITEURL: https://${NGINX_SERVER_NAME}/wp
   WP_DEBUG_LOG: ${WP_DEBUG_LOG:-/var/log/bedrock}
 
 services:
@@ -26,11 +27,11 @@ services:
       - ../code:/var/www/html
       - ../logs:/var/log/bedrock
       - ../backup:/backup
-      - ./php/php.ini:/usr/local/etc/php/conf.d/gh-custom.ini
+      - ./php/php.ini:/usr/local/etc/php/conf.d/mk-custom.ini
   wordpress:
     extends: code-base
     build:
-      context: ../code
+      context: ./php
       args:
         <<: *build-args
   wordmove:

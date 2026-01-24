@@ -5,6 +5,10 @@
 
 # Recommended Ignore Items
 .env
+Movefile
+.movefile
+movefile.yml
+movefile.yaml
 backup/*.sql
 backup/*.xml
 !backup/.gitkeep
