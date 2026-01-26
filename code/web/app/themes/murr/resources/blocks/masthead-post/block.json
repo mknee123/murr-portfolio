@@ -14,5 +14,6 @@
         "align": ["wide"],
         "mode": false
     },
-    "example": {}
+    "example": {},
+    "render": "file:./index.php"
 }

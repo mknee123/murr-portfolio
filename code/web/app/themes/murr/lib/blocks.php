@@ -48,6 +48,11 @@ add_filter('ghint/block/masthead-video-backgrounds', fn(array $backgrounds, arra
     'loop' => true,
     'autoPlay' => true,
     'muted' => true,
+    'preload' => 'auto',
+    'fetchpriority' => 'high',
+    'poster' => $attributes['fallback']['sizes']['full']['url']
+        ?? $attributes['fallback']['url']
+        ?? null,
     'sources' => array_map(fn($bg) => [
         'type' => $bg['mime'],
         'src' => $bg['url'],

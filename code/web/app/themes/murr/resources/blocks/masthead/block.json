@@ -6,11 +6,12 @@
     "category": "mk-blocks",
     "description": "Full width background image or video",
     "keywords": ["image", "video", "masthead", "hero"],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "textdomain": "ghint",
     "attributes": {
         "backgrounds": {
-            "type": "array"
+            "type": "array",
+             "default": []
         },
         "format": {
             "type": "string",
@@ -39,6 +40,10 @@
         "embedCode": {
             "type": "string",
             "default": ""
+        },
+         "fallback": {
+            "type": "object",
+            "default": null
         }
     },
     "example": {
@@ -62,7 +67,7 @@
             {
                 "name": "core/heading",
                 "attributes": {
-                    "content": "Get Closer to Your Interactive",
+                    "content": "Hi. I'm Miranda!",
                     "fontSize": "xx-large",
                     "textColor": "secondary",
                     "level": 1
@@ -71,7 +76,7 @@
             {
                 "name": "core/paragraph",
                 "attributes": {
-                    "content": "The GH Advertising WordPress Base Theme includes multiple custom blocks that are ready to be used throughout the site to allow you to get closer to your goals."
+                    "content": "Senior Web Platform Engineer"
                 }
             }
         ]
@@ -83,6 +88,7 @@
             "attributes": {
                 "format": "video"
             },
+            "isActive": ["format"],
             "example": {
                 "attributes": {
                     "backgrounds": [
@@ -91,13 +97,22 @@
                             "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/gh_smiles_We_Are_GH_advertising.mp4",
                             "mime": "video/mp4"
                         }
-                    ]
+                    ],
+                    "fallback": {
+                        "id": 1,
+                        "alt": "GH Advertising",
+                        "sizes": {
+                            "full": {
+                                "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
+                            }
+                        }
+                    }
                 },
                 "innerBlocks": [
                     {
                         "name": "core/heading",
                         "attributes": {
-                            "content": "Get Closer to Your Interactive",
+                            "content": "Hi. I'm Miranda!",
                             "fontSize": "xx-large",
                             "textColor": "secondary",
                             "level": 1
@@ -106,7 +121,7 @@
                     {
                         "name": "core/paragraph",
                         "attributes": {
-                            "content": "The GH Advertising WordPress Base Theme includes support for videos."
+                            "content": "Senior Web Platform Engineer"
                         }
                     }
                 ]
@@ -118,6 +133,7 @@
             "attributes": {
                 "embed": true
             },
+            "isActive": ["embed"],
             "example": {
                 "attributes": {
                     "embedCode": "<iframe src='https://player.vimeo.com/video/890278826?background=1' width='640' height='360' frameborder='0' allow='autoplay; fullscreen'></iframe>"
@@ -126,7 +142,7 @@
                     {
                         "name": "core/heading",
                         "attributes": {
-                            "content": "Get Closer to Your Interactive",
+                            "content": "Hi. I'm Miranda!",
                             "fontSize": "xx-large",
                             "textColor": "secondary",
                             "level": 1
@@ -135,14 +151,13 @@
                     {
                         "name": "core/paragraph",
                         "attributes": {
-                            "content": "The GH Advertising WordPress Base Theme includes support for embedded videos."
+                            "content": "Senior Web Platform Engineer."
                         }
                     }
                 ]
             }
         }
     ],
-
     "viewScript": "file:./front.js",
     "editorScript": "file:./editor.js",
     "style": "file:./front.css",
