@@ -1,5 +1,8 @@
+@use "@styles/global/mixins" as mix;
+
+//-- Form Search ----------------------------------
 .o-search-overlay {
-    @include layer("overlay", 1, fixed);
+    @include mix.layer("overlay", 1, fixed);
     background-color: yellow;
     height: 100vh;
     left: 0;
@@ -11,7 +14,7 @@
 
 
     &::after {
-        @include layer("sub", 1, absolute);
+        @include mix.layer("sub", 1, absolute);
         background-color: var(--primary);
         content: "";
         height: 100%;
@@ -21,7 +24,7 @@
     }
 
     &__trigger {
-        @include layer("base", 1, absolute);
+        @include mix.layer("base", 1, absolute);
         cursor: pointer;
         font-size: 2rem;
         height: 2.5rem;
@@ -30,13 +33,13 @@
         top: 3.25rem;
         width: 2.5rem;
 
-        @include pseudo-icon("times", "regular", after) {
+        @include mix.pseudo-icon("times", "regular", after) {
             color: var(--background);
         }
     }
 
     &__inner {
-        @include layer("base", 1, absolute);
+        @include mix.layer("base", 1, absolute);
         left: 50%;
         max-width: 32.0625rem;
         opacity: 0;

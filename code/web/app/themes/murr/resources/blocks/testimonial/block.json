@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "ghint/testimonial",
     "title": "Testimonial",
-    "category": "gh-blocks",
+    "category": "mk-blocks",
     "description": "The Testimonial block can be used to add emphasis to text. It's versatile and serves many purposes, such as displaying audience reviews, testimonials, inspirational quotes, and more.",
     "keywords": ["quote", "review", "testimonial"],
     "version": "1.0.0",

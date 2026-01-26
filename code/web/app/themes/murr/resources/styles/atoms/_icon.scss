@@ -1,3 +1,7 @@
+@use "../global/variables" as vars;
+@use "../global/mixins" as mix;
+
+//-- Icons ----------------------------------
 .a-icon {
     color: var(--background);
     border-radius: 50%;
@@ -6,7 +10,7 @@
     overflow: hidden;
     text-decoration: none;
     width: 2.5rem;
-    @include layer("base", 1, relative);
+    @include mix.layer("base", 1, relative);
 
     &::after {
         background: var(--tertiary);
@@ -37,7 +41,7 @@
         }
     }
 
-    @each $name, $color in $colors {
+    @each $name, $color in vars.$colors {
         &--c-#{$name} {
             color: $color;
         }
@@ -48,36 +52,36 @@
     }
 
     &--email {
-        @include pseudo-icon("at", "regular", before);
+        @include mix.pseudo-icon("at", "regular", before);
     }
 
     &--facebook {
-        @include pseudo-icon("\f39e", "brands", before);
+        @include mix.pseudo-icon("\f39e", "brands", before);
     }
 
     &--linkedin {
-        @include pseudo-icon("\f0e1", "brands", before);
+        @include mix.pseudo-icon("\f0e1", "brands", before);
     }
 
     &--phone {
-        @include pseudo-icon("phone-volume", "regular", before);
+        @include mix.pseudo-icon("phone-volume", "regular", before);
     }
 
     &--spinner {
         display: inline-block;
         margin-bottom: 0.5rem;
-        @include pseudo-icon("\e1d4", "regular", before);
+        @include mix.pseudo-icon("\e1d4", "regular", before);
     }
 
     &--twitter {
-        @include pseudo-icon("\e61b", "brands", before);
+        @include mix.pseudo-icon("\e61b", "brands", before);
     }
 
     &--instagram {
-        @include pseudo-icon("\f16d", "brands", before);
+        @include mix.pseudo-icon("\f16d", "brands", before);
     }
 
     &--youtube {
-        @include pseudo-icon("\f167", "brands", before);
+        @include mix.pseudo-icon("\f167", "brands", before);
     }
 }

@@ -1,3 +1,5 @@
+@use "../global/mixins" as mix;
+
 // ----- Main Footer --------------------
 .o-footer {
     background-color: var(--background);
@@ -50,17 +52,17 @@
     &__address {
         flex-basis: 100%;
 
-        @include pseudo-icon("location-dot", "regular", before) {
+        @include mix.pseudo-icon("location-dot", "regular", before) {
             align-self: flex-start
         }
     }
 
     &__phone {
-        @include pseudo-icon("phone", "regular", before);
+        @include mix.pseudo-icon("phone", "regular", before);
     }
 
     &__email {
-        @include pseudo-icon("mailbox", "regular", before);
+        @include mix.pseudo-icon("mailbox", "regular", before);
     }
 
     &__social {
@@ -119,7 +121,7 @@
         }
     }
 
-    @include media("medium+") {
+    @include mix.media("medium+") {
         padding: 5rem var(--wp--custom--spacing--viewport-padding-mobile);
 
         &__inner {

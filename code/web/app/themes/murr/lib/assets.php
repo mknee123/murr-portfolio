@@ -2,43 +2,83 @@
 
 /**
  * Name:               assets.php
- * Version:            1.0.0
- * Author:             GH Advertising
+ * Version:            1.0.1
+ * Author:             MK
  */
 
 use GHInt\Assets\Bundle;
 use GHInt\Assets\Locator;
 use GHInt\Assets\Resources\Scripts\Script;
-use GHInt\Assets\Resources\Styles\Style;
+use Roots\WPConfig\Config;
+
+/**
+ * Only load block assets when their block appears on the page.
+ * WordPress 6.8+ honours these filters and skips the blanket enqueue.
+ */
+add_filter('should_load_separate_core_block_assets', '__return_true');
+add_filter('should_load_block_assets_on_demand', '__return_true');
 
 // Load all Theme Assets
 (new Bundle([
     // Styles
     Locator::styles(settings: [
-        'styles/core' => ['preload' => true],
-        'styles/editor' => ['admin' => true],
+        'styles/fontawesome' => [
+            'preload' => true,
+            'version' => filemtime(get_template_directory() . '/public/styles/fontawesome.css'),
+            'enqueue' => false,
+            'admin' => null,
+        ],
+        'styles/core' => [
+            'dependencies' => ['styles/fontawesome'],
+            'preload' => true,
+            'version' => filemtime(get_template_directory() . '/public/styles/core.css'),
+        ],
+        'styles/editor' => [
+            'admin' => true,
+            'dependencies' => ['styles/fontawesome'],
+            'version' => filemtime(get_template_directory() . '/public/styles/editor.css'),
+        ],
     ]),
 
     // Scripts
     Locator::scripts(settings: [
-        'scripts/core' => ['preload' => true, 'defer' => true, 'in_footer' => true],
+        'scripts/fontawesome' => [
+            'enqueue' => false,
+        ],
+        'scripts/core' => ['preload' => true, 'defer' => true, 'in_footer' => true, 'version' => filemtime(get_template_directory() . '/public/scripts/core.js'),],
         'scripts/posts' => ['preload' => true, 'defer' => true, 'in_footer' => true],
-        'scripts/editor' => ['admin' => true],
+        'scripts/editor' => ['admin' => true, 'version' => filemtime(get_template_directory() . '/public/scripts/editor.js'),],
     ])->add(new Script(
         'jquery',
         'https://code.jquery.com/jquery-3.6.4.min.js',
         ver: '3.6.4',
         preload: true,
-    ), 'jquery')->add(new Script(
-        'font-awesome-kit',
-        'https://kit.fontawesome.com/03b186b2f2.js', //TODO GH default kit, be sure to create and update with client kit
-        inFooter: true,
-        preload: true,
-    ), 'font-awesome-kit'),
+    ), 'jquery'),
 
     // Blocks
     Locator::blocks(),
 ]))->enable();
+
+add_action('ghint/wp_head_priority', function () {
+    if (is_admin()) {
+        return;
+    }
+
+    $preload = function (string $path, string $as, bool $crossorigin = false) {
+        static $printed = [];
+        if (!$path || isset($printed[$path])) {
+            return;
+        }
+        $printed[$path] = true;
+
+        printf(
+            '<link rel="preload" href="%1$s" as="%2$s"%3$s />' . PHP_EOL,
+            esc_url(asset($path)),
+            esc_attr($as),
+            $crossorigin ? ' crossorigin="anonymous"' : ''
+        );
+    };
+});
 
 /**
  * Core script overrides

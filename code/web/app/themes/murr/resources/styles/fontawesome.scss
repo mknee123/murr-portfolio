@@ -1,0 +1,14 @@
+// resources/styles/fontawesome.scss
+// Explicitly load the font weights we rely on so @font-face blocks are emitted.
+@use "~@fortawesome/fontawesome-pro/scss/fontawesome" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);
+@use "~@fortawesome/fontawesome-pro/scss/solid" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);
+@use "~@fortawesome/fontawesome-pro/scss/regular" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);
+@use "~@fortawesome/fontawesome-pro/scss/light" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);
+@use "~@fortawesome/fontawesome-pro/scss/brands" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);
+@use "~@fortawesome/fontawesome-pro/scss/duotone" with ($fa-font-path: "~@fortawesome/fontawesome-pro/webfonts",
+    $fa-font-display: swap);

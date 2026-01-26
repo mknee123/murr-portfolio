@@ -1,4 +1,4 @@
-@use "../../styles/global/bootstrap" as *;
+@use "@styles/global/bootstrap";
 
 .m-collapse {
     background-color: transparent;
@@ -29,7 +29,7 @@
             margin: 0;
         }
 
-        @include pseudo-icon(chevron-down, $element: after) {
+        @include bootstrap.pseudo-icon(chevron-down, $element: after) {
             color: var(--quaternary);
             margin-left: 1rem;
             transition: transform 500ms;

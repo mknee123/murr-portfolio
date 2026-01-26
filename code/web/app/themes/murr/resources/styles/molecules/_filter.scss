@@ -1,3 +1,5 @@
+@use "../global/mixins" as mix;
+
 .m-filter {
     align-items: flex-end;
     display: flex;
@@ -42,7 +44,7 @@
         }
     }
 
-    @include media("mobile+") {
+    @include mix.media("mobile+") {
         &__inputs {
             flex-direction: row;
             justify-content: flex-end;

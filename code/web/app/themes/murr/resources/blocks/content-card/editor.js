@@ -6,7 +6,7 @@ import block from "./block.json";
 import icons from "../../scripts/icon.js";
 
 registerBlockType(block, {
-    icon: icons.gh,
+    icon: icons.mk,
     edit: ({ attributes, setAttributes }) => {
         const { image, imageUrl } = attributes;
 

@@ -1,11 +1,23 @@
 <?php
-// TODO: Client Logo to replace GH logo
-// Expected styles that can be passed = ['light','dark']
+$disable = $args['disable'] ?? false;
+$class = $disable ? ['a-logo', 'c-disabled'] : ['a-logo'];
+$classes = $args['class'] ?? [];
+$className = array_merge(
+    $class,
+    array_map(
+        fn($name) => sprintf('a-logo--%s', $name),
+        is_string($classes) ? explode(' ', $classes) : $classes
+    )
+);
+$ariaLabel = $disable ? '' : __(' navigate to homepage', 'ghint');
 $style = $args['style'] ?? '';
 $id = $style ? $style . uniqid('-') : 'light' . uniqid('-');
 ?>
-<a aria-label="logo navigate to homepage" href="<?= get_home_url(); ?>" rel="home" class="a-logo" style="max-width:6rem;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="236.277" height="107.604" viewBox="0 0 236.277 107.604">
-        <path class="gh" id="Path_1" data-name="Path 1" d="M126.537,0H98.932V-72.049L78.986-25.293H59.836L39.891-72.049V0H13.73V-107.6h32.23L70.17-53.621,94.307-107.6h32.23Zm123.47,0H215.97L183.812-43.07l-6.5,7.877V0h-27.75V-107.6h27.75V-58.9L215.753-107.6h32.158L205.853-57.812Z" transform="translate(-13.73 107.604)" fill="#0f7a7e" />
+<a aria-label="<?= esc_attr(get_bloginfo('name')) . $ariaLabel ?>" href="<?= get_home_url(); ?>" rel="home" class="<?= implode(' ', $className) ?>" id="<?= esc_attr($id) ?>">
+    <svg id="mk" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" viewBox="0 0 472.7 205.3">
+        <path
+            d="M260.7,119v86.3h-62.5v-75.5c0-18.8-6.9-26-16.9-26s-19.6,7.5-19.6,27.7v73.9h-62.5v-75.5c0-18.8-6.4-26-16.9-26s-19.6,7.5-19.6,27.7v73.9H0V54h59.5v14.1c11.3-11.3,26.3-16.9,42.9-16.9s36.8,7.2,47.3,23c12.2-14.7,29.9-23,50.6-23,34.3,0,60.3,20.2,60.3,67.8Z"
+            fill="var(--mk-brand)" />
+        <polygon points="360.3 158.8 350.3 169.6 350.3 205.3 287.8 205.3 287.8 0 350.3 0 350.3 98 393.8 54 467.7 54 405.1 119.5 472.7 205.3 397.1 205.3 360.3 158.8" fill="var(--mk-brand)" />
     </svg>
 </a>

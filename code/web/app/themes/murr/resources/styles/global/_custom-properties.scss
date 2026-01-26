@@ -1,12 +1,12 @@
 // Manage colors for light & dark mode
-body {
+:root {
     --background: #ebeeed;
     --foreground: #333;
-    --primary: #40749b;
+    --primary: #2b3a43;
     --primary-500: rgba(64, 116, 156, 0.5);
     --secondary: #536794;
     --secondary-500: rgba(83, 102, 147, 0.5);
-    --secondary-light: rgba(83, 102, 147, , 0.15);
+    --secondary-light: rgba(83, 102, 147, 0.15);
     --tertiary: #86aaae;
     --tertiary-500: rgba(133, 169, 173, 0.5);
     --quaternary: #1c2333;
@@ -24,9 +24,7 @@ body {
     --font-family-headline: Georgia, serif;
     --font-family-body: verdana, sans-serif;
     //Theme logo credit
-    --gh-brand: var(--primary);
-    //TODO: Update name with client Logo color if SVG is available
-    --gh: var(--primary);
+    --mk-brand: var(--primary);
 
     @media screen and (prefers-color-scheme: dark) {
         --background: #141f29;
@@ -42,8 +40,6 @@ body {
         --form-color-primary: #28adb7;
         --form-bg-color: #4e4e4e;
         //Theme logo credit
-        --gh-brand: var(--secondary);
-        //TODO: Update name with client Logo color if SVG is available
-        --gh: var(--white);
+        --mk-brand: var(--secondary);
     }
 }

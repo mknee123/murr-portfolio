@@ -1,5 +1,9 @@
 //-- Form Base ----------------------------------
-//-- Manage Global Form styles and is designed to work with input atoms and Gravity Forms.
+//-- Manage Global Form styles and is designed to work with input atoms.
+
+// @use "sass:color";
+// @use "@styles/global/variables" as vars;
+// @use "@styles/global/mixins" as mix;
 
 input {
     line-height: normal;

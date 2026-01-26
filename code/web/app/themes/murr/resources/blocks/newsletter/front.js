@@ -1,3 +1,0 @@
-import "./index.scss";
-
-// Nothing to see here...

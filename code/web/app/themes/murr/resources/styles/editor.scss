@@ -1,14 +1,12 @@
 // Author Dependencies
-@use "global/bootstrap" as *; // must be first
+@use "global/custom-properties";
+@use "global/typography";
 
 // Atoms
-@import "atoms/button";
+@use "atoms/button";
+
+// Molecules
+@use "molecules/card";
 
 // Blocks
-@import "blocks/blocks-core";
-
-// Forms
-@import "forms/form-gravity";
-
-// Organisms
-@import "organisms/masthead-post";
+@use "blocks/blocks-core";

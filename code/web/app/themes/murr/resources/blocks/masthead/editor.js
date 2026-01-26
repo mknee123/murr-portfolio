@@ -37,18 +37,9 @@ const Background = ({ format, sources, size = "cover", position = ["center", "ce
 };
 
 registerBlockType(name, {
-    icon: icons.gh,
+    icon: icons.mk,
     edit: ({ attributes, setAttributes }) => {
-        const {
-            format,
-            backgrounds = [],
-            includeOverlay = true,
-            overlayOpacity = 40,
-            objectSize = "cover",
-            objectPosition = ["center", "center"],
-            embed = false,
-            embedCode = "",
-        } = attributes;
+        const { format, backgrounds = [], includeOverlay = true, overlayOpacity = 40, objectSize = "cover", objectPosition = ["center", "center"], embed = false, embedCode = "" } = attributes;
         const instructions = {
             notAllowed: <strong>{__("To edit the background image, you need permission to upload media.", "ghint")}</strong>,
             previewEmpty: <strong>{__("Use the editor panel to add a background.", "ghint")}</strong>,
@@ -65,12 +56,7 @@ registerBlockType(name, {
                 <InspectorControls>
                     {embed && (
                         <PanelBody title={__("Background Embed", "ghint")} initialOpen={true}>
-                            <TextareaControl
-                                label={__("Embed Code", "ghint")}
-                                help={__("Enter your <iframe> code here", "ghint")}
-                                value={embedCode}
-                                onChange={(embedCode) => setAttributes({ embedCode })}
-                            />
+                            <TextareaControl label={__("Embed Code", "ghint")} help={__("Enter your <iframe> code here", "ghint")} value={embedCode} onChange={(embedCode) => setAttributes({ embedCode })} />
                         </PanelBody>
                     )}
                     {!embed && (
@@ -81,15 +67,7 @@ registerBlockType(name, {
                                 checked={includeOverlay}
                                 onChange={() => setAttributes({ includeOverlay: !includeOverlay })}
                             />
-                            {includeOverlay && (
-                                <RangeControl
-                                    label={__("Overlay Opacity %")}
-                                    value={overlayOpacity}
-                                    onChange={(overlayOpacity) => setAttributes({ overlayOpacity })}
-                                    min={0}
-                                    max={100}
-                                />
-                            )}
+                            {includeOverlay && <RangeControl label={__("Overlay Opacity %")} value={overlayOpacity} onChange={(overlayOpacity) => setAttributes({ overlayOpacity })} min={0} max={100} />}
                             <MediaUploadCheck fallback={instructions.notAllowed}>
                                 <MediaUpload
                                     title={__("Select Background", "ghint")}
@@ -169,11 +147,7 @@ registerBlockType(name, {
                     <div className={"o-masthead__background"}>
                         {includeOverlay && <div className={"o-masthead__overlay"} style={{ opacity: overlayOpacity / 100 }}></div>}
                         {embed && <div dangerouslySetInnerHTML={{ __html: embedCode }}></div>}
-                        {!embed && backgrounds.length ? (
-                            <Background format={format} sources={backgrounds} size={objectSize} position={objectPosition} />
-                        ) : (
-                            instructions.previewEmpty
-                        )}
+                        {!embed && backgrounds.length ? <Background format={format} sources={backgrounds} size={objectSize} position={objectPosition} /> : instructions.previewEmpty}
                     </div>
                     <div className={"o-masthead__content"}>
                         <InnerBlocks />

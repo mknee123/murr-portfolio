@@ -1,3 +1,5 @@
+@use "../global/mixins" as mix;
+
 // ----- Card Grid --------------------
 .o-card-grid {
     display: flex;
@@ -11,11 +13,11 @@
         max-width: var(--wp--style--global--wide-size);
     }
 
-    @include media("medium+") {
+    @include mix.media("medium+") {
         gap: 5rem;
     }
 
-    @include media("wide+") {
+    @include mix.media("wide+") {
         padding: 5rem 0;
     }
 
@@ -25,7 +27,7 @@
         gap: 2rem;
         padding: 2rem 0;
 
-        @include media("menu+") {
+        @include mix.media("menu+") {
             padding: 0;
         }
 

@@ -1,11 +1,14 @@
+@use "../global/mixins" as mix;
+
 // ----- Header --------------------
 .o-header {
-    @include layer("base", 5, fixed);
+    @include mix.layer("base", 5, fixed);
+    @include mix.box-shadow-light;
     background-color: var(--background);
     width: 100%;
 
     &__columns {
-        @include layer("base", 5);
+        @include mix.layer("base", 5);
         align-items: center;
         display: flex;
         flex-wrap: wrap;
@@ -17,7 +20,7 @@
     }
 
     &__column {
-        @include layer("base", 1);
+        @include mix.layer("base", 1);
         align-items: center;
         display: flex;
         justify-content: space-between;
@@ -48,17 +51,17 @@
         }
 
         // ICON
-        @include pseudo-icon("bars", "regular", after) {
+        @include mix.pseudo-icon("bars", "regular", after) {
             color: var(--primary);
         }
 
         &--open {
-            @include pseudo-icon("xmark-large", "regular", after);
+            @include mix.pseudo-icon("xmark-large", "regular", after);
         }
     }
 
     &__nav-container {
-        @include layer("overlay", 0, fixed);
+        @include mix.layer("overlay", 0, fixed);
         background-color: var(--secondary);
         display: flex;
         flex-direction: column;
@@ -125,7 +128,7 @@
         }
 
         .menu-item-has-children:focus-within .o-header__dropdown {
-            @include pseudo-icon("angle-down", "regular", after) {
+            @include mix.pseudo-icon("angle-down", "regular", after) {
                 color: var(--quaternary);
                 display: flex;
                 transform: rotate(180deg);
@@ -201,8 +204,8 @@
         top: 0;
         width: 5rem;
 
-        @include pseudo-icon("angle-down", "regular", after) {
-            @include layer("base", 1, absolute);
+        @include mix.pseudo-icon("angle-down", "regular", after) {
+            @include mix.layer("base", 1, absolute);
             color: var(--background);
             transform: rotate(0deg);
             transform-origin: center;
@@ -210,7 +213,7 @@
         }
 
         &.active {
-            @include pseudo-icon("angle-down", "regular", after) {
+            @include mix.pseudo-icon("angle-down", "regular", after) {
                 color: var(--quaternary);
                 display: flex;
                 transform: rotate(180deg);
@@ -219,7 +222,7 @@
     }
 
     &__logo {
-        max-width: 15rem;
+        max-width: 7rem;
 
         &--center {
             margin: 0 auto;
@@ -233,8 +236,8 @@
         }
     }
 
-    @include media("menu+") {
-        @include layer("base", 5, relative);
+    @include mix.media("menu+") {
+        @include mix.layer("base", 5, relative);
 
         &__column {
             &--controls {
@@ -248,7 +251,7 @@
         }
 
         &__nav-container {
-            @include layer("base");
+            @include mix.layer("base");
             background: none;
             flex-direction: row;
             gap: 0;
@@ -310,7 +313,7 @@
 
             // DROPDOWN SUBMENU SUBMENU
             .sub-menu {
-                @include layer("overlay", 1, absolute);
+                @include mix.layer("overlay", 1, absolute);
                 background: var(--primary);
                 display: flex;
                 gap: 1.25rem;
@@ -342,7 +345,7 @@
             height: 100%;
 
             > a {
-                @include pseudo-icon("angle-down", "regular", after) {
+                @include mix.pseudo-icon("angle-down", "regular", after) {
                     display: none;
                 }
             }
@@ -353,7 +356,7 @@
         }
     }
 
-    @include media("wide+") {
+    @include mix.media("wide+") {
         &__column {
             &--controls {
                 padding: 0.75rem 0;

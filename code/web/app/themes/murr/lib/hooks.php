@@ -2,19 +2,16 @@
 
 /**
  * Name:               hooks.php
- * Version:            1.0.0
- * Author:             GH Advertising
+ * Version:            1.0.1
+ * Author:             MK
  */
-
-use GHInt\Theme\Post\ShareLink;
 
 /**
  * Generate breadcrumbs
  * @author CodexWorld
  * @authorURL www.codexworld.com
  */
-function get_breadcrumb($post_type)
-{
+function get_breadcrumb($post_type) {
     $categories = get_the_category();
     $cat = $categories[0]->name;
 
@@ -41,8 +38,7 @@ function get_breadcrumb($post_type)
  * @param object $args   Nav menu args.
  * @return string Nav menu item start element.
  */
-function gh_nav_add_dropdown_icons($output, $item, $depth, $args)
-{
+function gh_nav_add_dropdown_icons($output, $item, $depth, $args) {
 
     // only use on primary navigation menu
     if (!isset($args->theme_location) || 'primary' !== $args->theme_location) {
@@ -62,30 +58,6 @@ function gh_nav_add_dropdown_icons($output, $item, $depth, $args)
     return $output;
 }
 add_filter('walker_nav_menu_start_el', 'gh_nav_add_dropdown_icons', 10, 4);
-
-
-/**
- * Generates Share links for a given post
- */
-add_filter('ghint/share-links', function (array $links, WP_Post $sharePost = null) {
-
-    global $post;
-    return [
-        'facebook' => (new ShareLink($sharePost ?? $post))
-            ->setUrl('https://www.facebook.com/sharer/sharer.php?u=%1$s')
-            ->setBody('<i class="fa-brands fa-facebook-f"></i>'),
-        'twitter' => (new ShareLink($sharePost ?? $post))
-            ->setUrl('https://twitter.com/intent/tweet?text=%2$s&url=%1$s')
-            ->setBody('<i class="fa-brands fa-twitter"></i>'),
-        'linkedin' => (new ShareLink($sharePost ?? $post))
-            ->setUrl('https://www.linkedin.com/sharing/share-offsite/?url=%1$s')
-            ->setBody('<i class="fa-brands fa-linkedin-in"></i>'),
-        'mail' => (new ShareLink($sharePost ?? $post))
-            ->setUrl('mailto:?subject=%4$s&body=%1$s')
-            ->setBody('<i class="fa-solid fa-envelope"></i>'),
-    ];
-}, 10, 2);
-
 
 /**
  * Hook into dat REST API

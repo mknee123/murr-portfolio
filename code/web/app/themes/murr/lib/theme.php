@@ -2,8 +2,8 @@
 
 /**
  * Name:               theme.php
- * Version:            1.0.0
- * Author:             GH Advertising
+ * Version:            1.0.1
+ * Author:             MK
  */
 
 /**
@@ -13,8 +13,8 @@ add_action('after_setup_theme', function () {
 
     // Enqueue editor styles
     // This helps our custom styles overwrite WP styles
-    add_theme_support('editor-styles');
-    add_editor_style('public/styles/editor.css');
+    // add_theme_support('editor-styles');
+    // add_editor_style('public/styles/editor.css');
 
     /**
      * Register nav menus
@@ -22,24 +22,33 @@ add_action('after_setup_theme', function () {
     register_nav_menus(
         [
             'primary'           => esc_html__('Primary Navigation Menu', 'ghint'),
-            // 'secondary'         => esc_html__('Secondary Navigation Menu', 'ghint'),
             'footer-primary'    => esc_html__('Footer Primary Navigation Menu', 'ghint'),
             'footer-bottom'     => esc_html__('Footer Bottom Navigation Menu', 'ghint'),
         ]
     );
 
     /**
-     * Add support for title-tag to assist 
+     * Add support for title-tag to assist
      * with SEO
      */
     add_theme_support('title-tag');
 
     /**
-     * Register custom thumbnail sizes & 
+     * Register custom thumbnail sizes &
      * support feature image
      */
-    add_theme_support('post-thumbnails', ['post']);
+    add_theme_support('post-thumbnails', ['page', 'post']);
     add_image_size('masthead-thumbnail', 1920, 1280, true);
+
+    /**
+     * Add excerpt control for pages
+     */
+    add_post_type_support('page', 'excerpt');
+
+    /**
+     * Load theme translations
+     */
+    load_theme_textdomain('ghint', get_template_directory() . '/languages');
 });
 
 /**
@@ -50,7 +59,7 @@ add_action('admin_menu', function () {
 });
 
 /**
- * Disable Comments 
+ * Disable Comments
  */
 add_action('admin_init', function () {
     // Redirect any user trying to access comments page
@@ -72,7 +81,7 @@ add_action('admin_init', function () {
 });
 
 /**
- * Close Comments on the front-end 
+ * Close Comments on the front-end
  * & hide existing comments (if any)
  */
 add_filter('comments_open', '__return_false', 20, 2);
@@ -96,11 +105,11 @@ add_action('init', function () {
 });
 
 /**
- * Ensure PHP is greater than 7.4
+ * Ensure PHP is greater than 8.0
  */
-if (version_compare(PHP_VERSION, '7.4', '<')) {
+if (version_compare(PHP_VERSION, '8.0', '<')) {
     exit(sprintf(
-        'This theme requires PHP 8.0 or higher. Your WordPress site is using PHP %s.',
+        'This theme requires PHP 8.1 or higher. Your WordPress site is using PHP %s.',
         PHP_VERSION
     ));
 }

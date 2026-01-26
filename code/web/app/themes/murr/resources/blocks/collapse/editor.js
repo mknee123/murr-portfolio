@@ -12,7 +12,7 @@ const HeadingTag = ({ className, level, children }) => {
 };
 
 registerBlockType(block, {
-    icon: icons.gh,
+    icon: icons.mk,
     edit: ({ attributes, setAttributes }) => {
         const { heading, open, level } = attributes;
 
@@ -23,12 +23,7 @@ registerBlockType(block, {
                         <PanelBody header={__("Collapse Options", "ghint")}>
                             <TextControl label={__("Heading Text", "ghint")} value={heading} onChange={(heading) => setAttributes({ heading })} />
                             <RangeControl label={__("Heading Level", "ghint")} value={level} min={1} max={6} onChange={(level) => setAttributes({ level })} />
-                            <ToggleControl
-                                label={__("Open?", "ghint")}
-                                help={__("Initializes the content body in an open or closed state", "ghint")}
-                                checked={open}
-                                onChange={(open) => setAttributes({ open })}
-                            />
+                            <ToggleControl label={__("Open?", "ghint")} help={__("Initializes the content body in an open or closed state", "ghint")} checked={open} onChange={(open) => setAttributes({ open })} />
                         </PanelBody>
                     </InspectorControls>
 

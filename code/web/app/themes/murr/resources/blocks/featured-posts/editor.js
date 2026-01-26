@@ -17,7 +17,7 @@ const introductionTemplate = [
 ];
 
 registerBlockType(block, {
-    icon: icons.gh,
+    icon: icons.mk,
     edit: () => {
         return (
             <div {...useBlockProps()}>

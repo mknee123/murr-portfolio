@@ -25,6 +25,8 @@ services:
     build:
       target: theme-base
     entrypoint: ["npm"]
+    environment:
+      - FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN}
     volumes:
       - ./code/web/app/themes/murr:/theme
     networks:
@@ -35,8 +37,3 @@ services:
       service: wordmove
     networks:
       - default
-
-networks:
-  default:
-    name: murr-network
-    external: true

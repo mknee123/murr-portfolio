@@ -1,15 +1,18 @@
 {
     "name": "@mirandaknee/murr-portfolio-theme",
     "version": "2.0.0",
-    "description": "Custom WordPress theme for Miranda Knee's portfolio. Powered by npm/yarn and Webpack",
+    "description": "Custom WordPress theme for Miranda Knee's portfolio. Powered by NPM and Webpack",
     "author": "Miranda Knee (https://mirandaknee.com)",
     "license": "MIT",
     "homepage": "https://mirandaknee.com",
     "private": true,
     "engines": {
-        "node": ">=18.0.0"
+        "node": ">=22.0.0"
     },
     "scripts": {
+        "generate:images": "node scripts/generate-image-formats.js",
+        "prebuild": "npm run generate:images",
+        "prewatch": "npm run generate:images",
         "build": "wp-scripts build --webpack-src-dir=resources --webpack-copy-php --output-path=public",
         "watch": "wp-scripts start --webpack-src-dir=resources --webpack-copy-php --output-path=public"
     },
@@ -19,11 +22,12 @@
         "throttle-debounce": "^5.0.0"
     },
     "devDependencies": {
-        "@wordpress/scripts": "^24.4.0",
+        "@wordpress/scripts": "^30.18",
         "browser-sync": "^2.27.10",
         "browser-sync-webpack-plugin": "^2.3.0",
-        "copy-webpack-plugin": "^11.0.0",
-        "image-minimizer-webpack-plugin": "^3.7.0",
-        "mini-css-extract-plugin": "^2.6.1"
+        "copy-webpack-plugin": "^13.0",
+        "image-minimizer-webpack-plugin": "^4.1.0",
+        "mini-css-extract-plugin": "^2.9",
+        "sharp": "^0.34.4"
     }
 }

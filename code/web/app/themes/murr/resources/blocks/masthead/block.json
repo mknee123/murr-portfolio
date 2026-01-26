@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "ghint/masthead",
     "title": "Masthead",
-    "category": "gh-blocks",
+    "category": "mk-blocks",
     "description": "Full width background image or video",
     "keywords": ["image", "video", "masthead", "hero"],
     "version": "1.0.0",

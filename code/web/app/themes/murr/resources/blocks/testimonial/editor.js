@@ -6,7 +6,7 @@ import block from "./block.json";
 import icons from "../../scripts/icon.js";
 
 registerBlockType(block, {
-    icon: icons.gh,
+    icon: icons.mk,
 
     edit: ({ attributes, setAttributes }) => {
         const { image, imageUrl, imageAlt, citation, title } = attributes;
@@ -65,10 +65,7 @@ registerBlockType(block, {
                                 [
                                     "core/paragraph",
                                     {
-                                        placeholder: __(
-                                            "A testimonial or review goes here ames vulputate adipiscing dictum ac gestas non a nunc arcu quis libero consequat tincidunt tortor.",
-                                            "ghint"
-                                        ),
+                                        placeholder: __("A testimonial or review goes here ames vulputate adipiscing dictum ac gestas non a nunc arcu quis libero consequat tincidunt tortor.", "ghint"),
                                         fontSize: "xx-large",
                                         textColor: "secondary",
                                     },

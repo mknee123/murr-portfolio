@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "ghint/content-card",
     "title": "Content Card",
-    "category": "gh-blocks",
+    "category": "mk-blocks",
     "description": "Unique layout for image and content.",
     "keywords": ["card", "content", "content card"],
     "version": "1.0.0",

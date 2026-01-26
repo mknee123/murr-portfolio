@@ -1,3 +1,5 @@
+@use "../global/mixins" as mix;
+
 .m-card {
     align-items: flex-start;
     display: flex;
@@ -5,7 +7,7 @@
     flex-direction: column;
     gap: 2.5rem;
 
-    @include media("tablet+") {
+    @include mix.media("tablet+") {
         max-width: 24rem;
     }
 
@@ -30,8 +32,8 @@
 
     &__image {
         img {
-            @include aspect(16, 9);
-            @include layer("base", 1, relative);
+            @include mix.aspect(16, 9);
+            @include mix.layer("base", 1, relative);
 
             display: block;
             height: auto;
@@ -47,11 +49,11 @@
         text-wrap: pretty;
     }
 
-    @include media("tablet+") {
+    @include mix.media("tablet+") {
         flex: 0 1 calc(50% - 1rem);
     }
 
-    @include media("content+") {
+    @include mix.media("content+") {
         flex: 0 1 calc(33.33% - 1.35rem);
     }
 }

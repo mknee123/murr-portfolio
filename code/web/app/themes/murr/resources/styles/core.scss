@@ -1,39 +1,37 @@
 // Author Dependencies
-@use "global/bootstrap" as *; // must be first
-@import "global/components";
-@import "global/fonts";
-@import "global/reboot";
-@import "global/layouts";
+@use "global/custom-properties";
+@use "global/components";
+@use "global/reboot";
+@use "global/layouts";
+@use "global/typography";
 
 // Atoms
-@import "atoms/button";
-@import "atoms/icon";
-@import "atoms/image";
-@import "atoms/inputs";
-@import "atoms/logo";
+@use "atoms/button";
+@use "atoms/icon";
+@use "atoms/image";
+@use "atoms/inputs";
+@use "atoms/logo";
+
+
 
 // Molecules
-@import "molecules/card";
-@import "molecules/filter";
-@import "molecules/share-links";
+@use "molecules/card";
+// @use "molecules/loading";
 
 // Blocks
-@import "blocks/blocks-core";
+@use "blocks/blocks-core";
 
 // Forms
-@import "forms/form-base";
-@import "forms/form-gravity";
-@import "forms/form-search";
+@use "forms/form-base";
+@use "forms/form-search";
 
 // Organisms
-@import "organisms/card-grid";
-@import "organisms/footer";
-@import "organisms/header";
-@import "organisms/masthead-post";
+@use "organisms/card-grid";
+@use "organisms/footer";
+@use "organisms/header";
 
 html,
 body {
-    position: relative;
     scroll-behavior: smooth;
     width: 100%;
 
