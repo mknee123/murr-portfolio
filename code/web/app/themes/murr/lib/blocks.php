@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Name:               blocks.php
- * Version:            1.0.1
- * Author:             MK
+ * Name:     blocks.php
+ * Version:  1.0.1
+ * Author:   MK
  */
 
 namespace GHInt\Blocks;
@@ -13,16 +13,14 @@ namespace GHInt\Blocks;
  * @link https://developer.wordpress.org/block-editor/developers/filters/block-filters/#managing-block-categories
  */
 
-add_filter('block_categories_all', function ($categories, $content) {
-    if (!empty($content->post)) {
-        array_push(
-            $categories,
-            [
-                'slug'  => 'mk-blocks',
-                'title' => __('Murr Blocks', 'ghint'),
-                'icon' => null
-            ]
-        );
+add_filter('block_categories_all', function ($categories, $context) {
+    $exists = array_filter($categories, fn($cat) => ($cat['slug'] ?? null) === 'mk-blocks');
+    if (empty($exists)) {
+        $categories[] = [
+            'slug' => 'mk-blocks',
+            'title' => __('Murr Blocks', 'ghint'),
+            'icon' => null,
+        ];
     }
 
     return $categories;

@@ -1,7 +1,7 @@
 {
     "name": "@mirandaknee/murr-portfolio-theme",
-    "version": "2.0.0",
-    "description": "Custom WordPress theme for Miranda Knee's portfolio. Powered by NPM and Webpack",
+    "version": "2.1.0",
+    "description": "Custom WordPress theme for Miranda Knee's portfolio.",
     "author": "Miranda Knee (https://mirandaknee.com)",
     "license": "MIT",
     "homepage": "https://mirandaknee.com",

@@ -3,8 +3,8 @@
 /**
  * Post Single
  *
- * @author       GH Advertising
- * @since        1.0.0
+ * @author       MK
+ * @since        1.0.1
  * @license      GPL-2.0+
  **/
 

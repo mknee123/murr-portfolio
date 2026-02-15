@@ -1,15 +1,10 @@
 <?php
 
 /**
- * Name:               assets.php
- * Version:            1.0.1
- * Author:             MK
+ * Name:      assets.php
+ * Version:   1.0.1
+ * Author:    MK
  */
-
-use GHInt\Assets\Bundle;
-use GHInt\Assets\Locator;
-use GHInt\Assets\Resources\Scripts\Script;
-use Roots\WPConfig\Config;
 
 /**
  * Only load block assets when their block appears on the page.
@@ -18,76 +13,121 @@ use Roots\WPConfig\Config;
 add_filter('should_load_separate_core_block_assets', '__return_true');
 add_filter('should_load_block_assets_on_demand', '__return_true');
 
-// Load all Theme Assets
-(new Bundle([
-    // Styles
-    Locator::styles(settings: [
-        'styles/fontawesome' => [
-            'preload' => true,
-            'version' => filemtime(get_template_directory() . '/public/styles/fontawesome.css'),
-            'enqueue' => false,
-            'admin' => null,
-        ],
-        'styles/core' => [
-            'dependencies' => ['styles/fontawesome'],
-            'preload' => true,
-            'version' => filemtime(get_template_directory() . '/public/styles/core.css'),
-        ],
-        'styles/editor' => [
-            'admin' => true,
-            'dependencies' => ['styles/fontawesome'],
-            'version' => filemtime(get_template_directory() . '/public/styles/editor.css'),
-        ],
-    ]),
+/**
+ * Helpers for versioned assets.
+ */
+function murr_asset_version(string $path): ?string {
+    $full = get_theme_file_path(ltrim($path, '/'));
+    return file_exists($full) ? (string)filemtime($full) : null;
+}
 
-    // Scripts
-    Locator::scripts(settings: [
-        'scripts/fontawesome' => [
-            'enqueue' => false,
-        ],
-        'scripts/core' => ['preload' => true, 'defer' => true, 'in_footer' => true, 'version' => filemtime(get_template_directory() . '/public/scripts/core.js'),],
-        'scripts/posts' => ['preload' => true, 'defer' => true, 'in_footer' => true],
-        'scripts/editor' => ['admin' => true, 'version' => filemtime(get_template_directory() . '/public/scripts/editor.js'),],
-    ])->add(new Script(
-        'jquery',
-        'https://code.jquery.com/jquery-3.6.4.min.js',
-        ver: '3.6.4',
-        preload: true,
-    ), 'jquery'),
-
-    // Blocks
-    Locator::blocks(),
-]))->enable();
-
-add_action('ghint/wp_head_priority', function () {
-    if (is_admin()) {
-        return;
+/**
+ * Load script dependencies/version from wp-scripts asset metadata.
+ */
+function murr_script_asset(string $path): array {
+    $asset_path = preg_replace('/\.js$/', '.asset.php', $path);
+    if ($asset_path) {
+        $full_asset = get_theme_file_path(ltrim($asset_path, '/'));
+        if (file_exists($full_asset)) {
+            $asset = require $full_asset;
+            return [
+                'deps' => $asset['dependencies'] ?? [],
+                'version' => $asset['version'] ?? murr_asset_version($path),
+            ];
+        }
     }
 
-    $preload = function (string $path, string $as, bool $crossorigin = false) {
-        static $printed = [];
-        if (!$path || isset($printed[$path])) {
-            return;
-        }
-        $printed[$path] = true;
+    return [
+        'deps' => [],
+        'version' => murr_asset_version($path),
+    ];
+}
 
-        printf(
-            '<link rel="preload" href="%1$s" as="%2$s"%3$s />' . PHP_EOL,
-            esc_url(asset($path)),
-            esc_attr($as),
-            $crossorigin ? ' crossorigin="anonymous"' : ''
-        );
-    };
+/**
+ * Front-end assets.
+ */
+add_action('wp_enqueue_scripts', function () {
+    $fontawesome_css = 'public/styles/fontawesome.css';
+    if (file_exists(get_theme_file_path($fontawesome_css))) {
+        // wp_enqueue_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
+        wp_register_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
+    }
+
+    $core_css = 'public/styles/core.css';
+    if (file_exists(get_theme_file_path($core_css))) {
+        $deps = wp_style_is('murr-fontawesome', 'registered') ? ['murr-fontawesome'] : [];
+        wp_enqueue_style('murr-core', asset($core_css), $deps, murr_asset_version($core_css));
+    }
+
+    // $fontawesome_js = 'public/scripts/fontawesome.js';
+    // if (file_exists(get_theme_file_path($fontawesome_js))) {
+    //     $asset = murr_script_asset($fontawesome_js);
+    //     wp_enqueue_script('murr-fontawesome', asset($fontawesome_js), $asset['deps'], $asset['version'], true);
+    // }
+
+    $core_js = 'public/scripts/core.js';
+    if (file_exists(get_theme_file_path($core_js))) {
+        $asset = murr_script_asset($core_js);
+        wp_enqueue_script('murr-core', asset($core_js), $asset['deps'], $asset['version'], true);
+    }
+
+    $posts_js = 'public/scripts/posts.js';
+    if (file_exists(get_theme_file_path($posts_js))) {
+        $asset = murr_script_asset($posts_js);
+        wp_enqueue_script('murr-posts', asset($posts_js), $asset['deps'], $asset['version'], true);
+    }
 });
 
 /**
- * Core script overrides
- * Happens before the above
+ * Editor assets.
  */
-add_action('wp_enqueue_scripts', function () {
-    wp_dequeue_script('jquery');
-    wp_deregister_script('jquery');
-}, 1);
+add_action('enqueue_block_editor_assets', function () {
+    $editor_css = 'public/styles/editor.css';
+    if (file_exists(get_theme_file_path($editor_css))) {
+        wp_enqueue_style('murr-editor', asset($editor_css), [], murr_asset_version($editor_css));
+    }
+
+    $editor_js = 'public/scripts/editor.js';
+    if (file_exists(get_theme_file_path($editor_js))) {
+        $asset = murr_script_asset($editor_js);
+        wp_enqueue_script('murr-editor', asset($editor_js), $asset['deps'], $asset['version'], true);
+    }
+});
+
+/**
+ * Register custom blocks from built assets if available.
+ * Falls back to source metadata for local development.
+ */
+add_action('init', function () {
+    $built = glob(get_theme_file_path('public/blocks/*/block.json')) ?: [];
+    $source = glob(get_theme_file_path('resources/blocks/*/block.json')) ?: [];
+    $paths = !empty($built) ? $built : $source;
+
+    foreach ($paths as $block_json) {
+        register_block_type(dirname($block_json));
+    }
+});
+
+// add_action('ghint/wp_head_priority', function () {
+//     if (is_admin()) {
+//         return;
+//     }
+
+//     $preload = function (string $path, string $as, bool $crossorigin = false) {
+//         static $printed = [];
+//         if (!$path || isset($printed[$path])) {
+//             return;
+//         }
+//         $printed[$path] = true;
+
+//         printf(
+//             '<link rel="preload" href="%1$s" as="%2$s"%3$s />' . PHP_EOL,
+//             esc_url(asset($path)),
+//             esc_attr($as),
+//             $crossorigin ? ' crossorigin="anonymous"' : ''
+//         );
+//     };
+// });
 
 // Mime types - support .svg in media library
 add_filter('upload_mimes', function ($mime_types) {

@@ -1,5 +1,6 @@
 // Author Dependencies
 @use "global/custom-properties";
+@use "global/bootstrap";
 @use "global/components";
 @use "global/reboot";
 @use "global/layouts";
@@ -11,8 +12,6 @@
 @use "atoms/image";
 @use "atoms/inputs";
 @use "atoms/logo";
-
-
 
 // Molecules
 @use "molecules/card";

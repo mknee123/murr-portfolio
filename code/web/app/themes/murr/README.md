@@ -1,6 +1,6 @@
-# Miranda Portfolio Theme
+# Miranda K's Portfolio Theme
 
-Custom WordPress theme for Miranda Knee's portfolio. Powered by npm/yarn and webpack. The theme uses a theme.json file to apply custom colors, fonts, and layouts that align with the site's branding. Compatible with the local Docker stack.
+Custom WordPress theme for Miranda K's portfolio.
 
 ## Table of Contents
 
@@ -13,16 +13,13 @@ Custom WordPress theme for Miranda Knee's portfolio. Powered by npm/yarn and web
 
 ## Requirements
 
-| Prerequisite        | How to check          | How to install                                   |
-| ------------------- | --------------------- | ------------------------------------------------ |
-| PHP >= 8.1.x        | `php -v`              | [php.net](https://php.net/manual/en/install.php) |
-| Node.js >= 18.0.0   | `node -v`             | [nodejs.org](https://nodejs.org/)                |
-| Composer >= 2.5.2   | `composer --version`  | [getcomposer.org](https://getcomposer.org/)      |
-| Webpack 5           | `webpack version`     | `npm install --save-dev webpack`                 |
-| Webpack-CLI         | `webpack-cli version` | `npm install --save-dev webpack-cli`             |
-| Yarn\*\* >= 1.22.19 | `yarn --version`      | `npm install --global yarn`                      |
-
-\*\* Optional to use yarn in place of npm
+| Prerequisite      | How to check          | How to install                                   |
+| ----------------- | --------------------- | ------------------------------------------------ |
+| PHP >= 8.1.x      | `php -v`              | [php.net](https://php.net/manual/en/install.php) |
+| Node.js >= 18.0.0 | `node -v`             | [nodejs.org](https://nodejs.org/)                |
+| Composer >= 2.5.2 | `composer --version`  | [getcomposer.org](https://getcomposer.org/)      |
+| Webpack 5         | `webpack version`     | `npm install --save-dev webpack`                 |
+| Webpack-CLI       | `webpack-cli version` | `npm install --save-dev webpack-cli`             |
 
 ## Setup
 
@@ -58,8 +55,6 @@ The `theme.json` file is essential for the theme. It works closely with the `cus
 ## Features
 
 -   `.env` - Contains the theme’s environment variables, pro tokens, and license keys.
--   [acf-json/](https://www.advancedcustomfields.com/resources/local-json/) JSON file directory for all ACF field groups and settings.
--   `composer.json` - Contains PHP dependencies such as commonly used plugins.
 -   `functions.php` This is where we can add unique features and functionality to the theme. In an attempt to keep this process organized and modular, we break out our features and functions into separate files kept within the `lib/` folder and then call upon those within the functions.php file.
 -   `partials/` - This folder includes the source files for Atomic Partials and WordPress page templates.
 -   `resources/` - This is where we house all of our source files such as blocks, fonts, images, scripts, and styles.
@@ -77,12 +72,10 @@ murr/                       # → Root of the theme
 │   └── entrypoints.js
 │
 ├──lib/
-│  	├── acf.php             # → ACF Theme Options and users with ACF privileges
 │  	├── assets.php          # → Enqueues styles and scripts
 │  	├── blocks.php          # → Creates shared category for all custom blocks and more
 │  	├── helpers.php         # → Custom helper functions that abstract away more complex calls
 │  	├── hooks.php
-│  	├── shareLink.php       # → Social Share functionality for posts
 │  	└── theme.php           # → WP and Custom hooks to manipulate default WP functionality
 │
 ├──partials/                # → All custom theme templates should live here
@@ -100,16 +93,19 @@ murr/                       # → Root of the theme
 │   ├── blocks/             # → Custom block template files.
 │   ├── fonts/              # → Theme fonts
 │   ├── images/             # → Theme images
-│   ├── meta/               # → Favicon, Open Graph Images, etc.
 │   ├── scripts/            # → Theme JS
 │   └── styles/             # → Theme SASS stylesheets
 │
 ├── .env.example         	# → Example environment variable file
-├── composer.json         	# → The composer dependencies, WP Asset Helper.
+├── 404.php
+├── archive.php
+├── browserconfig.xml
 ├── functions.php         	# → Loads all files from `lib/theme/` here
 ├── index.php             	# → Never manually edit
 ├── package.json          	# → Node.js dependencies and scripts
 ├── screenshot.png        	# → Theme screenshot for WP admin
+├── search.php
+├── site.webmainfest        	# → Theme screenshot for WP admin
 ├── style.css         		# → Theme details
 ├── theme.json        		# → Theme styles and block settings.
 └── webpack.config.php      # → Webpack configuration file. No need to edit.
@@ -117,8 +113,4 @@ murr/                       # → Root of the theme
 
 ## Credits
 
-This theme was created by Miranda Knee.
-
-### Notes
-
-Have any notes? Please suggest to add them here!
+This theme was created by Miranda K.

@@ -1,20 +1,15 @@
 <?php
 
 /**
- * Name:               theme.php
- * Version:            1.0.1
- * Author:             MK
+ * Name:       theme.php
+ * Version:    1.0.1
+ * Author:     MK
  */
 
 /**
  * Adds basic low-level functionality
  */
 add_action('after_setup_theme', function () {
-
-    // Enqueue editor styles
-    // This helps our custom styles overwrite WP styles
-    // add_theme_support('editor-styles');
-    // add_editor_style('public/styles/editor.css');
 
     /**
      * Register nav menus

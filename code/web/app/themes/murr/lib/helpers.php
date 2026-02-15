@@ -6,8 +6,6 @@
  * Author:             MK
  */
 
-use GHInt\Assets\Assets\AssetFactory;
-
 /**
  * Gets a URL of an asset
  *
@@ -15,7 +13,8 @@ use GHInt\Assets\Assets\AssetFactory;
  * @return string
  */
 function asset(string $path): string {
-    return AssetFactory::fromString($path)->getUrl();
+    $path = ltrim($path, '/');
+    return get_theme_file_uri($path);
 }
 
 /**
@@ -25,7 +24,8 @@ function asset(string $path): string {
  * @return string
  */
 function asset_path(string $path): string {
-    return AssetFactory::fromString($path)->getPath();
+    $path = ltrim($path, '/');
+    return get_theme_file_path($path);
 }
 /**
  * Generates an array of class names based on true/false values
@@ -102,7 +102,7 @@ function renderReusableBlock(string $blockName) {
 function generatePreloadAssets(array $assets): Generator {
     foreach ($assets as $asset => $doPreload) {
         if ($doPreload) {
-            yield AssetFactory::fromString($asset, $doPreload);
+            yield $asset;
         }
     }
 }

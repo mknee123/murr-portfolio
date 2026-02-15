@@ -11,7 +11,7 @@
     "attributes": {
         "backgrounds": {
             "type": "array",
-             "default": []
+            "default": []
         },
         "format": {
             "type": "string",
@@ -41,7 +41,7 @@
             "type": "string",
             "default": ""
         },
-         "fallback": {
+        "fallback": {
             "type": "object",
             "default": null
         }
@@ -51,7 +51,7 @@
             "backgrounds": [
                 {
                     "id": 0,
-                    "alt": "GH Advertising",
+                    "alt": "",
                     "sizes": {
                         "full": {
                             "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
@@ -100,7 +100,7 @@
                     ],
                     "fallback": {
                         "id": 1,
-                        "alt": "GH Advertising",
+                        "alt": "",
                         "sizes": {
                             "full": {
                                 "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
