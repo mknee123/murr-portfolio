@@ -3,7 +3,7 @@ import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck, useBlock
 import { Button, PanelBody, TextControl } from "@wordpress/components";
 import { __, _x } from "@wordpress/i18n";
 import block from "./block.json";
-import icons from "../../scripts/icon.js";
+import icons from "@scripts/icon.js";
 
 registerBlockType(block, {
     icon: icons.mk,

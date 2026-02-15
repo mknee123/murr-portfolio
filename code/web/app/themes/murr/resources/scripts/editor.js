@@ -10,7 +10,7 @@ import "@styles/editor.scss";
 
 window.addEventListener("load", function () {
     // button default styles
-    unregisterBlockStyle("core/button", ["default", "outline"]);
+    unregisterBlockStyle("core/button", ["fill", "outline"]);
 });
 
 domReady(() => {

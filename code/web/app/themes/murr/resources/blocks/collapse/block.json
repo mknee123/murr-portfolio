@@ -3,6 +3,7 @@
     "apiVersion": 3,
     "name": "ghint/collapse",
     "title": "Collapse",
+    "category": "mk-blocks",
     "description": "A block containing copy that can be expanded or collapsed.",
     "keywords": ["collapse"],
     "version": "1.0.0",

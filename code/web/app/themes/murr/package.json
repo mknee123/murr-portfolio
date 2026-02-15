@@ -13,8 +13,8 @@
         "generate:images": "node scripts/generate-image-formats.js",
         "prebuild": "npm run generate:images",
         "prewatch": "npm run generate:images",
-        "build": "wp-scripts build --webpack-src-dir=resources --webpack-copy-php --output-path=public",
-        "watch": "wp-scripts start --webpack-src-dir=resources --webpack-copy-php --output-path=public"
+        "build": "wp-scripts build --blocks-manifest --webpack-src-dir=resources --webpack-copy-php --output-path=public",
+        "watch": "wp-scripts start --blocks-manifest --webpack-src-dir=resources --webpack-copy-php --output-path=public"
     },
     "dependencies": {
         "@fortawesome/fontawesome-pro": "^6.1",

@@ -2,7 +2,7 @@ import { registerBlockType } from "@wordpress/blocks";
 import { useBlockProps } from "@wordpress/block-editor";
 import ServerSideRender from "@wordpress/server-side-render";
 import block from "./block.json";
-import icons from "@src/scripts/icon.js";
+import icons from "@scripts/icon.js";
 
 registerBlockType(block, {
     icon: icons.mk,

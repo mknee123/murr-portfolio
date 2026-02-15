@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/theme.json",
-    "version": 2,
+    "version": 3,
     "settings": {
         "appearanceTools": true,
         "border": {
@@ -60,6 +60,7 @@
             "letterSpacing": false,
             "lineHeight": true,
             "dropCap": false,
+            "defaultFontSizes": false,
             "fontFamilies": [
                 {
                     "fontFamily": "var(--font-family-headline)",

@@ -4,7 +4,7 @@ import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck, useBlock
 import { Button, PanelBody, RangeControl, SelectControl, TextareaControl, ToggleControl } from "@wordpress/components";
 import { __, _x } from "@wordpress/i18n";
 import block from "./block.json";
-import icons from "../../scripts/icon.js";
+import icons from "@scripts/icon.js";
 
 const { name } = block;
 
@@ -27,8 +27,8 @@ const getMediaUrl = (media) => media?.sizes?.full?.url ?? media?.url ?? null;
 
 const Background = ({ format, sources, size = "cover", position = ["center", "center"] }) => {
     const style = { objectFit: size, objectPosition: position.join(" ") };
-     const isVideo = format === "video" || (sources[0]?.mime && sources[0].mime.startsWith("video"));
-      if (isVideo) {
+    const isVideo = format === "video" || (sources[0]?.mime && sources[0].mime.startsWith("video"));
+    if (isVideo) {
         const poster = getMediaUrl(fallback);
         return (
             <Video sources={sources} poster={poster} style={style}>
@@ -37,7 +37,7 @@ const Background = ({ format, sources, size = "cover", position = ["center", "ce
         );
     }
 
-     return sources.map((img, index) => {
+    return sources.map((img, index) => {
         const src = img?.sizes?.full?.url;
         return src ? (
             <img key={img.id || index} src={src} alt={img.alt || ""} style={style} />
@@ -52,7 +52,7 @@ const Background = ({ format, sources, size = "cover", position = ["center", "ce
 registerBlockType(name, {
     icon: icons.mk,
     edit: ({ attributes, setAttributes }) => {
-        const { format, backgrounds = [], includeOverlay = true, overlayOpacity = 40, objectSize = "cover", objectPosition = ["center", "center"], embed = false, embedCode = "",  fallback = null } = attributes;
+        const { format, backgrounds = [], includeOverlay = true, overlayOpacity = 40, objectSize = "cover", objectPosition = ["center", "center"], embed = false, embedCode = "", fallback = null } = attributes;
         const instructions = {
             notAllowed: <strong>{__("To edit the background image, you need permission to upload media.", "ghint")}</strong>,
             previewEmpty: <strong>{__("Use the editor panel to add a background.", "ghint")}</strong>,
@@ -71,7 +71,7 @@ registerBlockType(name, {
             setAttributes(nextAttributes);
         };
 
-         const onSelectFallback = (image) => {
+        const onSelectFallback = (image) => {
             if (!image) {
                 setAttributes({ fallback: null });
                 return;
@@ -105,7 +105,7 @@ registerBlockType(name, {
                                 onChange={() => setAttributes({ includeOverlay: !includeOverlay })}
                             />
                             {includeOverlay && (
-                              <RangeControl __next40pxDefaultSize __nextHasNoMarginBottom label={__("Overlay Opacity %")} value={overlayOpacity} onChange={(overlayOpacity) => setAttributes({ overlayOpacity })} min={0} max={100} />
+                                <RangeControl __next40pxDefaultSize __nextHasNoMarginBottom label={__("Overlay Opacity %")} value={overlayOpacity} onChange={(overlayOpacity) => setAttributes({ overlayOpacity })} min={0} max={100} />
                             )}
                             <MediaUploadCheck fallback={instructions.notAllowed}>
                                 <MediaUpload
@@ -114,7 +114,8 @@ registerBlockType(name, {
                                     allowedTypes={[format]}
                                     value={backgrounds.map((i) => i.id)}
                                     multiple={format === "video"}
-                                    render={({ open }) =>  backgrounds.length ? (
+                                    render={({ open }) =>
+                                        backgrounds.length ? (
                                             <div className={"o-masthead-editor-logo image"}>
                                                 <Background format={format} sources={backgrounds} fallback={fallback} />
                                                 <Button className={"button"} onClick={() => setAttributes({ backgrounds: [], fallback: null })}>
@@ -126,7 +127,7 @@ registerBlockType(name, {
                                                 {backgrounds.length ? instructions.edit : instructions.add}
                                             </Button>
                                         )
-                                      }
+                                    }
                                 />
                             </MediaUploadCheck>
                             {format === "video" && (

@@ -4,7 +4,7 @@ import { InnerBlocks, InspectorControls, useBlockProps } from "@wordpress/block-
 import { PanelBody, RangeControl, TextControl, ToggleControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import block from "./block.json";
-import icons from "../../scripts/icon.js";
+import icons from "@scripts/icon.js";
 
 const HeadingTag = ({ className, level, children }) => {
     const Tag = `h${level}`;

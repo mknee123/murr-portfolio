@@ -44,6 +44,31 @@ function murr_script_asset(string $path): array {
 }
 
 /**
+ * Recursively find block.json files within a base directory.
+ *
+ * @return array<int, string>
+ */
+function murr_find_block_jsons(string $base_dir): array {
+    $root = get_theme_file_path(ltrim($base_dir, '/'));
+    if (!is_dir($root)) {
+        return [];
+    }
+
+    $files = [];
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::SELF_FIRST
+    );
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getFilename() === 'block.json') {
+            $files[] = $file->getRealPath();
+        }
+    }
+
+    return $files;
+}
+
+/**
  * Front-end assets.
  */
 add_action('wp_enqueue_scripts', function () {
@@ -96,17 +121,20 @@ add_action('enqueue_block_editor_assets', function () {
 
 /**
  * Register custom blocks from built assets if available.
- * Falls back to source metadata for local development.
  */
-add_action('init', function () {
-    $built = glob(get_theme_file_path('public/blocks/*/block.json')) ?: [];
-    $source = glob(get_theme_file_path('resources/blocks/*/block.json')) ?: [];
-    $paths = !empty($built) ? $built : $source;
+function murr_register_all_blocks() {
+    $core_blocks = 'public';
+    $path = get_theme_file_path(ltrim($core_blocks, '/'));
 
-    foreach ($paths as $block_json) {
-        register_block_type(dirname($block_json));
-    }
-});
+
+    wp_register_block_types_from_metadata_collection(
+        $path . '/blocks',
+        $path . '/blocks-manifest.php'
+    );
+}
+add_action('init', 'murr_register_all_blocks');
+
+
 
 // add_action('ghint/wp_head_priority', function () {
 //     if (is_admin()) {
