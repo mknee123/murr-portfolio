@@ -42,4 +42,5 @@ services:
       <<: [*db-env, *wp-env]
     volumes:
       - ../code:/html
+      - ../backup:/backup
       - ${SSH_PATH}:/tmp/.ssh:ro

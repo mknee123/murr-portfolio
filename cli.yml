@@ -17,7 +17,7 @@ services:
       service: code-base
     entrypoint: ["wp"]
     networks:
-      - default
+      - site
   npm:
     extends:
       file: ./docker/services-common.yml
@@ -36,4 +36,9 @@ services:
       file: ./docker/services-common.yml
       service: wordmove
     networks:
-      - default
+      - site
+
+networks:
+  site:
+    external: true
+    name: murr-network

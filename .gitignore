@@ -11,6 +11,7 @@ movefile.yml
 movefile.yaml
 docker/traefik/certs/*.pem
 backup/*.sql
+backup/*.sql.gz
 backup/*.xml
 !backup/.gitkeep
 

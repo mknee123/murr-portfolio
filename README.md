@@ -105,7 +105,12 @@ docker compose -f compose.yml up -d --build
 - `./bin/cli.sh node npm install` — Install theme dependencies
 - `./bin/cli.sh node npm run watch` — Compile and optimize the files in your assets directory as well as start watching for changes
 - `./bin/cli.sh node npm run build` — Compile assets for production (no source maps) and without watching
-- `./bin/cli.sh wordmove pull -e staging --all` — Pull everything from the staging site via wordmove
+- `./bin/pull.sh wordmove pull -e staging --all` — Pull everything from the staging site via Wordmove
+- `./bin/pull.sh wordmove pull -e production -du` — Pull the database and uploads from the production site via Wordmove
+
+Run `./bin/up.sh` before Wordmove or WP-CLI commands so they can connect to the local MySQL container on the Docker network.
+Wordmove database backup files from pull or push commands are moved to `backup/` after the command finishes.
+If the Wordmove container setup changes, rebuild it with `docker compose -f cli.yml build wordmove`.
 
 ## Theme
 
