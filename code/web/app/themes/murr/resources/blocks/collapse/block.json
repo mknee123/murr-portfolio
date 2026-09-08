@@ -32,7 +32,7 @@
             {
                 "name": "core/paragraph",
                 "attributes": {
-                    "content": "The GH Collapse Block allows for an appealing way to display content.",
+                    "content": "The Collapse Block allows for an appealing way to display content.",
                     "fontSize": "big"
                 }
             }

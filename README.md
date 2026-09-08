@@ -8,7 +8,6 @@ Personal portfolio and resume site for Miranda Knee, built on WordPress (Bedrock
 - [Setup](#setup)
 - [Usage](#usage)
 - [Theme](#theme)
-- [Troubleshooting](#troubleshooting)
 - [Credits](#credits)
 
 ## Requirements
@@ -67,7 +66,7 @@ To see your live/hot refresh front end, visit: [http://murr.docker.localhost:300
 ./bin/down.sh
 ```
 
-## Local HTTPS (mkcert)
+### Local HTTPS (mkcert)
 
 This project can run locally over HTTPS without editing `/etc/hosts` by using the `*.docker.localhost` domain and mkcert.
 
@@ -114,4 +113,4 @@ The `theme.json` file is essential. It works closely with the `custom-properties
 
 ## Credits
 
-This theme was created by Miranda Knee.
+This theme was created by Miranda K.

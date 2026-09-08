@@ -132,11 +132,11 @@ config.plugins.push(
                 context: path.resolve(__dirname, "resources/images"),
                 noErrorOnMissing: true,
             },
-            // Copy icons (favicons/app icons) from resources/icons to images root as originals only
+            // Copy favicons/app icons from resources/images/icons to images root as originals only
             {
-                from: path.resolve(__dirname, "resources/icons"),
+                from: path.resolve(__dirname, "resources/images/icons"),
                 to: "images/[name][ext]",
-                context: path.resolve(__dirname, "resources/icons"),
+                context: path.resolve(__dirname, "resources/images/icons"),
                 noErrorOnMissing: true,
             },
         ],

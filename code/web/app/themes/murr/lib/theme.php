@@ -27,6 +27,7 @@ add_action('after_setup_theme', function () {
      * with SEO
      */
     add_theme_support('title-tag');
+    add_theme_support('site-icon');
 
     /**
      * Register custom thumbnail sizes &
