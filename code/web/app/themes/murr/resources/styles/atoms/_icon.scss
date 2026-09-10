@@ -59,6 +59,10 @@
         @include mix.pseudo-icon("\f39e", "brands", before);
     }
 
+    &--github {
+        @include mix.pseudo-icon("\f09b", "brands", before);
+    }
+
     &--linkedin {
         @include mix.pseudo-icon("\f0e1", "brands", before);
     }

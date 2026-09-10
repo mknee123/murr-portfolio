@@ -1,23 +1,24 @@
 // Manage colors for light & dark mode
 :root {
-    --background: #ebeeed;
-    --foreground: #333;
-    --primary: #2b3a43;
-    --primary-500: rgba(64, 116, 156, 0.5);
-    --secondary: #536794;
-    --secondary-500: rgba(83, 102, 147, 0.5);
-    --secondary-light: rgba(83, 102, 147, 0.15);
-    --tertiary: #86aaae;
-    --tertiary-500: rgba(133, 169, 173, 0.5);
-    --quaternary: #1c2333;
-    --quaternary-500: rgba(28, 35, 51, 0.5);
-    --form-color-primary: #1e838a;
-    --form-bg-color: #e6e6e6;
-    --error: #de5078;
+    --background: #f9f8f6;
+    --foreground: #2c2a29;
+    --primary: #1a1918;
+    --primary-750: rgba(26, 25, 24, 0.75);
+    --primary-500: rgba(26, 25, 24, 0.5);
+    --secondary: #005b7a;
+    --secondary-500: rgba(0, 91, 122, 0.5);
+    --secondary-light: rgba(230, 225, 218, 0.65);
+    --tertiary: #ebe7e0;
+    --tertiary-500: rgba(235, 231, 224, 0.5);
+    --quaternary: #b64200;
+    --quaternary-500: rgba(182, 66, 0, 0.5);
+    --form-color-primary: #005b7a;
+    --form-bg-color: #e6e1da;
+    --error: #b3264f;
     --white: #fff;
     //Theme button palette
-    --primary-btn: var(--tertiary);
-    --primary-btn-500: var(--tertiary-500);
+    --primary-btn: var(--secondary);
+    --primary-btn-500: var(--secondary-500);
     --secondary-btn: var(--primary);
     --secondary-btn-500: var(--primary-500);
     //Theme font-families
@@ -27,18 +28,19 @@
     --mk-brand: var(--primary);
 
     @media screen and (prefers-color-scheme: dark) {
-        --background: #141f29;
-        --foreground: #ebeeed;
-        --primary: #28adb7;
-        --primary-500: rgba(40, 173, 183, 0.5);
-        --secondary: #28adb7;
-        --secondary-500: rgba(16, 49, 82, 0.5);
-        --tertiary: #328dba;
-        --tertiary-500: rgba(50, 141, 186, 0.5);
-        --quaternary: #f37021;
-        --quaternary-500: rgba(243, 112, 33, 0.5);
-        --form-color-primary: #28adb7;
-        --form-bg-color: #4e4e4e;
+        --background: #1a1918;
+        --foreground: #ebe7e0;
+        --primary: #2d2b2a;
+        --primary-500: rgba(235, 231, 224, 0.5);
+        --secondary: #5cd6ff;
+        --secondary-500: rgba(92, 214, 255, 0.5);
+        --secondary-light: rgba(235, 231, 224, 0.12);
+        --tertiary: #ebe7e0;
+        --tertiary-500: rgba(92, 214, 255, 0.35);
+        --quaternary: #ff945e;
+        --quaternary-500: rgba(255, 148, 94, 0.5);
+        --form-color-primary: #5cd6ff;
+        --form-bg-color: #2d2b2a;
         //Theme logo credit
         --mk-brand: var(--secondary);
     }

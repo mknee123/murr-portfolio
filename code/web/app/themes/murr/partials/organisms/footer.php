@@ -1,5 +1,6 @@
 <?php
 $class = 'o-footer';
+$footer_headline = $args['footer_headline'] ?? '';
 $footer_statement = $args['footer_statement'] ?? '';
 $footer_address = $args['footer_address'] ?? '';
 $linkable_address = $args['linkable_address'] ?? '';
@@ -11,9 +12,11 @@ $copyright_text = $args['copyright_text'] ?? '';
 <footer class="<?= $class ?>">
     <div class="<?= $class ?>__inner <?= $class ?>__footer">
         <div class="<?= $class ?>__column">
-            <div class="<?= $class ?>__logo">
-                <?php get_template_part('partials/atoms/logo', '', ['style' => 'light']); ?>
-            </div>
+            <?php if ($footer_headline) : ?>
+                <h2 class="<?= $class ?>__headline">
+                    <?= $footer_headline ?>
+                </h2>
+            <?php endif; ?>
             <?php if ($footer_statement) : ?>
                 <p class="<?= $class ?>__statement">
                     <?= $footer_statement ?>
@@ -31,32 +34,35 @@ $copyright_text = $args['copyright_text'] ?? '';
                     </div>
                 <?php endif; ?>
                 <?php if ($footer_email) : ?>
-                    <div class="<?= $class ?>__email">
-                        <a href="mailto:<?= $footer_email ?>" target="_blank" rel="noopener noreferrer"><?= $footer_email ?></a>
-                    </div>
+                    <a class="a-icon a-icon--bg-primary-500 a-icon--email" href="mailto:<?= $footer_email ?>" target="_blank" rel="noopener noreferrer" title="Email <?= $footer_email ?>"></a>
                 <?php endif; ?>
-                <div class="<?= $class ?>__social">
-                    <a class="a-icon a-icon--linkedin" href="https://www.linkedin.com/in/mirandaknee/" title="Navigate to LinkedIn"></a>
-                </div>
+
+                <a class="a-icon a-icon--bg-primary-500 a-icon--linkedin" href="https://www.linkedin.com/in/mirandaknee/" title="Navigate to Miranda's LinkedIn"></a>
+                <a class="a-icon a-icon--bg-primary-500 a-icon--github" href="https://github.com/mknee123" title="Navigate to Miranda's Github"></a>
             </div>
         </div>
-        <div class="<?= $class ?>__nav <?= $class ?>__nav--primary">
-            <?php
-            // footer-primary navigation menu
-            if (has_nav_menu('footer-primary')) {
-                wp_nav_menu(
-                    [
-                        'theme_location'  => 'footer-primary',
-                        'menu_class'      => 'menu menu--footer',
-                        'container'       => 'nav',
-                        'container_class' => 'footer-menu-wrap',
-                    ]
-                );
-            }
-            ?>
+        <div class="<?= $class ?>__column">
+            <div class="<?= $class ?>__nav <?= $class ?>__nav--primary">
+                <?php
+                // footer-primary navigation menu
+                if (has_nav_menu('footer-primary')) {
+                    wp_nav_menu(
+                        [
+                            'theme_location'  => 'footer-primary',
+                            'menu_class'      => 'menu menu--footer',
+                            'container'       => 'nav',
+                            'container_class' => 'footer-menu-wrap',
+                        ]
+                    );
+                }
+                ?>
+            </div>
         </div>
     </div>
     <div class="<?= $class ?>__copyright <?= $class ?>__inner">
+        <div class="<?= $class ?>__logo">
+            <?php get_template_part('partials/atoms/logo', '', ['style' => 'light']); ?>
+        </div>
         <?php if ($copyright_text) : ?>
             <p><?= '&copy; ' .  date('Y') . ' ' . $copyright_text ?></p>
         <?php

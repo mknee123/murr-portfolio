@@ -135,7 +135,7 @@
         },
         "custom": {
             "color": {
-                "link": "var(--primary)"
+                "link": "var(--secondary)"
             },
             "font-size": {
                 "button-default": "var(--wp--preset--font-size--big)",
