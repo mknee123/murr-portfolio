@@ -9,7 +9,7 @@ $callable_phone = $args['callable_phone'] ?? '';
 $footer_email = $args['footer_email'] ?? '';
 $copyright_text = $args['copyright_text'] ?? '';
 ?>
-<footer class="<?= $class ?>">
+<footer class="<?= $class ?>" id="connect">
     <div class="<?= $class ?>__inner <?= $class ?>__footer">
         <div class="<?= $class ?>__column">
             <?php if ($footer_headline) : ?>

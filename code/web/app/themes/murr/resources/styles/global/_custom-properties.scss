@@ -28,19 +28,23 @@
     --mk-brand: var(--primary);
 
     @media screen and (prefers-color-scheme: dark) {
-        --background: #1a1918;
-        --foreground: #ebe7e0;
-        --primary: #2d2b2a;
-        --primary-500: rgba(235, 231, 224, 0.5);
-        --secondary: #5cd6ff;
-        --secondary-500: rgba(92, 214, 255, 0.5);
-        --secondary-light: rgba(235, 231, 224, 0.12);
-        --tertiary: #ebe7e0;
-        --tertiary-500: rgba(92, 214, 255, 0.35);
-        --quaternary: #ff945e;
-        --quaternary-500: rgba(255, 148, 94, 0.5);
-        --form-color-primary: #5cd6ff;
-        --form-bg-color: #2d2b2a;
+        --background: #1c1b1a;
+        --foreground: #f2f0ec;
+        --primary: #f2f0ec;
+        --primary-750: rgba(242, 240, 236, 0.75);
+        --primary-500: rgba(242, 240, 236, 0.5);
+        --secondary: #3ca6c9;
+        --secondary-500: rgba(60, 166, 201, 0.5);
+        --secondary-light: rgba(230, 225, 218, 0.65);
+        --tertiary: #2b2927;
+        --tertiary-500: rgba(43, 41, 39, 0.5);
+        --quaternary: #e06b2d;
+        --quaternary-500: rgba(224, 107, 45, 0.5);
+        --form-color-primary: #3ca6c9;
+        --form-bg-color: #302e2b;
+
+        --error: #e05a7d;
+
         //Theme logo credit
         --mk-brand: var(--secondary);
     }
