@@ -35,10 +35,9 @@ $copyright_text = $args['copyright_text'] ?? '';
                         <a href="mailto:<?= $footer_email ?>" target="_blank" rel="noopener noreferrer"><?= $footer_email ?></a>
                     </div>
                 <?php endif; ?>
-            </div>
-
-            <div class="<?= $class ?>__social">
-                <a class="a-icon a-icon--linkedin" href="https://www.linkedin.com/in/mirandaknee/" title="Navigate to LinkedIn"></a>
+                <div class="<?= $class ?>__social">
+                    <a class="a-icon a-icon--linkedin" href="https://www.linkedin.com/in/mirandaknee/" title="Navigate to LinkedIn"></a>
+                </div>
             </div>
         </div>
         <div class="<?= $class ?>__nav <?= $class ?>__nav--primary">

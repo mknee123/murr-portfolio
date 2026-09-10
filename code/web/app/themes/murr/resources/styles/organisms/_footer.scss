@@ -16,8 +16,16 @@
         align-items: center;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
         text-align: center;
+
+        > p {
+            margin: 0;
+        }
+    }
+
+    &__logo {
+        max-width: 11rem;
     }
 
     &__logo a {
@@ -25,6 +33,7 @@
     }
 
     &__contact {
+        align-items: center;
         display: flex;
         flex-flow: row wrap;
         gap: 0.75rem;
@@ -37,7 +46,7 @@
             font-weight: 700;
             justify-content: center;
 
-            a {
+            a:not(.a-icon) {
                 color: var(--tertiary);
                 text-decoration: none;
             }
@@ -53,7 +62,7 @@
         flex-basis: 100%;
 
         @include mix.pseudo-icon("location-dot", "regular", before) {
-            align-self: flex-start
+            align-self: flex-start;
         }
     }
 
@@ -68,7 +77,10 @@
     &__social {
         display: flex;
         gap: 1rem;
-        margin: 1.5rem 0;
+
+        a {
+            color: var(--background);
+        }
     }
 
     &__nav {

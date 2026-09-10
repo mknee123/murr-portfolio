@@ -103,8 +103,8 @@ docker compose -f compose.yml up -d --build
 - `./bin/cli.sh composer install` — Install theme related plugins
 - `./bin/cli.sh composer update` — Update plugins
 - `./bin/cli.sh node npm install` — Install theme dependencies
-- `./bin/cli.sh node npm run watch` — Compile and optimize the files in your assets directory as well as start watching for changes
-- `./bin/cli.sh node npm run build` — Compile assets for production (no source maps) and without watching
+- `./bin/cli.sh node npm run watch` — Compile and optimize the files in your assets directory and watch for changes
+- `./bin/cli.sh node npm run build` — Compile assets for production without source maps
 - `./bin/pull.sh wordmove pull -e staging --all` — Pull everything from the staging site via Wordmove
 - `./bin/pull.sh wordmove pull -e production -du` — Pull the database and uploads from the production site via Wordmove
 

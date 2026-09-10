@@ -18,15 +18,17 @@ services:
     entrypoint: ["wp"]
     networks:
       - site
-  npm:
+  node:
     extends:
       file: ./docker/services-common.yml
       service: wordpress
     build:
       target: theme-base
-    entrypoint: ["npm"]
     environment:
       - FONTAWESOME_NPM_AUTH_TOKEN=${FONTAWESOME_NPM_AUTH_TOKEN}
+    ports:
+      - '3000:3000'
+      - '3001:3001'
     volumes:
       - ./code/web/app/themes/murr:/theme
     networks:
