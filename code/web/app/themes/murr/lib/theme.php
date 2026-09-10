@@ -100,6 +100,31 @@ add_action('init', function () {
     }
 });
 
+function murr_output_head_metadata() {
+    $site_name = get_bloginfo('name');
+    $description = get_bloginfo('description') ?: $site_name;
+?>
+    <meta name="description" content="<?= esc_attr($description); ?>" />
+    <meta property="og:title" content="<?= esc_attr($site_name); ?>" />
+    <meta property="og:description" content="<?= esc_attr($description); ?>" />
+    <meta name="theme-color" content="#ebe7e0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1918" media="(prefers-color-scheme: dark)" />
+    <meta name="application-name" content="<?= esc_attr($site_name); ?>" />
+    <meta name="apple-mobile-web-app-title" content="<?= esc_attr($site_name); ?>" />
+    <?php if (!has_site_icon()) : ?>
+        <link rel="icon" type="image/svg+xml" href="<?= esc_url(asset("public/images/favicon.svg")); ?>" sizes="any" />
+        <link rel="icon" href="<?= esc_url(asset("public/images/favicon.ico")); ?>" />
+        <link rel="icon" type="image/png" href="<?= esc_url(asset("public/images/favicon-96x96.png")); ?>" sizes="96x96" />
+        <link rel="icon" type="image/png" href="<?= esc_url(asset("public/images/favicon-32x32.png")); ?>" sizes="32x32" />
+        <link rel="icon" type="image/png" href="<?= esc_url(asset("public/images/favicon-16x16.png")); ?>" sizes="16x16" />
+        <link rel="apple-touch-icon" sizes="180x180" href="<?= esc_url(asset("public/images/apple-touch-icon.png")); ?>" />
+    <?php endif; ?>
+    <link rel="manifest" href="<?= esc_url(asset("public/images/site.webmanifest")); ?>" />
+<?php
+}
+add_action('admin_head', 'murr_output_head_metadata');
+add_action('login_head', 'murr_output_head_metadata');
+
 /**
  * Ensure PHP is greater than 8.0
  */

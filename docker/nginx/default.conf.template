@@ -29,7 +29,25 @@ server {
     set $theme_root /app/themes/murr;
 
     location = /favicon.ico {
-        try_files $uri $theme_root/favicon.ico =404;
+        try_files $uri $theme_root/public/images/favicon.ico =404;
+        access_log off;
+        log_not_found off;
+    }
+
+    location = /favicon.svg {
+        try_files $uri $theme_root/public/images/favicon.svg =404;
+        access_log off;
+        log_not_found off;
+    }
+
+    location ~ ^/((?:favicon-(?:16x16|32x32)|apple-touch-icon(?:-180x180)?|android-chrome-(?:192x192|512x512))\.png)$ {
+        try_files $uri $theme_root/public/images/$1 =404;
+        access_log off;
+        log_not_found off;
+    }
+
+    location = /site.webmanifest {
+        try_files $uri $theme_root/public/images/site.webmanifest =404;
         access_log off;
         log_not_found off;
     }
