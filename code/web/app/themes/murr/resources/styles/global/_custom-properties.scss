@@ -3,9 +3,11 @@
     --background: #f9f8f6;
     --foreground: #2c2a29;
     --primary: #1a1918;
+    --primary-950: rgba(26, 25, 24, 0.95);
     --primary-750: rgba(26, 25, 24, 0.75);
     --primary-500: rgba(26, 25, 24, 0.5);
     --secondary: #005b7a;
+    --secondary-750: rgba(0, 91, 122, 0.75);
     --secondary-500: rgba(0, 91, 122, 0.5);
     --secondary-light: rgba(230, 225, 218, 0.65);
     --tertiary: #ebe7e0;
@@ -26,14 +28,18 @@
     --font-family-body: verdana, sans-serif;
     //Theme logo credit
     --mk-brand: var(--primary);
+    // --mk-brand-light: #3ca6c9;
+    --mk-brand-light: rgba(60, 166, 201, 0.85);
 
     @media screen and (prefers-color-scheme: dark) {
         --background: #1c1b1a;
         --foreground: #f2f0ec;
         --primary: #f2f0ec;
+        --primary-950: rgba(242, 240, 236, 0.95);
         --primary-750: rgba(242, 240, 236, 0.75);
         --primary-500: rgba(242, 240, 236, 0.5);
         --secondary: #3ca6c9;
+        --secondary-750: rgba(60, 166, 201, 0.75);
         --secondary-500: rgba(60, 166, 201, 0.5);
         --secondary-light: rgba(230, 225, 218, 0.65);
         --tertiary: #2b2927;
@@ -47,5 +53,6 @@
 
         //Theme logo credit
         --mk-brand: var(--secondary);
+        --mk-brand-light: var(--primary-500);
     }
 }
