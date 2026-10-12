@@ -1,4 +1,5 @@
-@use "../../styles/global/bootstrap" as *;
+@use "@styles/global/bootstrap";
+
 
 .o-testimonial {
     padding: 2rem;
@@ -7,7 +8,7 @@
         position: relative;
 
         p {
-            @include pseudo-icon(quote-left, $element: before) {
+            @include bootstrap.pseudo-icon(quote-left, $element: before) {
                 color: var(--quaternary);
                 display: block;
             }

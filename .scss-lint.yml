@@ -1,0 +1,28 @@
+scss_files: 'code/web/app/themes/murr/resources/styles/**/*.scss'
+
+linters:
+    BemDepth:
+        enabled: true
+        max_elements: 1
+
+    Indentation:
+        enabled: true
+        allow_non_nested_indentation: false
+        character: space
+        width: 4
+
+    FinalNewline:
+        enabled: true
+
+    LeadingZero:
+        enabled: true
+
+    NestingDepth:
+        enabled: true
+        max_depth: 6
+        ignore_parent_selectors: false
+
+    # Enforces that string literals should be written with a consistent form
+    # of quotes (single or double).
+    StringQuotes:
+        enabled: false

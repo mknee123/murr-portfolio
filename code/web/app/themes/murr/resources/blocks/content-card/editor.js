@@ -3,10 +3,10 @@ import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck, useBlock
 import { Button, PanelBody } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import block from "./block.json";
-import icons from "../../scripts/icon.js";
+import icons from "@scripts/icon.js";
 
 registerBlockType(block, {
-    icon: icons.gh,
+    icon: icons.mk,
     edit: ({ attributes, setAttributes }) => {
         const { image, imageUrl } = attributes;
 

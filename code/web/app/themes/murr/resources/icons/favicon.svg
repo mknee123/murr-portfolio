@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" width="1000" height="1000" viewBox="0 0 1000 1000"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><g id="dark-icon">
+    <g>
+      <polygon points="50 297.597 50 702.403 119.63 702.403 119.63 683.806 71.624 683.806 71.624 316.194 119.63 316.194 119.63 297.597 50 297.597 50 297.597" fill="#005b7a"></polygon>
+      <path d="M464.32,377.607c-32.436,0-60.115,12.975-79.145,35.896-16.434-24.652-48.006-35.896-73.955-35.896s-49.303,8.65-67.035,26.382v-22.057h-92.984v236.569h97.741v-115.473c0-31.571,14.272-43.248,30.706-43.248s26.382,11.245,26.382,40.654v118.068h97.741v-115.473c0-31.571,15.137-43.248,30.706-43.248s26.382,11.245,26.382,40.654v118.068h97.741v-134.935c0-74.387-40.654-105.959-94.282-105.959h0Z" fill="#1a1918"></path>
+      <polygon points="864.801 381.932 749.327 381.932 681.427 450.697 681.427 297.597 583.686 297.597 583.686 618.501 681.427 618.501 681.427 562.71 696.997 545.843 754.517 618.501 872.585 618.501 767.059 484.431 864.801 381.932" fill="#1a1918"></polygon>
+      <polygon points="880.37 297.597 880.37 316.194 928.376 316.194 928.376 683.806 880.37 683.806 880.37 702.403 950 702.403 950 297.597 880.37 297.597" fill="#005b7a"></polygon>
+    </g>
+  </g><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
+</style></svg>

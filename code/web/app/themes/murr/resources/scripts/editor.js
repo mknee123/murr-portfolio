@@ -1,8 +1,8 @@
 /*
-	Name:				Editor.js
-	Description:        Editor script for the theme.
-	Version:            1.0.0
-	Author:             GH Advertising
+	Name:  				Editor.js
+	Description:  Editor script for the theme.
+	Version:      1.0.1
+	Author:       MK
 */
 import domReady from "@wordpress/dom-ready";
 import { registerBlockStyle, unregisterBlockStyle } from "@wordpress/blocks";
@@ -10,7 +10,7 @@ import "@styles/editor.scss";
 
 window.addEventListener("load", function () {
     // button default styles
-    unregisterBlockStyle("core/button", ["default", "outline"]);
+    unregisterBlockStyle("core/button", ["fill", "outline"]);
 });
 
 domReady(() => {

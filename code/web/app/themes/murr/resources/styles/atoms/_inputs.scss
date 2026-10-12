@@ -1,3 +1,6 @@
+@use "@styles/global/mixins" as mix;
+
+//-- Inputs ----------------------------------
 .a-input-field {
     align-items: baseline;
     display: flex;
@@ -46,7 +49,7 @@
     }
 
     &--name {
-        @include pseudo-icon("user", "regular", before) {
+        @include mix.pseudo-icon("user", "regular", before) {
             bottom: var(--wp--custom--forms--input-padding-vertical);
             color: var(--form-color-primary);
             position: absolute;
@@ -56,7 +59,7 @@
     }
 
     &--email {
-        @include pseudo-icon("envelope", "regular", before) {
+        @include mix.pseudo-icon("envelope", "regular", before) {
             bottom: var(--wp--custom--forms--input-padding-vertical);
             color: var(--form-color-primary);
             position: absolute;
@@ -67,6 +70,7 @@
 
     // FIELD CONTAINER
     &__container {
+
         // WITH CHECKBOX
         // WITH RADIO BUTTON
         // WITH SELECT FIELD
@@ -93,10 +97,10 @@
 
         // WITH SELECT FIELD
         &--select {
-            @include layer("base", 1);
+            @include mix.layer("base", 1);
 
-            @include pseudo-icon("chevron-down", "solid", after) {
-                @include layer("base", 1);
+            @include mix.pseudo-icon("chevron-down", "solid", after) {
+                @include mix.layer("base", 1);
                 color: var(--form-color-primary);
                 font-size: 1rem;
                 height: 1rem;

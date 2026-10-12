@@ -1,8 +1,8 @@
 /*
-	Name:			posts.js
-	Description:    Post script for the theme.
-	Version:        1.0.0
-	Author:         GH Advertising
+	Name:		    	posts.js
+	Description:  Post script for the theme.
+	Version:      1.0.1
+	Author:       MK
 */
 import jQuery from "jquery";
 import { BlogPost } from "./template.js";

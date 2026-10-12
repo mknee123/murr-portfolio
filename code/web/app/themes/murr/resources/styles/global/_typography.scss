@@ -1,3 +1,4 @@
+@use "@styles/global/mixins" as mix;
 // These colors reference the variables found in
 // custom-properties.scss
 $text-colors: (
@@ -24,7 +25,7 @@ $text-sizes: (
     "xx-large": var(--wp--preset--font-size--xx-large),
 );
 
-@include headings;
+@include mix.headings;
 
 .h1 {
     font-size: var(--wp--preset--font-size--x-large);
@@ -75,4 +76,9 @@ $text-sizes: (
     &--uppercase {
         text-transform: uppercase;
     }
+}
+
+strong,
+b {
+    font-weight: bold;
 }

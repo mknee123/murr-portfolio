@@ -3,9 +3,15 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-# GH Recommended Ignore Items
+# Recommended Ignore Items
 .env
+Movefile
+.movefile
+movefile.yml
+movefile.yaml
+docker/traefik/certs/*.pem
 backup/*.sql
+backup/*.sql.gz
 backup/*.xml
 !backup/.gitkeep
 
@@ -20,11 +26,6 @@ helm/environments/*
 # VSCode Editors & Extensions
 .vscode/*
 *.code-workspace
-.prettierignore
-.prettierrc
-.editorconfig
-.scss-lint.yml
-
 
 # Node artifact files
 node_modules/
@@ -44,7 +45,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -70,4 +70,3 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-

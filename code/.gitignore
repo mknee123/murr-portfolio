@@ -1,3 +1,5 @@
+.htaccess
+
 # Application
 web/app/plugins/*
 !web/app/plugins/.gitkeep
@@ -27,7 +29,10 @@ web/.htaccess
 wp-cli.local.yml
 
 # Wordmove
+Movefile
+.movefile
 movefile.yml
+movefile.yaml
 
 # Public directory
 web/app/themes/*/public

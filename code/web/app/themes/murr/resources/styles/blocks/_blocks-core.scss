@@ -5,10 +5,16 @@
  *
  * - Base Colors
  * - Buttons
+ * - Columns
  * - Group
+ * - Lists
  * - Paragraph
  *
  */
+@use "sass:string";
+@use "../global/variables" as vars;
+@use "../global/mixins" as mix;
+
 
 // ----- Base Colors -----------------------------
 .has-text-color {
@@ -23,9 +29,9 @@
         @extend %button-styles;
         background-color: var(--primary-btn);
 
-        @each $name, $color in $button-colors {
+        @each $name, $color in vars.$button-colors {
             &.has-background {
-                $index: str-length($color);
+                $index: string.length($color);
 
                 &.has-#{$name}-background-color {
                     background-color: $color !important;
@@ -36,7 +42,7 @@
 
                     //Prevents hover styles on disabled
                     &:hover:not([disabled]) {
-                        background-color: unquote(str-insert("#{$color}", "-500", $index)) !important;
+                        background-color: string.unquote(string.insert("#{$color}", "-500", $index)) !important;
                     }
 
                     &:focus,
@@ -95,7 +101,7 @@
             }
         }
 
-        @each $name, $color in $button-colors {
+        @each $name, $color in vars.$button-colors {
             &.has-background.has-#{$name}-background-color {
                 border: 2px solid $color;
                 color: $color;
@@ -133,7 +139,7 @@
     &.is-style-arrow-left &__link {
         padding-left: 2.5rem;
 
-        @include pseudo-icon("chevron-double-left", "regular", after) {
+        @include mix.pseudo-icon("chevron-double-left", "regular", after) {
             left: 0.75rem;
             right: auto;
         }
@@ -146,7 +152,7 @@
     &.is-style-arrow-right &__link {
         padding-right: 2.5rem;
 
-        @include pseudo-icon("chevron-double-right", "regular", after) {
+        @include mix.pseudo-icon("chevron-double-right", "regular", after) {
             left: auto;
             right: 0.75rem;
         }
@@ -162,11 +168,11 @@
     &.has-background {
         padding: var(--wp--custom--spacing--viewport-padding-mobile) var(--wp--custom--spacing--viewport-padding);
 
-        @include media("tablet+") {
+        @include mix.media("tablet+") {
             padding: var(--wp--custom--spacing--group-padding-2);
         }
 
-        @include media("menu+") {
+        @include mix.media("menu+") {
             padding: var(--wp--custom--spacing--group-padding-1);
         }
     }
@@ -203,12 +209,12 @@
                 padding-top: 0;
             }
 
-            @include media("tablet+") {
+            @include mix.media("tablet+") {
                 padding-left: 2.5rem;
                 padding-right: 2.5rem;
             }
 
-            @include media("menu+") {
+            @include mix.media("menu+") {
                 padding-left: 4.5rem;
                 padding-right: 4.5rem;
             }
@@ -259,7 +265,7 @@
         padding-left: var(--wp--custom--spacing--viewport-padding-mobile);
         padding-right: var(--wp--custom--spacing--viewport-padding-mobile);
 
-        @include media("mobile+") {
+        @include mix.media("mobile+") {
             padding-left: var(--wp--custom--spacing--viewport-padding);
             padding-right: var(--wp--custom--spacing--viewport-padding);
         }
@@ -268,11 +274,11 @@
     &.has-background {
         padding: var(--wp--custom--spacing--viewport-padding-mobile) var(--wp--custom--spacing--viewport-padding);
 
-        @include media("tablet+") {
+        @include mix.media("tablet+") {
             padding: var(--wp--custom--spacing--group-padding-2) var(--wp--custom--spacing--viewport-padding-mobile);
         }
 
-        @include media("wide+") {
+        @include mix.media("wide+") {
             padding: var(--wp--custom--spacing--group-padding-1) 0;
         }
 
@@ -282,12 +288,12 @@
             padding-bottom: var(--wp--custom--spacing--group-padding-3);
             padding-top: var(--wp--custom--spacing--group-padding-3);
 
-            @include media("tablet+") {
+            @include mix.media("tablet+") {
                 padding-bottom: var(--wp--custom--spacing--group-padding-2);
                 padding-top: var(--wp--custom--spacing--group-padding-2);
             }
 
-            @include media("menu+") {
+            @include mix.media("menu+") {
                 padding-bottom: var(--wp--custom--spacing--group-padding-1);
                 padding-top: var(--wp--custom--spacing--group-padding-1);
             }
@@ -329,7 +335,7 @@ main,
             }
         }
 
-        @include media("tablet+") {
+        @include mix.media("tablet+") {
             &.is-style-two-column {
                 column-count: 2;
             }
@@ -344,11 +350,11 @@ p {
     &.is-style-condense {
         text-wrap: balance;
 
-        @include media("tablet+") {
+        @include mix.media("tablet+") {
             width: 75%;
         }
 
-        @include media("menu+") {
+        @include mix.media("menu+") {
             width: 60%;
         }
     }

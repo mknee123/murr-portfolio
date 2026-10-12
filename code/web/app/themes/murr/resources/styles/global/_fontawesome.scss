@@ -1,5 +1,43 @@
-$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts";
+// Provide Font Awesome helpers (functions + variables) without emitting icon CSS.
+// We re-declare the tiny helpers fontawesome expects so we can safely @import only the variables file.
+$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts" !default;
+$fa-font-display: swap !default;
 
-@import "~@fortawesome/fontawesome-pro/scss/functions";
+@use "sass:string";
+
+@function fa-content($fa-var) {
+    @return string.unquote("\"#{ $fa-var }\"");
+}
+
+@function fa-divide($dividend, $divisor, $precision: 10) {
+    $sign: if($dividend > 0 and $divisor > 0, 1, -1);
+    $dividend: abs($dividend);
+    $divisor: abs($divisor);
+    $quotient: 0;
+    $remainder: $dividend;
+
+    @if $dividend == 0 {
+        @return 0;
+    }
+
+    @if $divisor == 0 {
+        @error "Cannot divide by 0";
+    }
+
+    @if $divisor == 1 {
+        @return $dividend;
+    }
+
+    @while $remainder >= $divisor {
+        $quotient: $quotient + 1;
+        $remainder: $remainder - $divisor;
+    }
+
+    @if $remainder > 0 and $precision > 0 {
+        $remainder: fa-divide($remainder * 10, $divisor, $precision - 1) * .1;
+    }
+
+    @return ($quotient + $remainder) * $sign;
+}
+
 @import "~@fortawesome/fontawesome-pro/scss/variables";
-@import "~@fortawesome/fontawesome-pro/scss/mixins";

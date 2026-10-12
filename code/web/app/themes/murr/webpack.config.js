@@ -1,10 +1,11 @@
 const path = require("path");
 const defaultConfig = require("@wordpress/scripts/config/webpack.config");
-const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const RtlCssPlugin = require("@wordpress/scripts/plugins/rtlcss-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const sharp = require("sharp");
 const customScripts = require("./config/entrypoints");
-const isProduction = process.env.NODE_ENV === "production";
 
 const convertEntry = (type, name, value, converter) => {
     if (typeof value === "string") {
@@ -36,6 +37,9 @@ defaultConfig.plugins.forEach((plugin, i, plugins) => {
             },
         });
     }
+    if (plugin instanceof RtlCssPlugin) {
+        delete plugins[i];
+    }
 });
 
 const entry = defaultConfig.entry();
@@ -53,6 +57,7 @@ const config = {
             "@blocks": "@src/blocks",
             "@fonts": "@src/fonts",
             "@images": "@src/images",
+            "@icons": "@src/icons",
             "@videos": "@src/videos",
             "@scripts": "@src/scripts",
             "@styles": "@src/styles",
@@ -60,25 +65,82 @@ const config = {
             ...defaultConfig.resolve.alias,
         },
     },
+    // Add the optimization block
+    optimization: {
+        ...defaultConfig.optimization,
+        minimizer: [
+            ...defaultConfig.optimization.minimizer,
+            // Only optimize originals; do not generate alternates here
+            new ImageMinimizerPlugin({
+                test: /\.(jpe?g|png)$/i,
+                exclude: /[\\/]resources[\\/]icons[\\/]/,
+                minimizer: {
+                    implementation: ImageMinimizerPlugin.sharpMinify,
+                    options: {
+                        encodeOptions: {
+                            jpeg: { quality: 75 },
+                            png: { quality: 75 },
+                        },
+                    },
+                },
+            }),
+        ],
+    },
+    // Add the module block
+    module: {
+        ...defaultConfig.module,
+        rules: [
+            ...defaultConfig.module.rules,
+            {
+                test: /\.(woff2?|ttf|otf|eot)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "fonts/[name][ext]",
+                },
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg|avif|webp)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "images/[name][ext]",
+                },
+            },
+        ],
+    },
 };
+
+// Silence Sass deprecation warnings coming from third-party dependencies (e.g., Font Awesome)
+const sassRule = config.module.rules.find((rule) => Array.isArray(rule.use) && rule.use.some((loader) => loader.loader && loader.loader.includes("sass-loader")));
+if (sassRule) {
+    const sassLoader = sassRule.use.find((loader) => loader.loader && loader.loader.includes("sass-loader"));
+    sassLoader.options = {
+        ...(sassLoader.options || {}),
+        sassOptions: {
+            ...(sassLoader.options?.sassOptions || {}),
+            quietDeps: true,
+        },
+    };
+}
 
 config.plugins.push(
     new CopyWebpackPlugin({
-        patterns: [{ from: "resources/images/", to: "images/[name][ext]" }],
+        patterns: [
+            // Copy originals (all files) from resources/images
+            {
+                from: path.resolve(__dirname, "resources/images"),
+                to: "images/[path][name][ext]",
+                context: path.resolve(__dirname, "resources/images"),
+                noErrorOnMissing: true,
+            },
+            // Copy icons (favicons/app icons) from resources/icons to images root as originals only
+            {
+                from: path.resolve(__dirname, "resources/icons"),
+                to: "images/[name][ext]",
+                context: path.resolve(__dirname, "resources/icons"),
+                noErrorOnMissing: true,
+            },
+        ],
     })
 );
-
-if (!isProduction) {
-    delete config.devServer;
-    config.plugins.push(
-        new BrowserSyncPlugin({
-            host: "0.0.0.0",
-            port: process.env.DEV_PORT || 3000,
-            proxy: {
-                target: process.env.DEV_URL || "http://basetheme.test",
-            },
-        })
-    );
-}
 
 module.exports = config;

@@ -1,8 +1,8 @@
 /*
-	Name:			Core.js
-	Description:    Core script for the theme.
-	Version:        1.0.0
-	Author:         GH Advertising
+	Name:          Core.js
+	Description:   Core script for the theme.
+	Version:       1.0.1
+	Author:        MK
 */
 import jQuery from "jquery";
 import { throttle } from "throttle-debounce";

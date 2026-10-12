@@ -1,9 +1,9 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "ghint/featured-posts",
     "title": "Featured Posts",
-    "category": "gh-blocks",
+    "category": "mk-blocks",
     "description": "Display of 3 recent posts.",
     "keywords": ["featured posts", "posts"],
     "version": "1.0.0",

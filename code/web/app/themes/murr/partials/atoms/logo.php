@@ -1,11 +1,23 @@
 <?php
-// TODO: Client Logo to replace GH logo
-// Expected styles that can be passed = ['light','dark']
+$disable = $args['disable'] ?? false;
+$class = $disable ? ['a-logo', 'c-disabled'] : ['a-logo'];
+$classes = $args['class'] ?? [];
+$className = array_merge(
+    $class,
+    array_map(
+        fn($name) => sprintf('a-logo--%s', $name),
+        is_string($classes) ? explode(' ', $classes) : $classes
+    )
+);
+$ariaLabel = $disable ? '' : __(' navigate to homepage', 'ghint');
 $style = $args['style'] ?? '';
 $id = $style ? $style . uniqid('-') : 'light' . uniqid('-');
 ?>
-<a aria-label="logo navigate to homepage" href="<?= get_home_url(); ?>" rel="home" class="a-logo" style="max-width:6rem;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="236.277" height="107.604" viewBox="0 0 236.277 107.604">
-        <path class="gh" id="Path_1" data-name="Path 1" d="M126.537,0H98.932V-72.049L78.986-25.293H59.836L39.891-72.049V0H13.73V-107.6h32.23L70.17-53.621,94.307-107.6h32.23Zm123.47,0H215.97L183.812-43.07l-6.5,7.877V0h-27.75V-107.6h27.75V-58.9L215.753-107.6h32.158L205.853-57.812Z" transform="translate(-13.73 107.604)" fill="#0f7a7e" />
+<a aria-label="<?= esc_attr(get_bloginfo('name')) . $ariaLabel ?>" href="<?= get_home_url(); ?>" rel="home" class="<?= implode(' ', $className) ?>" id="<?= esc_attr($id) ?>">
+    <svg id="mk" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" viewBox="0 0 416.2 187.2">
+        <polygon points="0 0 0 187.2 32.2 187.2 32.2 178.6 10 178.6 10 8.6 32.2 8.6 32.2 0 0 0 0 0" fill="var(--mk-brand-light)" />
+        <path d="M191.6,37c-15,0-27.8,6-36.6,16.6-7.6-11.4-22.2-16.6-34.2-16.6s-22.8,4-31,12.2v-10.2h-43v109.4h45.2v-53.4c0-14.6,6.6-20,14.2-20s12.2,5.2,12.2,18.8v54.6h45.2v-53.4c0-14.6,7-20,14.2-20s12.2,5.2,12.2,18.8v54.6h45.2v-62.4c0-34.4-18.8-49-43.6-49Z" fill="var(--mk-brand)" />
+        <polygon points="376.8 39 323.4 39 292 70.8 292 0 246.8 0 246.8 148.4 292 148.4 292 122.6 299.2 114.8 325.8 148.4 380.4 148.4 331.6 86.4 376.8 39" fill="var(--mk-brand)" />
+        <polygon points="384 0 384 8.6 406.2 8.6 406.2 178.6 384 178.6 384 187.2 416.2 187.2 416.2 0 384 0" fill="var(--mk-brand-light)" />
     </svg>
 </a>

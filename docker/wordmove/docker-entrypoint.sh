@@ -19,4 +19,12 @@ if [[ -d /tmp/.ssh ]]; then
 
 fi
 
-exec wordmove "$@"
+set +e
+wordmove "$@"
+status=$?
+set -e
+
+mkdir -p /backup
+find /html/web/app -maxdepth 1 -type f \( -name "*-backup-*.sql" -o -name "*-backup-*.sql.gz" \) -exec mv {} /backup/ \;
+
+exit "$status"

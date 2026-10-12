@@ -1,4 +1,4 @@
-@use "../../styles/global/bootstrap" as *;
+@use "@styles/global/bootstrap";
 
 .o-masthead {
     position: relative;
@@ -7,8 +7,8 @@
     &__background {
         width: 100%;
         height: 100%;
-        @include aspect(16, 9);
-        @include layer("base", 1, relative);
+        @include bootstrap.aspect(16, 9);
+        @include bootstrap.layer("base", 1, relative);
 
         img,
         video {
@@ -37,11 +37,11 @@
         width: 100%;
         height: 100%;
         background: var(--foreground);
-        @include layer("base", 2, absolute);
+        @include bootstrap.layer("base", 2, absolute);
     }
 
     &__content {
-        @include layer("base", 3);
+        @include bootstrap.layer("base", 3);
         margin: 0 auto;
         max-width: var(--wp--style--global--wide-size);
         padding: 1.25rem;
@@ -51,18 +51,19 @@
             margin: 0 auto;
         }
 
-        @include media("wide+") {
+        @include bootstrap.media("wide+") {
             padding: 0;
         }
 
-        @include media("tablet+") {
+        @include bootstrap.media("tablet+") {
             > * {
                 // max-width: 40rem;
                 text-wrap: pretty;
             }
         }
 
-        @include media("mobile") {
+        @include bootstrap.media("mobile") {
+
             //if text color is white change it to foreground variable
             .has-background-color.has-text-color {
                 color: var(--foreground) !important;
@@ -70,7 +71,7 @@
         }
     }
 
-    @include media("mobile+") {
+    @include bootstrap.media("mobile+") {
         display: flex;
         align-items: center;
         height: 80vh;

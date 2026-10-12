@@ -1,5 +1,10 @@
-@use "sass:math";
 @use "sass:list";
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+@use "./fontawesome" as fa;
+@use "./functions" as func;
+@use "./variables" as vars;
 
 @mixin aspect($width: 16, $height: 9) {
     $ar: list.slash($width, $height);
@@ -18,6 +23,23 @@
             clear: both;
         }
     }
+}
+
+//------ Box Shadow ----------------
+%box-shadow {
+    box-shadow: 0px 12px 56px 0px rgba(0, 0, 0, 0.2);
+}
+
+%box-shadow-light {
+    box-shadow: 0px 12px 56px 0px rgba(105, 105, 105, 0.1);
+}
+
+@mixin box-shadow {
+    @extend %box-shadow;
+}
+
+@mixin box-shadow-light {
+    @extend %box-shadow-light;
 }
 
 //------ Base button styles ---------------
@@ -110,28 +132,43 @@
         margin-bottom: 1.5rem;
     }
 
-    .h#{$level} {
-        font-family: var(--font-family-headline);
-        font-weight: 700;
-    }
+    // .h#{$level} {
+    //     font-family: var(--font-family-headline);
+    //     font-weight: 700;
+    // }
 }
 
 //------ Layer styles ----------------------
 @mixin layer($name: "base", $modifier: 0, $position: relative) {
     position: $position;
-    z-index: map-get($layers, $name) + $modifier;
+    z-index: map.get(vars.$layers, $name) + $modifier;
 }
 
 //------- Media - Breakpoints --------------
 @mixin media($name) {
 
     // If the key exists in the map
-    @if map-has-key($breakpoints, $name) {
+    @if map.has-key(vars.$breakpoints, $name) {
 
         // Prints a media query based on the value
-        @media #{inspect( map-get( $breakpoints, $name ) )} {
+        @media #{meta.inspect( map.get( vars.$breakpoints, $name ) )} {
             @content;
         }
+    }
+}
+
+//------- Custom - Breakpoints --------------
+@mixin customMedia($target: "data-container", $name) {
+    @if map.has-key(vars.$breakpoints, $name) {
+        $condition: map.get(vars.$breakpoints, $name);
+
+        @container #{$target} (#{meta.inspect($condition)}) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "No breakpoint named `#{$name}` found in \$breakpoints.";
     }
 }
 
@@ -145,10 +182,24 @@
 }
 
 @mixin pseudo-icon($name, $family: "regular", $element: before, $display: inline-block) {
-    @include pseudo($element, fa-content(get-from-map($fa-icons, $name)), $display) {
-        $family: get-icon-family($family);
-        font-family: nth($family, 1), sans-serif;
-        font-weight: nth($family, 2);
+    @include pseudo($element, fa.fa-content(func.get-from-map(fa.$fa-icons, $name)), $display) {
+        $family: func.get-icon-family($family);
+        font-family: list.nth($family, 1), sans-serif;
+        font-weight: list.nth($family, 2);
         @content;
     }
+}
+
+// ----- Hidden styles ----------------
+%visually-hidden {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
 }

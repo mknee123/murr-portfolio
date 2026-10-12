@@ -8,12 +8,10 @@
  *
  */
 $library = [
-    // 'vendor/autoload.php', //Required 1st
-    'lib/helpers.php', //Required 2nd
+    'lib/helpers.php', //Required 1st
     'lib/assets.php',
     'lib/blocks.php',
     'lib/hooks.php',
-    'lib/shareLink.php',
     'lib/theme.php',
 ];
 

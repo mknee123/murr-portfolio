@@ -1,76 +1,7 @@
 /**
  * /resources/styles/global/layouts.scss
- *
- * Let's define our singular page/post styles
- *
- * - Single Post Entry Content
- *
  */
-
-.single {
-    .post-container {
-        margin: 0 auto;
-        max-width: var(--wp--style--global--content-size);
-        position: relative;
-    }
-
-    .entry-content {
-        max-width: var(--wp--custom--layout--post);
-        padding: var(--wp--custom--spacing--grid-gap-3) var(--wp--custom--spacing--viewport-padding-mobile);
-
-        @include media("menu+") {
-            padding: var(--wp--custom--spacing--grid-gap-3) 0;
-        }
-    }
-}
-
-.post {
-    &--pagination {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: space-between;
-        max-width: var(--wp--custom--layout--post);
-        padding: 0 var(--wp--custom--spacing--viewport-padding-mobile) var(--wp--custom--spacing--block-gap-large);
-
-        @include media("menu+") {
-            padding: 0 0 var(--wp--custom--spacing--group-padding-1);
-        }
-
-        a {
-            font-weight: 400;
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-    }
-
-    &__button a {
-        @extend %button-styles;
-        align-items: center;
-        background-color: var(--secondary-btn);
-        color: var(--background);
-        display: flex;
-        gap: 0.5rem;
-        text-decoration: none;
-    }
-
-    &__breadcrumbs {
-        flex: 1;
-
-        @include media("medium") {
-            flex: 0 0 100%;
-        }
-    }
-
-    &__button {
-        @include media("medium") {
-            order: 2;
-        }
-    }
-}
+@use "../global/mixins" as mix;
 
 // ----- Archive & Search --------------------
 .archive,
@@ -83,7 +14,7 @@
         max-width: var(--wp--style--global--content-size);
         padding: 6rem var(--wp--custom--spacing--viewport-padding-mobile) 3rem;
 
-        @include media("menu+") {
+        @include mix.media("menu+") {
             padding: 5rem 0;
         }
 

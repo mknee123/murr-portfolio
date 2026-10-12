@@ -1,0 +1,8 @@
+node_modules
+
+*.yml
+plugins/
+mu-plugins/
+public/
+wp/*
+*.php

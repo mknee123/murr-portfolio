@@ -1,53 +1,161 @@
 <?php
 
 /**
- * Name:               assets.php
- * Version:            1.0.0
- * Author:             GH Advertising
+ * Name:      assets.php
+ * Version:   1.0.1
+ * Author:    MK
  */
-
-use GHInt\Assets\Bundle;
-use GHInt\Assets\Locator;
-use GHInt\Assets\Resources\Scripts\Script;
-use GHInt\Assets\Resources\Styles\Style;
-
-// Load all Theme Assets
-(new Bundle([
-    // Styles
-    Locator::styles(settings: [
-        'styles/core' => ['preload' => true],
-        'styles/editor' => ['admin' => true],
-    ]),
-
-    // Scripts
-    Locator::scripts(settings: [
-        'scripts/core' => ['preload' => true, 'defer' => true, 'in_footer' => true],
-        'scripts/posts' => ['preload' => true, 'defer' => true, 'in_footer' => true],
-        'scripts/editor' => ['admin' => true],
-    ])->add(new Script(
-        'jquery',
-        'https://code.jquery.com/jquery-3.6.4.min.js',
-        ver: '3.6.4',
-        preload: true,
-    ), 'jquery')->add(new Script(
-        'font-awesome-kit',
-        'https://kit.fontawesome.com/03b186b2f2.js', //TODO GH default kit, be sure to create and update with client kit
-        inFooter: true,
-        preload: true,
-    ), 'font-awesome-kit'),
-
-    // Blocks
-    Locator::blocks(),
-]))->enable();
 
 /**
- * Core script overrides
- * Happens before the above
+ * Only load block assets when their block appears on the page.
+ * WordPress 6.8+ honours these filters and skips the blanket enqueue.
+ */
+add_filter('should_load_separate_core_block_assets', '__return_true');
+add_filter('should_load_block_assets_on_demand', '__return_true');
+
+/**
+ * Helpers for versioned assets.
+ */
+function murr_asset_version(string $path): ?string {
+    $full = get_theme_file_path(ltrim($path, '/'));
+    return file_exists($full) ? (string)filemtime($full) : null;
+}
+
+/**
+ * Load script dependencies/version from wp-scripts asset metadata.
+ */
+function murr_script_asset(string $path): array {
+    $asset_path = preg_replace('/\.js$/', '.asset.php', $path);
+    if ($asset_path) {
+        $full_asset = get_theme_file_path(ltrim($asset_path, '/'));
+        if (file_exists($full_asset)) {
+            $asset = require $full_asset;
+            return [
+                'deps' => $asset['dependencies'] ?? [],
+                'version' => $asset['version'] ?? murr_asset_version($path),
+            ];
+        }
+    }
+
+    return [
+        'deps' => [],
+        'version' => murr_asset_version($path),
+    ];
+}
+
+/**
+ * Recursively find block.json files within a base directory.
+ *
+ * @return array<int, string>
+ */
+function murr_find_block_jsons(string $base_dir): array {
+    $root = get_theme_file_path(ltrim($base_dir, '/'));
+    if (!is_dir($root)) {
+        return [];
+    }
+
+    $files = [];
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::SELF_FIRST
+    );
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getFilename() === 'block.json') {
+            $files[] = $file->getRealPath();
+        }
+    }
+
+    return $files;
+}
+
+/**
+ * Front-end assets.
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_dequeue_script('jquery');
-    wp_deregister_script('jquery');
-}, 1);
+    $fontawesome_css = 'public/styles/fontawesome.css';
+    if (file_exists(get_theme_file_path($fontawesome_css))) {
+        // wp_enqueue_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
+        wp_register_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
+    }
+
+    $core_css = 'public/styles/core.css';
+    if (file_exists(get_theme_file_path($core_css))) {
+        $deps = wp_style_is('murr-fontawesome', 'registered') ? ['murr-fontawesome'] : [];
+        wp_enqueue_style('murr-core', asset($core_css), $deps, murr_asset_version($core_css));
+    }
+
+    // $fontawesome_js = 'public/scripts/fontawesome.js';
+    // if (file_exists(get_theme_file_path($fontawesome_js))) {
+    //     $asset = murr_script_asset($fontawesome_js);
+    //     wp_enqueue_script('murr-fontawesome', asset($fontawesome_js), $asset['deps'], $asset['version'], true);
+    // }
+
+    $core_js = 'public/scripts/core.js';
+    if (file_exists(get_theme_file_path($core_js))) {
+        $asset = murr_script_asset($core_js);
+        wp_enqueue_script('murr-core', asset($core_js), $asset['deps'], $asset['version'], true);
+    }
+
+    $posts_js = 'public/scripts/posts.js';
+    if (file_exists(get_theme_file_path($posts_js))) {
+        $asset = murr_script_asset($posts_js);
+        wp_enqueue_script('murr-posts', asset($posts_js), $asset['deps'], $asset['version'], true);
+    }
+});
+
+/**
+ * Editor assets.
+ */
+add_action('enqueue_block_editor_assets', function () {
+    $editor_css = 'public/styles/editor.css';
+    if (file_exists(get_theme_file_path($editor_css))) {
+        wp_enqueue_style('murr-editor', asset($editor_css), [], murr_asset_version($editor_css));
+    }
+
+    $editor_js = 'public/scripts/editor.js';
+    if (file_exists(get_theme_file_path($editor_js))) {
+        $asset = murr_script_asset($editor_js);
+        wp_enqueue_script('murr-editor', asset($editor_js), $asset['deps'], $asset['version'], true);
+    }
+});
+
+/**
+ * Register custom blocks from built assets if available.
+ */
+function murr_register_all_blocks() {
+    $core_blocks = 'public';
+    $path = get_theme_file_path(ltrim($core_blocks, '/'));
+
+
+    wp_register_block_types_from_metadata_collection(
+        $path . '/blocks',
+        $path . '/blocks-manifest.php'
+    );
+}
+add_action('init', 'murr_register_all_blocks');
+
+
+
+// add_action('ghint/wp_head_priority', function () {
+//     if (is_admin()) {
+//         return;
+//     }
+
+//     $preload = function (string $path, string $as, bool $crossorigin = false) {
+//         static $printed = [];
+//         if (!$path || isset($printed[$path])) {
+//             return;
+//         }
+//         $printed[$path] = true;
+
+//         printf(
+//             '<link rel="preload" href="%1$s" as="%2$s"%3$s />' . PHP_EOL,
+//             esc_url(asset($path)),
+//             esc_attr($as),
+//             $crossorigin ? ' crossorigin="anonymous"' : ''
+//         );
+//     };
+// });
 
 // Mime types - support .svg in media library
 add_filter('upload_mimes', function ($mime_types) {

@@ -6,4 +6,4 @@
 # Example: ./bin/push.sh wordmove push -e staging -u
 # Example: ./bin/push.sh wordmove push -e staging -du
 
-docker compose -f cli.yml run --rm $@
+docker compose -f cli.yml run --rm "$@"

@@ -3,7 +3,7 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
-# GH Recommended Ignore Items
+# Recommended Ignore Items
 .env
 backup/*.sql
 backup/*.xml
