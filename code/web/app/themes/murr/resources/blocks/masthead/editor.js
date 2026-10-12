@@ -8,13 +8,13 @@ import icons from "@scripts/icon.js";
 
 const { name } = block;
 
-const Video = ({ sources, children, style = {} }) => {
+const Video = ({ sources, children, poster, style = {} }) => {
     const order = ["video/webm", "video/mp4"];
     const sorted = [...sources].sort(function (a, b) {
         return order.indexOf(a.mime) - order.indexOf(b.mime);
     });
     return (
-        <video width="100%" height="100%" preload="metadata" loop autoPlay playsInline muted style={style}>
+        <video width="100%" height="100%" preload="metadata" loop autoPlay playsInline muted poster={poster} style={style}>
             {sorted.map((vid) => (
                 <source key={vid.id} src={vid.url} type={vid.mime} />
             ))}
@@ -25,7 +25,7 @@ const Video = ({ sources, children, style = {} }) => {
 
 const getMediaUrl = (media) => media?.sizes?.full?.url ?? media?.url ?? null;
 
-const Background = ({ format, sources, size = "cover", position = ["center", "center"] }) => {
+const Background = ({ format, sources, fallback = null, size = "cover", position = ["center", "center"] }) => {
     const style = { objectFit: size, objectPosition: position.join(" ") };
     const isVideo = format === "video" || (sources[0]?.mime && sources[0].mime.startsWith("video"));
     if (isVideo) {
