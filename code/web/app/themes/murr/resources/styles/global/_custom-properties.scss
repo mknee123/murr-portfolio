@@ -20,12 +20,14 @@
     --white: #fff;
     //Theme button palette
     --primary-btn: var(--secondary);
+    --primary-btn-750: var(--secondary-750);
     --primary-btn-500: var(--secondary-500);
     --secondary-btn: var(--primary);
+    --secondary-btn-750: var(--primary-750);
     --secondary-btn-500: var(--primary-500);
     //Theme font-families
-    --font-family-headline: Georgia, serif;
-    --font-family-body: verdana, sans-serif;
+    --font-family-headline: var(--wp--preset--font-family--georgia);
+    --font-family-body: var(--wp--preset--font-family--verdana);
     //Theme logo credit
     --mk-brand: var(--primary);
     // --mk-brand-light: #3ca6c9;

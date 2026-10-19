@@ -6,6 +6,7 @@ services:
     build:
       target: base
     entrypoint: ["composer"]
+    working_dir: /app
     volumes:
       - ./code:/app
     networks:

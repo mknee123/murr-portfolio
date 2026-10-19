@@ -27,6 +27,11 @@ $text-sizes: (
 
 @include mix.headings;
 
+// Keep heading utility classes consistent with theme.json headings.
+:where(.h1, .h2, .h3, .h4, .h5, .h6) {
+    font-family: var(--font-family-headline);
+}
+
 .h1 {
     font-size: var(--wp--preset--font-size--x-large);
 }

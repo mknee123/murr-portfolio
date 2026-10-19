@@ -19,6 +19,7 @@
     &__column {
         align-items: center;
         display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
@@ -58,28 +59,27 @@
     }
 
     &__nav {
-        flex: 1;
+        // flex: 1;
 
         ul {
             list-style: none;
         }
 
-        a {
-            @extend %button-styles;
-            background-color: var(--primary-btn);
-            color: var(--background);
-            display: block;
-            text-align: center;
-            text-decoration: none;
-        }
-
         &--primary {
-            font-size: var(--wp--preset--font-size--big);
 
             ul {
                 display: flex;
                 gap: 1.5rem;
                 text-align: center;
+            }
+
+            a {
+                @extend %button-styles;
+                background-color: var(--primary-btn);
+                color: var(--background);
+                display: block;
+                text-align: center;
+                text-decoration: none;
             }
         }
 
@@ -89,7 +89,7 @@
             justify-content: center;
 
             a {
-                color: var(--tertiary);
+                color: var(--primary-750);
                 text-decoration: underline;
             }
         }
@@ -121,6 +121,10 @@
         &__column {
             align-items: flex-start;
             text-align: left;
+        }
+
+        &__nav {
+            align-items: flex-end;
         }
 
         &__contact {

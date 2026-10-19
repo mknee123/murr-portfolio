@@ -48,6 +48,15 @@
 
         &--bg-#{$name}::after {
             background-color: $color;
+            transition: background-color 0.5s ease-out;
+        }
+    }
+
+    &--bg-primary-500 {
+
+        &:hover::after,
+        &:focus-visible::after {
+            background-color: var(--primary);
         }
     }
 

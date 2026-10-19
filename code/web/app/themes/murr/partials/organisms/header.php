@@ -28,41 +28,7 @@ $modifier = $showNav ? '' : 'o-header__logo--center';
                     'menu_class' => '',
                 ]);
                 ?>
-                <div class="<?= $class ?>__nav-search">
-                    <?php get_template_part(
-                        'partials/organisms/form',
-                        'search',
-                        [
-                            'color' => 'reversed',
-                            'style' => 'wide',
-                            'id' => 'search_form_nav_mobile'
-                        ]
-                    );
-                    ?>
-                </div>
-                <button id="search-icon" class="<?= $class ?>__nav-search-icon" aria-label="<?= __('Search site', 'ghint') ?>"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-
         </div>
     </div>
 </header>
-<div class="o-search-overlay" id="search-overlay">
-    <button class="o-search-overlay__trigger">
-        <span class="screen-reader-only"><?= __('Close the search overlay.', 'ghint') ?></span>
-    </button>
-    <div class="o-search-overlay__inner">
-        <?php
-        get_template_part(
-            'partials/organisms/form',
-            'search',
-            [
-                'label' => __('Search the website.', 'ghint'),
-                'placeholder' => __('What are you looking for?', 'ghint'),
-                'color' => 'reversed',
-                'style' => 'wide',
-                'id' => 'search_form_overlay'
-            ]
-        );
-        ?>
-    </div>
-</div>

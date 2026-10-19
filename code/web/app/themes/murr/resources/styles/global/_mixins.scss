@@ -49,8 +49,7 @@
     height: auto;
     border: 2px solid transparent;
     font-size: var(--wp--custom--font-size--button-default);
-    text-transform: uppercase;
-    border-radius: 0;
+    border-radius: 0.25rem;
     position: relative;
     transition: color .25s ease-out, background-color .25s ease-out;
 
@@ -78,7 +77,7 @@
     //Prevents hover styles on disabled
     &:hover:not([disabled]),
     &.has-primary-btn-background-color:hover:not([disabled]) {
-        background-color: var(--primary-btn-500);
+        background-color: var(--primary-btn-750);
     }
 
     &:focus,

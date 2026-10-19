@@ -110,15 +110,24 @@
             &:not(.a-button) > a,
             .o-header__dropdown-wrapper > a {
                 border: 0;
-                color: var(--foreground);
+                color: var(--primary-950);
                 display: block;
                 flex: 1;
                 font-family: var(--font-family-headline);
                 font-size: var(--wp--preset--font-size--big);
+                font-weight: 600;
                 padding: 1.125rem;
                 position: relative;
                 text-decoration: none;
                 transition: color 0.25s ease;
+
+                &:active {
+                    color: var(--secondary-750);
+                }
+
+                &:hover {
+                    color: var(--secondary);
+                }
             }
         }
 
@@ -302,6 +311,7 @@
             }
 
             .menu-item-has-children {
+
                 &:focus-within .sub-menu,
                 &:hover .sub-menu {
                     opacity: 1;

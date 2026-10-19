@@ -41,23 +41,23 @@ $copyright_text = $args['copyright_text'] ?? '';
                 <a class="a-icon a-icon--bg-primary-500 a-icon--github" href="https://github.com/mknee123" title="Navigate to Miranda's Github"></a>
             </div>
         </div>
-        <div class="<?= $class ?>__column">
-            <div class="<?= $class ?>__nav <?= $class ?>__nav--primary">
-                <?php
-                // footer-primary navigation menu
-                if (has_nav_menu('footer-primary')) {
-                    wp_nav_menu(
-                        [
-                            'theme_location'  => 'footer-primary',
-                            'menu_class'      => 'menu menu--footer',
-                            'container'       => 'nav',
-                            'container_class' => 'footer-menu-wrap',
-                        ]
-                    );
-                }
-                ?>
-            </div>
+        <!-- <div class=""> -->
+        <div class="<?= $class ?>__column <?= $class ?>__nav <?= $class ?>__nav--primary">
+            <?php
+            // footer-primary navigation menu
+            if (has_nav_menu('footer-primary')) {
+                wp_nav_menu(
+                    [
+                        'theme_location'  => 'footer-primary',
+                        'menu_class'      => 'menu menu--footer',
+                        'container'       => 'nav',
+                        'container_class' => 'footer-menu-wrap',
+                    ]
+                );
+            }
+            ?>
         </div>
+        <!-- </div> -->
     </div>
     <div class="<?= $class ?>__copyright <?= $class ?>__inner">
         <div class="<?= $class ?>__logo">

@@ -63,12 +63,12 @@
             "defaultFontSizes": false,
             "fontFamilies": [
                 {
-                    "fontFamily": "var(--font-family-headline)",
+                    "fontFamily": "Georgia, serif",
                     "name": "Georgia",
                     "slug": "georgia"
                 },
                 {
-                    "fontFamily": "var(--font-family-body)",
+                    "fontFamily": "Verdana, sans-serif",
                     "name": "Verdana",
                     "slug": "verdana"
                 }
@@ -138,7 +138,7 @@
                 "link": "var(--secondary)"
             },
             "font-size": {
-                "button-default": "var(--wp--preset--font-size--big)",
+                "button-default": "var(--wp--preset--font-size--medium)",
                 "button-micro": "var(--wp--preset--font-size--small)"
             },
             "forms": {
@@ -186,8 +186,8 @@
             }
         },
         "layout": {
-            "contentSize": "1120px",
-            "wideSize": "1440px"
+            "contentSize": "62rem",
+            "wideSize": "90rem"
         },
         "spacing": {
             "blockGap": true,
@@ -228,14 +228,14 @@
             "text": "var(--foreground)"
         },
         "typography": {
-            "fontFamily": "var(--font-family-body)",
+            "fontFamily": "var:preset|font-family|verdana",
             "fontSize": "var(--wp--preset--font-size--medium)",
             "lineHeight": "var(--wp--custom--line-height--medium)"
         },
         "elements": {
             "button": {
                 "typography": {
-                    "fontSize": "var(--wp--preset--font-size--big)"
+                    "fontSize": "var(--wp--preset--font-size--medium)"
                 }
             },
             "heading": {
@@ -243,7 +243,7 @@
                     "text": "var(--primary)"
                 },
                 "typography": {
-                    "fontFamily": "var(--font-family-headline)",
+                    "fontFamily": "var:preset|font-family|georgia",
                     "lineHeight": "var(--wp--custom--line-height--small)"
                 }
             },
