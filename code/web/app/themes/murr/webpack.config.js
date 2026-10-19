@@ -29,6 +29,7 @@ const extraEntry = mapEntries("script", (value) => ({
 const extraStyle = mapEntries("style", () => "styles/[name].css");
 
 // Override styles
+defaultConfig.plugins = defaultConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin));
 defaultConfig.plugins.forEach((plugin, i, plugins) => {
     if (plugin instanceof MiniCSSExtractPlugin) {
         plugins[i] = new MiniCSSExtractPlugin({
@@ -36,9 +37,6 @@ defaultConfig.plugins.forEach((plugin, i, plugins) => {
                 return pathData.chunk.name in extraStyle ? extraStyle[pathData.chunk.name] : "[name].css";
             },
         });
-    }
-    if (plugin instanceof RtlCssPlugin) {
-        delete plugins[i];
     }
 });
 
