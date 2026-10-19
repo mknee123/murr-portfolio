@@ -74,7 +74,6 @@ function murr_find_block_jsons(string $base_dir): array {
 add_action('wp_enqueue_scripts', function () {
     $fontawesome_css = 'public/styles/fontawesome.css';
     if (file_exists(get_theme_file_path($fontawesome_css))) {
-        // wp_enqueue_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
         wp_register_style('murr-fontawesome', asset($fontawesome_css), [], murr_asset_version($fontawesome_css));
     }
 
@@ -83,12 +82,6 @@ add_action('wp_enqueue_scripts', function () {
         $deps = wp_style_is('murr-fontawesome', 'registered') ? ['murr-fontawesome'] : [];
         wp_enqueue_style('murr-core', asset($core_css), $deps, murr_asset_version($core_css));
     }
-
-    // $fontawesome_js = 'public/scripts/fontawesome.js';
-    // if (file_exists(get_theme_file_path($fontawesome_js))) {
-    //     $asset = murr_script_asset($fontawesome_js);
-    //     wp_enqueue_script('murr-fontawesome', asset($fontawesome_js), $asset['deps'], $asset['version'], true);
-    // }
 
     $core_js = 'public/scripts/core.js';
     if (file_exists(get_theme_file_path($core_js))) {
@@ -104,14 +97,26 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /**
- * Editor assets.
+ * Editor content styles, including the iframe canvas.
  */
-add_action('enqueue_block_editor_assets', function () {
+remove_action('enqueue_block_editor_assets', 'wp_enqueue_global_styles_css_custom_properties');
+add_action('enqueue_block_assets', function () {
+    if (!is_admin()) {
+        return;
+    }
+
+    wp_enqueue_global_styles_css_custom_properties();
+
     $editor_css = 'public/styles/editor.css';
     if (file_exists(get_theme_file_path($editor_css))) {
         wp_enqueue_style('murr-editor', asset($editor_css), [], murr_asset_version($editor_css));
     }
+});
 
+/**
+ * Editor UI scripts.
+ */
+add_action('enqueue_block_editor_assets', function () {
     $editor_js = 'public/scripts/editor.js';
     if (file_exists(get_theme_file_path($editor_js))) {
         $asset = murr_script_asset($editor_js);
@@ -136,26 +141,23 @@ add_action('init', 'murr_register_all_blocks');
 
 
 
-// add_action('ghint/wp_head_priority', function () {
-//     if (is_admin()) {
-//         return;
-//     }
+/**
+ * Preload the main stylesheet with the same URL and version as its enqueue.
+ */
+add_filter('wp_preload_resources', function (array $resources): array {
+    if (is_admin() || !wp_style_is('murr-core', 'enqueued')) {
+        return $resources;
+    }
 
-//     $preload = function (string $path, string $as, bool $crossorigin = false) {
-//         static $printed = [];
-//         if (!$path || isset($printed[$path])) {
-//             return;
-//         }
-//         $printed[$path] = true;
+    $style = wp_styles()->registered['murr-core'];
+    $url = add_query_arg('ver', $style->ver, $style->src);
+    $resources[] = [
+        'href' => apply_filters('style_loader_src', $url, 'murr-core'),
+        'as' => 'style',
+    ];
 
-//         printf(
-//             '<link rel="preload" href="%1$s" as="%2$s"%3$s />' . PHP_EOL,
-//             esc_url(asset($path)),
-//             esc_attr($as),
-//             $crossorigin ? ' crossorigin="anonymous"' : ''
-//         );
-//     };
-// });
+    return $resources;
+});
 
 // Mime types - support .svg in media library
 add_filter('upload_mimes', function ($mime_types) {
