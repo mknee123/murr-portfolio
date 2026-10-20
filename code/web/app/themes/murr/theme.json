@@ -71,6 +71,48 @@
                     "fontFamily": "Verdana, sans-serif",
                     "name": "Verdana",
                     "slug": "verdana"
+                },
+                {
+                    "fontFamily": "\"Montserrat\", sans-serif",
+                    "name": "Montserrat",
+                    "slug": "montserrat",
+                    "fontFace": [
+                        {
+                            "fontDisplay": "swap",
+                            "fontFamily": "Montserrat",
+                            "fontStyle": "normal",
+                            "fontWeight": "400 800",
+                            "src": ["file:./resources/fonts/Montserrat-VariableFont_wght.woff", "file:./resources/fonts/Montserrat-VariableFont_wght.woff2"]
+                        },
+                        {
+                            "fontDisplay": "swap",
+                            "fontFamily": "Montserrat",
+                            "fontStyle": "italic",
+                            "fontWeight": "400 800",
+                            "src": ["file:./resources/fonts/Montserrat-Italic-VariableFont_wght.woff", "file:./resources/fonts/Montserrat-Italic-VariableFont_wght.woff2"]
+                        }
+                    ]
+                },
+                {
+                    "fontFamily": "\"Open Sans\", sans-serif",
+                    "name": "Open Sans",
+                    "slug": "open-sans",
+                    "fontFace": [
+                        {
+                            "fontDisplay": "swap",
+                            "fontFamily": "Open Sans",
+                            "fontStyle": "normal",
+                            "fontWeight": "400 800",
+                            "src": ["file:./resources/fonts/OpenSans-VariableFont_wght.woff", "file:./resources/fonts/OpenSans-VariableFont_wght.woff2"]
+                        },
+                        {
+                            "fontDisplay": "swap",
+                            "fontFamily": "Open Sans",
+                            "fontStyle": "italic",
+                            "fontWeight": "400 800",
+                            "src": ["file:./resources/fonts/OpenSans-Italic-VariableFont_wght.woff", "file:./resources/fonts/OpenSans-Italic-VariableFont_wght.woff2"]
+                        }
+                    ]
                 }
             ],
             "fontSizes": [
@@ -192,6 +234,69 @@
         "spacing": {
             "blockGap": true,
             "customSpacingSize": false,
+            "defaultSpacingSizes": false,
+            "spacingSizes": [
+                {
+                    "slug": "10",
+                    "size": "0.5rem",
+                    "name": "Spacing 100"
+                },
+                {
+                    "slug": "15",
+                    "size": "clamp(0.625rem, 0.2381vw + 0.5357rem, 0.75rem)",
+                    "name": "Spacing 150"
+                },
+                {
+                    "slug": "20",
+                    "size": "clamp(0.75rem, 0.4762vw + 0.5714rem, 1rem)",
+                    "name": "Spacing 200"
+                },
+                {
+                    "slug": "25",
+                    "size": "clamp(1rem, 0.4762vw + 0.8214rem, 1.25rem)",
+                    "name": "Spacing 250"
+                },
+                {
+                    "slug": "30",
+                    "size": "clamp(1rem, 0.9524vw + 0.6429rem, 1.5rem)",
+                    "name": "Spacing 300"
+                },
+                {
+                    "slug": "40",
+                    "size": "clamp(1.25rem, 1.429vw + 0.7143rem, 2rem)",
+                    "name": "Spacing 400"
+                },
+                {
+                    "slug": "50",
+                    "size": "clamp(1.5rem, 1.905vw + 0.7857rem, 2.5rem)",
+                    "name": "Spacing 500"
+                },
+                {
+                    "slug": "60",
+                    "size": "clamp(1.75rem, 2.381vw + 0.8571rem, 3rem)",
+                    "name": "Spacing 600"
+                },
+                {
+                    "slug": "70",
+                    "size": "clamp(2rem, 2.857vw + 0.9286rem, 3.5rem)",
+                    "name": "Spacing 700"
+                },
+                {
+                    "slug": "80",
+                    "size": "clamp(2.5rem, 2.857vw + 1.429rem, 4rem)",
+                    "name": "Spacing 800"
+                },
+                {
+                    "slug": "90",
+                    "size": "clamp(3rem, 2.857vw + 1.929rem, 4.5rem)",
+                    "name": "Spacing 900"
+                },
+                {
+                    "slug": "100",
+                    "size": "clamp(3.5rem, 2.857vw + 2.429rem, 5rem)",
+                    "name": "Spacing 1000"
+                }
+            ],
             "units": ["px", "rem", "vh", "vw"]
         },
         "blocks": {
@@ -228,13 +333,14 @@
             "text": "var(--foreground)"
         },
         "typography": {
-            "fontFamily": "var:preset|font-family|verdana",
+            "fontFamily": "var:preset|font-family|open-sans",
             "fontSize": "var(--wp--preset--font-size--medium)",
             "lineHeight": "var(--wp--custom--line-height--medium)"
         },
         "elements": {
             "button": {
                 "typography": {
+                    "fontFamily": "var:preset|font-family|montserrat",
                     "fontSize": "var(--wp--preset--font-size--medium)"
                 }
             },
@@ -243,8 +349,9 @@
                     "text": "var(--primary)"
                 },
                 "typography": {
-                    "fontFamily": "var:preset|font-family|georgia",
-                    "lineHeight": "var(--wp--custom--line-height--small)"
+                    "fontFamily": "var:preset|font-family|montserrat",
+                    "fontWeight": "800",
+                    "lineHeight": "var(--wp--custom--line-height--tiny)"
                 }
             },
             "h1": {

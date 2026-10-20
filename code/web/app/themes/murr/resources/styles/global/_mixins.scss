@@ -44,22 +44,22 @@
 
 //------ Base button styles ---------------
 %button-styles {
-    display: inline-block;
-    padding: 0.5rem 0.75rem;
-    height: auto;
     border: 2px solid transparent;
-    font-size: var(--wp--custom--font-size--button-default);
     border-radius: 0.25rem;
+    display: inline-block;
+    font-size: var(--wp--custom--font-size--button-default);
+    height: auto;
+    padding: 0.5rem 0.75rem;
     position: relative;
     transition: color .25s ease-out, background-color .25s ease-out;
 
     &::before,
     &::after {
-        position: absolute;
+        bottom: 0%;
         left: 0%;
+        position: absolute;
         right: 0%;
         top: 0%;
-        bottom: 0%;
     }
 
     &:disabled {
