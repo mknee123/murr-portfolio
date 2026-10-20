@@ -1,13 +1,13 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "ghint/masthead",
+    "name": "murr/masthead",
     "title": "Masthead",
     "category": "mk-blocks",
     "description": "Full width background image or video",
     "keywords": ["image", "video", "masthead", "hero"],
     "version": "1.1.0",
-    "textdomain": "ghint",
+    "textdomain": "murr",
     "attributes": {
         "backgrounds": {
             "type": "array",
@@ -46,118 +46,7 @@
             "default": null
         }
     },
-    "example": {
-        "attributes": {
-            "backgrounds": [
-                {
-                    "id": 0,
-                    "alt": "",
-                    "sizes": {
-                        "full": {
-                            "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
-                        }
-                    }
-                }
-            ],
-            "format": "image",
-            "includeOverlay": true,
-            "overlayOpacity": 60
-        },
-        "innerBlocks": [
-            {
-                "name": "core/heading",
-                "attributes": {
-                    "content": "Hi. I'm Miranda!",
-                    "fontSize": "xx-large",
-                    "textColor": "secondary",
-                    "level": 1
-                }
-            },
-            {
-                "name": "core/paragraph",
-                "attributes": {
-                    "content": "Senior Web Platform Engineer"
-                }
-            }
-        ]
-    },
-    "variations": [
-        {
-            "name": "ghint/masthead-video",
-            "title": "Masthead Video",
-            "attributes": {
-                "format": "video"
-            },
-            "isActive": ["format"],
-            "example": {
-                "attributes": {
-                    "backgrounds": [
-                        {
-                            "id": 0,
-                            "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/gh_smiles_We_Are_GH_advertising.mp4",
-                            "mime": "video/mp4"
-                        }
-                    ],
-                    "fallback": {
-                        "id": 1,
-                        "alt": "",
-                        "sizes": {
-                            "full": {
-                                "url": "https://s3.amazonaws.com/cdn.garrisonhughes.com/gh/basetheme/blog-thumbnail-default.svg"
-                            }
-                        }
-                    }
-                },
-                "innerBlocks": [
-                    {
-                        "name": "core/heading",
-                        "attributes": {
-                            "content": "Hi. I'm Miranda!",
-                            "fontSize": "xx-large",
-                            "textColor": "secondary",
-                            "level": 1
-                        }
-                    },
-                    {
-                        "name": "core/paragraph",
-                        "attributes": {
-                            "content": "Senior Web Platform Engineer"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "name": "ghint/masthead-embed",
-            "title": "Masthead Embed",
-            "attributes": {
-                "embed": true
-            },
-            "isActive": ["embed"],
-            "example": {
-                "attributes": {
-                    "embedCode": "<iframe src='https://player.vimeo.com/video/890278826?background=1' width='640' height='360' frameborder='0' allow='autoplay; fullscreen'></iframe>"
-                },
-                "innerBlocks": [
-                    {
-                        "name": "core/heading",
-                        "attributes": {
-                            "content": "Hi. I'm Miranda!",
-                            "fontSize": "xx-large",
-                            "textColor": "secondary",
-                            "level": 1
-                        }
-                    },
-                    {
-                        "name": "core/paragraph",
-                        "attributes": {
-                            "content": "Senior Web Platform Engineer."
-                        }
-                    }
-                ]
-            }
-        }
-    ],
+    "example": {},
     "viewScript": "file:./front.js",
     "editorScript": "file:./editor.js",
     "style": "file:./front.css",

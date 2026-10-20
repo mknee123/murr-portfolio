@@ -29,7 +29,7 @@ $embedCode = $attributes['embedCode'] ?? '';
             get_template_part(
                 "partials/atoms/$format",
                 null,
-                apply_filters("ghint/block/masthead-$format-backgrounds", $backgrounds, $attributes, $block)
+                apply_filters("murr/block/masthead-$format-backgrounds", $backgrounds, $attributes, $block)
             );
         } else if ($embed && $embedCode) {
             echo $embedCode;

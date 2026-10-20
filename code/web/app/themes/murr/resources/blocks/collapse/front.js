@@ -12,10 +12,10 @@ import "./index.scss";
             const $content = $this.siblings(`${selector}__content`);
             const action = $content.is(":visible") ? "close" : "open";
 
-            [`ghint:${action}`, "ghint:toggle"].forEach((trigger) => {
+            [`murr:${action}`, "murr:toggle"].forEach((trigger) => {
                 $this.trigger(trigger, [className, $wrap]);
             });
-        }).on("ghint:toggle", (e) => {
+        }).on("murr:toggle", (e) => {
             const $this = $(e.currentTarget);
             $this.find(`${selector}__content`).slideToggle();
             $this.toggleClass(`${className}--toggled`);

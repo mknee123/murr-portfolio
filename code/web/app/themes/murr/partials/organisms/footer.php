@@ -74,7 +74,7 @@ $copyright_text = $args['copyright_text'] ?? '';
                 wp_nav_menu(
                     [
                         'theme_location'  => 'footer-bottom',
-                        'menu'            => __('Footer Legal Navigation Menu', 'ghint'),
+                        'menu'            => __('Footer Legal Navigation Menu', 'murr'),
                         'container'       => 'nav',
                     ]
                 );

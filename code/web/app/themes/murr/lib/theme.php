@@ -16,9 +16,9 @@ add_action('after_setup_theme', function () {
      */
     register_nav_menus(
         [
-            'primary'           => esc_html__('Primary Navigation Menu', 'ghint'),
-            'footer-primary'    => esc_html__('Footer Primary Navigation Menu', 'ghint'),
-            'footer-bottom'     => esc_html__('Footer Bottom Navigation Menu', 'ghint'),
+            'primary'           => esc_html__('Primary Navigation Menu', 'murr'),
+            'footer-primary'    => esc_html__('Footer Primary Navigation Menu', 'murr'),
+            'footer-bottom'     => esc_html__('Footer Bottom Navigation Menu', 'murr'),
         ]
     );
 
@@ -44,7 +44,7 @@ add_action('after_setup_theme', function () {
     /**
      * Load theme translations
      */
-    load_theme_textdomain('ghint', get_template_directory() . '/languages');
+    load_theme_textdomain('murr', get_template_directory() . '/languages');
 });
 
 /**

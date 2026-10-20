@@ -13,8 +13,8 @@ get_template_part('partials/header');
 <main class="search search--container" role="main">
     <?php if (!have_posts()) : ?>
         <div class="search__no-results">
-            <h1 class="h4 text--c-secondary text--uppercase text--c-tertiary"><?php _e('No Results', 'ghint'); ?>.</h1>
-            <h2 class="h1 text--c-primary"><?php _e('Can we help you find something else?', 'ghint'); ?></h2>
+            <h1 class="h4 text--c-secondary text--uppercase text--c-tertiary"><?php _e('No Results', 'murr'); ?>.</h1>
+            <h2 class="h1 text--c-primary"><?php _e('Can we help you find something else?', 'murr'); ?></h2>
             <?php get_template_part(
                 'partials/organisms/form',
                 'search',
@@ -29,7 +29,7 @@ get_template_part('partials/header');
 
     if (have_posts()) : ?>
         <div class="search__sidebar">
-            <h1 class="h4 text--c-secondary text--uppercase"><?= sprintf(__('%d Result(s) for %s', 'ghint'), $wp_query->found_posts, $_GET['s']); ?></h1>
+            <h1 class="h4 text--c-secondary text--uppercase"><?= sprintf(__('%d Result(s) for %s', 'murr'), $wp_query->found_posts, $_GET['s']); ?></h1>
         </div>
         <div class="search__posts">
             <?php
@@ -49,7 +49,7 @@ get_template_part('partials/header');
                             'excerpt' => get_the_excerpt(),
                             'link' => [
                                 'url' => get_the_permalink(),
-                                'text' => __('Visit Page', 'ghint'),
+                                'text' => __('Visit Page', 'murr'),
                             ]
                         ]
                     ]

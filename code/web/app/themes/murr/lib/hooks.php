@@ -16,7 +16,7 @@ function get_breadcrumb($post_type) {
     $cat = $categories[0]->name;
 
     echo '<p class="text--font-size-small">';
-    echo __('News', 'ghint');
+    echo __('News', 'murr');
     if ($cat) {
         echo ' <i class="text--c-secondary fa-regular fa-caret-right"></i> ';
         echo '<span class="text--uppercase">' . $cat . '</span>';

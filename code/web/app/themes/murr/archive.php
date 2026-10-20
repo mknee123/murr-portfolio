@@ -16,8 +16,8 @@ get_template_part('partials/header');
     if (have_posts()) :
     ?>
         <div class="archive__sidebar">
-            <h1 class="h4 text--c-secondary text--uppercase"><?= sprintf(__('%d Result(s) for %s', 'ghint'), $wp_query->found_posts, $cat->name); ?></h1>
-            <p class="text--font-size--huge"><?php _e('Checkout other categories', 'ghint'); ?></p>
+            <h1 class="h4 text--c-secondary text--uppercase"><?= sprintf(__('%d Result(s) for %s', 'murr'), $wp_query->found_posts, $cat->name); ?></h1>
+            <p class="text--font-size--huge"><?php _e('Checkout other categories', 'murr'); ?></p>
             <?php
             $otherCategories = wp_list_categories(array(
                 'orderby' => 'name',
@@ -39,7 +39,7 @@ get_template_part('partials/header');
                             'excerpt' => get_the_excerpt(),
                             'link' => [
                                 'url' => get_the_permalink(),
-                                'text' => __('Visit Page', 'ghint'),
+                                'text' => __('Visit Page', 'murr'),
                             ]
                         ]
                     ]

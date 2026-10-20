@@ -6,7 +6,7 @@
  * Author:   MK
  */
 
-namespace GHInt\Blocks;
+namespace murr\Blocks;
 
 /**
  * add custom block category for ACF blocks
@@ -18,7 +18,7 @@ add_filter('block_categories_all', function ($categories, $context) {
     if (empty($exists)) {
         $categories[] = [
             'slug' => 'mk-blocks',
-            'title' => __('Murr Blocks', 'ghint'),
+            'title' => __('Murr Blocks', 'murr'),
             'icon' => null,
         ];
     }
@@ -29,11 +29,11 @@ add_filter('block_categories_all', function ($categories, $context) {
 /**
  * Masthead Block Filters
  */
-add_filter('ghint/block/masthead-image-backgrounds', fn(array $backgrounds, array $attributes) => [
+add_filter('murr/block/masthead-image-backgrounds', fn(array $backgrounds, array $attributes) => [
     'src' => $backgrounds[0]['url'],
     'alt' => $backgrounds[0]['alt'],
     'lazy' => apply_filters(
-        'ghint/block/masthead-image-backgrounds-lazy',
+        'murr/block/masthead-image-backgrounds-lazy',
         false,
         $backgrounds[0]
     ),
@@ -42,7 +42,7 @@ add_filter('ghint/block/masthead-image-backgrounds', fn(array $backgrounds, arra
         sprintf('object-position: %s', implode(' ', $attributes['objectPosition'] ?? ['center', 'center'])),
     ]),
 ], 10, 2);
-add_filter('ghint/block/masthead-video-backgrounds', fn(array $backgrounds, array $attributes) => [
+add_filter('murr/block/masthead-video-backgrounds', fn(array $backgrounds, array $attributes) => [
     'loop' => true,
     'autoPlay' => true,
     'muted' => true,
@@ -61,10 +61,10 @@ add_filter('ghint/block/masthead-video-backgrounds', fn(array $backgrounds, arra
     ]),
 ], 10, 2);
 
-add_filter('ghint/atoms/video-sources-sort', function (array $sources) {
+add_filter('murr/atoms/video-sources-sort', function (array $sources) {
     $order = ["video/webm", "video/mp4"];
     usort($sources, apply_filters(
-        'ghint/atoms/video-sources-sort-override',
+        'murr/atoms/video-sources-sort-override',
         fn($a, $b) => array_search($a['type'], $order) <=> array_search($b['type'], $order),
         $sources,
     ));

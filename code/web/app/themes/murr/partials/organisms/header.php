@@ -11,7 +11,7 @@ $modifier = $showNav ? '' : 'o-header__logo--center';
             </div>
             <?php if ($showNav) : ?>
                 <button class="<?= $class ?>__nav-control">
-                    <span class="screen-reader-only"><?= __('Menu', 'ghint') ?></span>
+                    <span class="screen-reader-only"><?= __('Menu', 'murr') ?></span>
                 </button>
             <?php endif; ?>
         </div>
@@ -24,7 +24,7 @@ $modifier = $showNav ? '' : 'o-header__logo--center';
                     'theme_location' => 'primary',
                     'container' => 'nav',
                     'container_class' => $class . '__nav-menu',
-                    'menu' => __('Header Navigation Menu', 'ghint'),
+                    'menu' => __('Header Navigation Menu', 'murr'),
                     'menu_class' => '',
                 ]);
                 ?>

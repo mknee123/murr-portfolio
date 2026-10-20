@@ -1,6 +1,6 @@
 <?php
 
-use GHInt\Theme\Post\ShareLink;
+use murr\Theme\Post\ShareLink;
 
 /**
  * @var array $args
@@ -12,7 +12,7 @@ if ($links = $args['links']) : ?>
         <div class="m-share-links__inner">
             <ul class="m-share-links__list">
                 <li class="m-share-links__heading h6 text--c-primary text--uppercase">
-                    <?= $args['heading'] ?? __('Share', 'ghint') ?>
+                    <?= $args['heading'] ?? __('Share', 'murr') ?>
                 </li>
                 <?php foreach ($links as $id => $link) : ?>
                     <li class="m-share-links__link m-share-links__link--<?= $id; ?>">

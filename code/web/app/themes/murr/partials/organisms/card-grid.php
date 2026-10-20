@@ -25,8 +25,8 @@ $count = $postsQuery->found_posts;
                     'categories' => [
                         'type' => 'select',
                         'options' => [
-                            'label' => __('Category', 'ghint'),
-                            'defaultOption' => __('Showing all', 'ghint'),
+                            'label' => __('Category', 'murr'),
+                            'defaultOption' => __('Showing all', 'murr'),
                             'id' => 'news-filter-by-category',
                             'options' => $args['filters']['category'] ?? $category,
                             'keys' => true,
@@ -35,8 +35,8 @@ $count = $postsQuery->found_posts;
                     'search' => [
                         'type' => 'search',
                         'options' => [
-                            'label' => __('Search', 'ghint'),
-                            'placeholder' => __('Search by keyword', 'ghint'),
+                            'label' => __('Search', 'murr'),
+                            'placeholder' => __('Search by keyword', 'murr'),
                             'id' => 'news-filter-by-search',
                         ]
                     ],
@@ -90,7 +90,7 @@ $count = $postsQuery->found_posts;
                             'subheading' => $category_list,
                             'link' => [
                                 'url' => get_the_permalink(),
-                                'text' => __('Read More', 'ghint'),
+                                'text' => __('Read More', 'murr'),
                             ]
                         ]
                     ]

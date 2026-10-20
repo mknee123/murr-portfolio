@@ -11,10 +11,10 @@ get_template_part('partials/header');
             'partials/organisms/card',
             'grid',
             [
-                'title' => __('Browse News', 'ghint'),
+                'title' => __('Browse News', 'murr'),
                 'pagination' => [
                     'id' => 'load-news',
-                    'text' => __('Show More', 'ghint'),
+                    'text' => __('Show More', 'murr'),
                 ],
             ]
         );

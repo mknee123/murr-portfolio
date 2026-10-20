@@ -5,7 +5,7 @@
  * @var ShareLink $link
  */
 
-use GHInt\Theme\Post\ShareLink;
+use murr\Theme\Post\ShareLink;
 
 $link = $args['link'];
 ?>

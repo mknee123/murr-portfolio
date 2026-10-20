@@ -54,11 +54,11 @@ registerBlockType(name, {
     edit: ({ attributes, setAttributes }) => {
         const { format, backgrounds = [], includeOverlay = true, overlayOpacity = 40, objectSize = "cover", objectPosition = ["center", "center"], embed = false, embedCode = "", fallback = null } = attributes;
         const instructions = {
-            notAllowed: <strong>{__("To edit the background image, you need permission to upload media.", "ghint")}</strong>,
-            previewEmpty: <strong>{__("Use the editor panel to add a background.", "ghint")}</strong>,
-            add: __("Add Masthead Background", "ghint"),
-            edit: __("Edit Masthead Background", "ghint"),
-            addFallback: __("Add Fallback Image", "ghint"),
+            notAllowed: <strong>{__("To edit the background image, you need permission to upload media.", "murr")}</strong>,
+            previewEmpty: <strong>{__("Use the editor panel to add a background.", "murr")}</strong>,
+            add: __("Add Masthead Background", "murr"),
+            edit: __("Edit Masthead Background", "murr"),
+            addFallback: __("Add Fallback Image", "murr"),
         };
         const onSelectBackground = (newVal) => {
             const backgrounds = Array.isArray(newVal) ? newVal : [newVal];
@@ -91,16 +91,16 @@ registerBlockType(name, {
             <div {...useBlockProps()}>
                 <InspectorControls>
                     {embed && (
-                        <PanelBody title={__("Background Embed", "ghint")} initialOpen={true}>
-                            <TextareaControl label={__("Embed Code", "ghint")} help={__("Enter your <iframe> code here", "ghint")} value={embedCode} onChange={(embedCode) => setAttributes({ embedCode })} />
+                        <PanelBody title={__("Background Embed", "murr")} initialOpen={true}>
+                            <TextareaControl label={__("Embed Code", "murr")} help={__("Enter your <iframe> code here", "murr")} value={embedCode} onChange={(embedCode) => setAttributes({ embedCode })} />
                         </PanelBody>
                     )}
                     {!embed && (
-                        <PanelBody title={__("Background Cover", "ghint")} initialOpen={true}>
+                        <PanelBody title={__("Background Cover", "murr")} initialOpen={true}>
                             <ToggleControl
                                 __nextHasNoMarginBottom
-                                label={__("Include Overlay?", "ghint")}
-                                help={includeOverlay ? __("Show overlay", "ghint") : __("Hide overlay", "ghint")}
+                                label={__("Include Overlay?", "murr")}
+                                help={includeOverlay ? __("Show overlay", "murr") : __("Hide overlay", "murr")}
                                 checked={includeOverlay}
                                 onChange={() => setAttributes({ includeOverlay: !includeOverlay })}
                             />
@@ -109,7 +109,7 @@ registerBlockType(name, {
                             )}
                             <MediaUploadCheck fallback={instructions.notAllowed}>
                                 <MediaUpload
-                                    title={__("Select Background", "ghint")}
+                                    title={__("Select Background", "murr")}
                                     onSelect={onSelectBackground}
                                     allowedTypes={[format]}
                                     value={backgrounds.map((i) => i.id)}
@@ -119,7 +119,7 @@ registerBlockType(name, {
                                             <div className={"o-masthead-editor-logo image"}>
                                                 <Background format={format} sources={backgrounds} fallback={fallback} />
                                                 <Button className={"button"} onClick={() => setAttributes({ backgrounds: [], fallback: null })}>
-                                                    {__("Remove", "ghint")}
+                                                    {__("Remove", "murr")}
                                                 </Button>
                                             </div>
                                         ) : (
@@ -133,7 +133,7 @@ registerBlockType(name, {
                             {format === "video" && (
                                 <MediaUploadCheck fallback={instructions.notAllowed}>
                                     <MediaUpload
-                                        title={__("Select Fallback Image", "ghint")}
+                                        title={__("Select Fallback Image", "murr")}
                                         onSelect={onSelectFallback}
                                         allowedTypes={["image"]}
                                         value={fallback?.id ?? undefined}
@@ -143,7 +143,7 @@ registerBlockType(name, {
                                                 <div className={"o-masthead-editor-logo image"}>
                                                     <img src={getMediaUrl(fallback)} alt={fallback.alt || ""} />
                                                     <Button className={"button"} onClick={() => setAttributes({ fallback: null })}>
-                                                        {__("Remove", "ghint")}
+                                                        {__("Remove", "murr")}
                                                     </Button>
                                                 </div>
                                             ) : (
@@ -158,40 +158,40 @@ registerBlockType(name, {
                         </PanelBody>
                     )}
                     {!embed && (
-                        <PanelBody title={__("Background Styles", "ghint")}>
+                        <PanelBody title={__("Background Styles", "murr")}>
                             <SelectControl
                                 __next40pxDefaultSize
                                 __nextHasNoMarginBottom
-                                label={__("Background Size", "ghint")}
+                                label={__("Background Size", "murr")}
                                 value={objectSize}
                                 options={[
-                                    { label: _x("Cover", "Masthead Background Size", "ghint"), value: "cover" },
-                                    { label: _x("Contain", "Masthead Background Size", "ghint"), value: "contain" },
-                                    { label: _x("Fill", "Masthead Background Size", "ghint"), value: "fill" },
+                                    { label: _x("Cover", "Masthead Background Size", "murr"), value: "cover" },
+                                    { label: _x("Contain", "Masthead Background Size", "murr"), value: "contain" },
+                                    { label: _x("Fill", "Masthead Background Size", "murr"), value: "fill" },
                                     {
-                                        label: _x("Scale Down", "Masthead Background Size", "ghint"),
+                                        label: _x("Scale Down", "Masthead Background Size", "murr"),
                                         value: "scale-down",
                                     },
-                                    { label: _x("None", "Masthead Background Size", "ghint"), value: "none" },
+                                    { label: _x("None", "Masthead Background Size", "murr"), value: "none" },
                                 ]}
                                 onChange={(objectSize) => setAttributes({ objectSize })}
                             />
                             <SelectControl
                                 __next40pxDefaultSize
                                 __nextHasNoMarginBottom
-                                label={__("Background Position - Horizontal", "ghint")}
+                                label={__("Background Position - Horizontal", "murr")}
                                 value={objectPosition[0]}
                                 options={[
                                     {
-                                        label: _x("Left", "Masthead Background Position X", "ghint"),
+                                        label: _x("Left", "Masthead Background Position X", "murr"),
                                         value: "left",
                                     },
                                     {
-                                        label: _x("Center", "Masthead Background Position X", "ghint"),
+                                        label: _x("Center", "Masthead Background Position X", "murr"),
                                         value: "center",
                                     },
                                     {
-                                        label: _x("Right", "Masthead Background Position X", "ghint"),
+                                        label: _x("Right", "Masthead Background Position X", "murr"),
                                         value: "right",
                                     },
                                 ]}
@@ -200,19 +200,19 @@ registerBlockType(name, {
                             <SelectControl
                                 __next40pxDefaultSize
                                 __nextHasNoMarginBottom
-                                label={__("Background Position - Vertical", "ghint")}
+                                label={__("Background Position - Vertical", "murr")}
                                 value={objectPosition[1]}
                                 options={[
                                     {
-                                        label: _x("Top", "Masthead Background Position Y", "ghint"),
+                                        label: _x("Top", "Masthead Background Position Y", "murr"),
                                         value: "top",
                                     },
                                     {
-                                        label: _x("Center", "Masthead Background Position Y", "ghint"),
+                                        label: _x("Center", "Masthead Background Position Y", "murr"),
                                         value: "center",
                                     },
                                     {
-                                        label: _x("Bottom", "Masthead Background Position Y", "ghint"),
+                                        label: _x("Bottom", "Masthead Background Position Y", "murr"),
                                         value: "bottom",
                                     },
                                 ]}

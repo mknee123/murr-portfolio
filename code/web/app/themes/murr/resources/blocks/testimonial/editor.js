@@ -12,10 +12,10 @@ registerBlockType(block, {
         const { image, imageUrl, imageAlt, citation, title } = attributes;
 
         const instructions = {
-            notAllowed: <strong>{__("To edit the image, you need permission to upload media.", "ghint")}</strong>,
-            previewEmpty: <strong>{__("Use the editor panel to add an image.", "ghint")}</strong>,
-            add: __("Optional: Add Image", "ghint"),
-            edit: __("Edit Image", "ghint"),
+            notAllowed: <strong>{__("To edit the image, you need permission to upload media.", "murr")}</strong>,
+            previewEmpty: <strong>{__("Use the editor panel to add an image.", "murr")}</strong>,
+            add: __("Optional: Add Image", "murr"),
+            edit: __("Edit Image", "murr"),
         };
 
         const onImageSelect = (img) => {
@@ -25,10 +25,10 @@ registerBlockType(block, {
         return (
             <div {...useBlockProps()}>
                 <InspectorControls>
-                    <PanelBody title={__("Testimonial Citation", "ghint")} initialOpen={true}>
+                    <PanelBody title={__("Testimonial Citation", "murr")} initialOpen={true}>
                         <MediaUploadCheck fallback={instructions.notAllowed}>
                             <MediaUpload
-                                title={__("Select an image", "ghint")}
+                                title={__("Select an image", "murr")}
                                 onSelect={onImageSelect}
                                 allowedTypes={["image"]}
                                 value={image}
@@ -52,9 +52,9 @@ registerBlockType(block, {
                             />
                         </MediaUploadCheck>
                     </PanelBody>
-                    <PanelBody title={__("Citation", "ghint")} initialOpen={true}>
-                        <TextControl label={__("Optional: Author.", "ghint")} value={citation} onChange={(citation) => setAttributes({ citation })} />
-                        <TextControl label={__("Optional: Title or Position", "ghint")} value={title} onChange={(title) => setAttributes({ title })} />
+                    <PanelBody title={__("Citation", "murr")} initialOpen={true}>
+                        <TextControl label={__("Optional: Author.", "murr")} value={citation} onChange={(citation) => setAttributes({ citation })} />
+                        <TextControl label={__("Optional: Title or Position", "murr")} value={title} onChange={(title) => setAttributes({ title })} />
                     </PanelBody>
                 </InspectorControls>
                 <figure className={"o-testimonial"}>
@@ -65,7 +65,7 @@ registerBlockType(block, {
                                 [
                                     "core/paragraph",
                                     {
-                                        placeholder: __("A testimonial or review goes here ames vulputate adipiscing dictum ac gestas non a nunc arcu quis libero consequat tincidunt tortor.", "ghint"),
+                                        placeholder: __("A testimonial or review goes here ames vulputate adipiscing dictum ac gestas non a nunc arcu quis libero consequat tincidunt tortor.", "murr"),
                                         fontSize: "xx-large",
                                         textColor: "secondary",
                                     },

@@ -9,7 +9,7 @@ $className = array_merge(
         is_string($classes) ? explode(' ', $classes) : $classes
     )
 );
-$ariaLabel = $disable ? '' : __(' navigate to homepage', 'ghint');
+$ariaLabel = $disable ? '' : __(' navigate to homepage', 'murr');
 $style = $args['style'] ?? '';
 $id = $style ? $style . uniqid('-') : 'light' . uniqid('-');
 ?>

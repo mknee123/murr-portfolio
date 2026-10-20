@@ -39,7 +39,7 @@ $classModifier = $align ?: '';
                     '',
                     [
                         'url' => $cta,
-                        'text' => __('Read More', 'ghint'),
+                        'text' => __('Read More', 'murr'),
                         'class' => 'micro'
                     ]
                 );

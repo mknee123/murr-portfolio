@@ -20,15 +20,15 @@ registerBlockType(block, {
             <div {...useBlockProps()}>
                 <div className={classNames("m-collapse", { "m-collapse--open": open })}>
                     <InspectorControls key={"collapse-settings"}>
-                        <PanelBody header={__("Collapse Options", "ghint")}>
-                            <TextControl label={__("Heading Text", "ghint")} value={heading} onChange={(heading) => setAttributes({ heading })} />
-                            <RangeControl label={__("Heading Level", "ghint")} value={level} min={1} max={6} onChange={(level) => setAttributes({ level })} />
-                            <ToggleControl label={__("Open?", "ghint")} help={__("Initializes the content body in an open or closed state", "ghint")} checked={open} onChange={(open) => setAttributes({ open })} />
+                        <PanelBody header={__("Collapse Options", "murr")}>
+                            <TextControl label={__("Heading Text", "murr")} value={heading} onChange={(heading) => setAttributes({ heading })} />
+                            <RangeControl label={__("Heading Level", "murr")} value={level} min={1} max={6} onChange={(level) => setAttributes({ level })} />
+                            <ToggleControl label={__("Open?", "murr")} help={__("Initializes the content body in an open or closed state", "murr")} checked={open} onChange={(open) => setAttributes({ open })} />
                         </PanelBody>
                     </InspectorControls>
 
                     <HeadingTag className={classNames("m-collapse__heading", { "text--disabled": !heading })} level={level}>
-                        {heading || __("Enter your heading", "ghint")}
+                        {heading || __("Enter your heading", "murr")}
                     </HeadingTag>
                     <div className={"m-collapse__content"}>
                         <InnerBlocks />

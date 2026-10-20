@@ -1,9 +1,10 @@
 <?php
+
 /**
  * @var array $args
  */
 
-$sources = apply_filters('ghint/atoms/video-sources-sort', $args['sources'] ?? []);
+$sources = apply_filters('murr/atoms/video-sources-sort', $args['sources'] ?? []);
 $attributes = htmlAttributes([
     'class' => implode(' ', array_merge(['a-video'], $args['classes'] ?? [])),
     'width' => $args['width'] ?? '100%',
@@ -16,11 +17,11 @@ $attributes = htmlAttributes([
     'controls' => $args['controls'] ?? false,
     'style' => $args['style'] ?? false,
 ]);
-$fallback = $args['fallback'] ?? __('Your browser does not support the video tag.', 'ghint');
+$fallback = $args['fallback'] ?? __('Your browser does not support the video tag.', 'murr');
 ?>
 <video <?= $attributes ?>>
     <?php foreach ($sources as $src) : ?>
-        <source src="<?= $src['src'] ?>" type="<?= $src['type'] ?>"/>
+        <source src="<?= $src['src'] ?>" type="<?= $src['type'] ?>" />
     <?php endforeach; ?>
     <?= $fallback ?>
 </video>

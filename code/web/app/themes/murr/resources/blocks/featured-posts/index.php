@@ -27,7 +27,7 @@ $postsQuery = new WP_Query([
                 while ($postsQuery->have_posts()) {
                     $postsQuery->the_post();
 
-                    $categories = array_map(fn ($c) => $c->name, get_the_category());
+                    $categories = array_map(fn($c) => $c->name, get_the_category());
 
                     get_template_part(
                         'partials/molecules/card',
@@ -40,7 +40,7 @@ $postsQuery = new WP_Query([
                                 'subheading' => implode(', ', $categories),
                                 'link' => [
                                     'url' => get_the_permalink(),
-                                    'text' => __('Read more', 'ghint'),
+                                    'text' => __('Read more', 'murr'),
                                 ],
                             ],
                         ]

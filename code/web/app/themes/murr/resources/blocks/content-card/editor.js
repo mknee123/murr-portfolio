@@ -11,10 +11,10 @@ registerBlockType(block, {
         const { image, imageUrl } = attributes;
 
         const instructions = {
-            notAllowed: <strong>{__("To edit the image, you need permission to upload media.", "ghint")}</strong>,
-            previewEmpty: <strong>{__("Use the editor panel to add an image.", "ghint")}</strong>,
-            add: __("Add Image", "ghint"),
-            edit: __("Edit Image", "ghint"),
+            notAllowed: <strong>{__("To edit the image, you need permission to upload media.", "murr")}</strong>,
+            previewEmpty: <strong>{__("Use the editor panel to add an image.", "murr")}</strong>,
+            add: __("Add Image", "murr"),
+            edit: __("Edit Image", "murr"),
         };
 
         const onImageSelect = (img) => {
@@ -24,10 +24,10 @@ registerBlockType(block, {
         return (
             <div {...useBlockProps()}>
                 <InspectorControls>
-                    <PanelBody title={__("Image", "ghint")} initialOpen={true}>
+                    <PanelBody title={__("Image", "murr")} initialOpen={true}>
                         <MediaUploadCheck fallback={instructions.notAllowed}>
                             <MediaUpload
-                                title={__("Select an image", "ghint")}
+                                title={__("Select an image", "murr")}
                                 onSelect={onImageSelect}
                                 allowedTypes={["image"]}
                                 value={image}
@@ -52,8 +52,8 @@ registerBlockType(block, {
                                 [
                                     "core/paragraph",
                                     {
-                                        content: __("Brand or client name", "ghint"),
-                                        placeholder: __("Add headline here.", "ghint"),
+                                        content: __("Brand or client name", "murr"),
+                                        placeholder: __("Add headline here.", "murr"),
                                         fontSize: "mini",
                                         textColor: "secondary",
                                     },
@@ -61,8 +61,8 @@ registerBlockType(block, {
                                 [
                                     "core/heading",
                                     {
-                                        content: __("Brand or client name", "ghint"),
-                                        placeholder: __("Add headline here.", "ghint"),
+                                        content: __("Brand or client name", "murr"),
+                                        placeholder: __("Add headline here.", "murr"),
                                         fontSize: "xx-large",
                                         level: 2,
                                     },
@@ -70,8 +70,8 @@ registerBlockType(block, {
                                 [
                                     "core/paragraph",
                                     {
-                                        content: __("Punchy work or project intro right here.", "ghint"),
-                                        placeholder: __("Add descriptive content here.", "ghint"),
+                                        content: __("Punchy work or project intro right here.", "murr"),
+                                        placeholder: __("Add descriptive content here.", "murr"),
                                         fontSize: "big",
                                     },
                                 ],
@@ -82,8 +82,8 @@ registerBlockType(block, {
                                         [
                                             "core/button",
                                             {
-                                                text: __("See the project", "ghint"),
-                                                placeholder: __("See the project", "ghint"),
+                                                text: __("See the project", "murr"),
+                                                placeholder: __("See the project", "murr"),
                                             },
                                         ],
                                     ],

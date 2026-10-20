@@ -22,7 +22,7 @@ $image = get_the_post_thumbnail($post->ID);
     <div class="post-container">
         <?php
         get_template_part('partials/molecules/share-links', null, [
-            'links' => apply_filters('ghint/share-links', []),
+            'links' => apply_filters('murr/share-links', []),
         ]); ?>
         <div class="entry-content">
             <?php the_content(); ?>

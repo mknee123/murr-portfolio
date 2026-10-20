@@ -1,13 +1,13 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "ghint/featured-posts",
+    "name": "murr/featured-posts",
     "title": "Featured Posts",
     "category": "mk-blocks",
     "description": "Display of 3 recent posts.",
     "keywords": ["featured posts", "posts"],
     "version": "1.0.0",
-    "textdomain": "ghint",
+    "textdomain": "murr",
     "supports": {
         "align": ["wide"]
     },
@@ -21,7 +21,7 @@
                 }
             },
             {
-                "name": "ghint/content-card",
+                "name": "murr/content-card",
                 "innerBlocks": [
                     {
                         "name": "core/paragraph",
